@@ -223,7 +223,7 @@
 <p>线程创建「函数执行上下文」并且压入 <strong>执行栈顶</strong>等待执行, 如果是 <strong>异步任务</strong> , 则不 进入主线程执行 ,  不创建函数 </p>
 <p> 执行上下文  , 而是被<code>Event Table</code> 所记录, 当 <strong>异步任务</strong>准备好时, 为其注册回调用函数, 进入事件队列<code>Event </code></p>
 <p><code>Quene</code>等待执行</p>
-<p>当执行栈执行完毕时, 调用 事件队列 <code>Event Quene</code> 中的回调函数进栈执行, 在**异步任务 **被 <code>Event Table</code> 所记录之</p>
+<p>当执行栈执行完毕时, 调用 事件队列 <code>Event Quene</code> 中的回调函数进栈执行, 在<strong>异步任务</strong>被 <code>Event Table</code> 所记录之</p>
 <p>前, 会判断是 「宏任务」 还是 「微任务」 , 分别被 宏任务 Event Table 和 微任务Event Table 记录, 最后再注册回</p>
 <p>调函数, 并进入相应的「宏任务事件队列 」和 「微任务事件队列」</p>
 <blockquote>
