@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="playlife">
   <meta name="keywords" content="">
-  <title>ES6 语法学习 - playlife</title>
+  <title>ECMAScript 6 精粹 - playlife</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -205,7 +205,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">ES6 语法学习</h1>
+            <h1 style="display: none">ECMAScript 6 精粹</h1>
             
             <div class="markdown-body" id="post-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
@@ -670,7 +670,7 @@ ws.add(<span class="hljs-built_in">Symbol</span>())
 <li>**WeakSet.prototype.has(value)**：返回一个布尔值，表示某个值是否在 WeakSet 实例之中。</li>
 </ul>
 <p>WeakSet 没有<code>size</code>属性，没有办法遍历它的成员。</p>
-<h1 id="10-Map"><a href="#10-Map" class="headerlink" title="10. Map"></a>10. Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
+<h1 id="9-Map"><a href="#9-Map" class="headerlink" title="9. Map"></a>9. Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> data = &#123;&#125;;
 <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;myDiv&#x27;</span>);
 
@@ -692,7 +692,7 @@ items.forEach(
 );</code></pre>
 
 <p>事实上，不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（详见《Iterator》一章）都可以当作<code>Map</code>构造函数的参数。这就是说，<code>Set</code>和<code>Map</code>都可以用来生成新的 Map。</p>
-<h2 id="10-1-Map-实例的属性和方法"><a href="#10-1-Map-实例的属性和方法" class="headerlink" title="10.1 Map 实例的属性和方法"></a>10.1 Map 实例的属性和方法</h2><p>Map 结构的实例有以下属性和操作方法。</p>
+<h2 id="9-1-Map-实例的属性和方法"><a href="#9-1-Map-实例的属性和方法" class="headerlink" title="9.1 Map 实例的属性和方法"></a>9.1 Map 实例的属性和方法</h2><p>Map 结构的实例有以下属性和操作方法。</p>
 <ul>
 <li><strong>size 属性</strong></li>
 </ul>
@@ -725,7 +725,7 @@ items.forEach(
 <li><code>Map.prototype.forEach()</code>：遍历 Map 的所有成员。</li>
 </ul>
 <p>需要特别注意的是，Map 的遍历顺序就是插入顺序。</p>
-<h1 id="11-Promise-对象"><a href="#11-Promise-对象" class="headerlink" title="11. Promise 对象"></a>11. Promise 对象</h1><p>Promise 是异步编程的一种解决方案。</p>
+<h1 id="10-Promise-对象"><a href="#10-Promise-对象" class="headerlink" title="10. Promise 对象"></a>10. Promise 对象</h1><p>Promise 是异步编程的一种解决方案。</p>
 <p>Promise 对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。</p>
 <p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
 <p><code>Promise</code>对象有以下两个特点。</p>
@@ -756,7 +756,7 @@ someAsyncThing(<span class="hljs-literal">false</span>).then(<span class="hljs-f
 &#125;)</code></pre>
 
 <p>上面代码中，someAsyncThing 函数成功返回 ‘OK’, 失败返回 ‘error’, 只有失败时才会被 catch 捕捉到。</p>
-<h2 id="11-1-Promise-实例方法"><a href="#11-1-Promise-实例方法" class="headerlink" title="11.1 Promise 实例方法"></a>11.1 Promise 实例方法</h2><ul>
+<h2 id="10-1-Promise-实例方法"><a href="#10-1-Promise-实例方法" class="headerlink" title="10.1 Promise 实例方法"></a>10.1 Promise 实例方法</h2><ul>
 <li><strong>Promise.all()</strong> </li>
 </ul>
 <p><code>Promise.all()</code>方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
@@ -795,7 +795,7 @@ p
 </ul>
 <p>ES2021 引入了<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-promise-any"><code>Promise.any()</code>方法</a>。该方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例返回。只要参数实例有一个变成<code>fulfilled</code>状态，包装实例就会变成<code>fulfilled</code>状态；如果所有参数实例都变成<code>rejected</code>状态，包装实例就会变成<code>rejected</code>状态。</p>
 <p><code>Promise.any()</code>跟<code>Promise.race()</code>方法很像，只有一点不同，就是不会因为某个 Promise 变成<code>rejected</code>状态而结束。</p>
-<h1 id="12-async-await"><a href="#12-async-await" class="headerlink" title="12. async / await"></a>12. async / await</h1><p>ES2017 标准引入了 async 函数，使得异步操作变得更加方便。</p>
+<h1 id="11-async-await"><a href="#11-async-await" class="headerlink" title="11. async / await"></a>11. async / await</h1><p>ES2017 标准引入了 async 函数，使得异步操作变得更加方便。</p>
 <p>async 函数的使用方式，直接在普通函数前面加上 async，表示这是一个异步函数，在要异步执行的语句前面加上 await，表示后面的表达式需要等待。async 是 Generator 的语法糖</p>
 <ol>
 <li>async 函数内部 return 语句返回的值，会成为 then 方法回调函数的参数。</li>
@@ -803,7 +803,7 @@ p
 <li>async 函数返回的 Promise 对象，必须等到内部所有 await 命令后面的 Promise 对象执行完，才会发生状态改变，除非遇到 return 语句或者抛出错误。也就是说，只有 async 函数内部的异步操作执行完，才会执行 then 方法指定的回调函数。 </li>
 </ol>
 <p>可以用写同步的方式来写异步操作</p>
-<h1 id="13-Class-语法"><a href="#13-Class-语法" class="headerlink" title="13. Class 语法"></a>13. Class 语法</h1><p>ES6 的类，完全可以看作构造函数的另一种写法。</p>
+<h1 id="12-Class-语法"><a href="#12-Class-语法" class="headerlink" title="12. Class 语法"></a>12. Class 语法</h1><p>ES6 的类，完全可以看作构造函数的另一种写法。</p>
 <pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-comment">// ...</span>
 &#125;
@@ -894,7 +894,7 @@ inst.prop
 <span class="hljs-comment">// &#x27;getter&#x27;</span></code></pre>
 
 <p>上面代码中，<code>prop</code>属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。</p>
-<h2 id="13-1-Class-继承"><a href="#13-1-Class-继承" class="headerlink" title="13.1 Class 继承"></a>13.1 Class 继承</h2><p>Class 可以通过<code>extends</code>关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</p>
+<h2 id="12-1-Class-继承"><a href="#12-1-Class-继承" class="headerlink" title="12.1 Class 继承"></a>12.1 Class 继承</h2><p>Class 可以通过<code>extends</code>关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</p>
 <pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
 &#125;
 
@@ -925,7 +925,7 @@ inst.prop
 <span class="hljs-keyword">let</span> cp = <span class="hljs-keyword">new</span> ColorPoint(); <span class="hljs-comment">// ReferenceError</span></code></pre>
 
 <p>上面代码中，<code>ColorPoint</code>继承了父类<code>Point</code>，但是它的构造函数没有调用<code>super</code>方法，导致新建实例时报错。</p>
-<h1 id="14-Symbol"><a href="#14-Symbol" class="headerlink" title="14. Symbol"></a>14. Symbol</h1><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。</p>
+<h1 id="13-Symbol"><a href="#13-Symbol" class="headerlink" title="13. Symbol"></a>13. Symbol</h1><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。</p>
 <p>如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入<code>Symbol</code>的原因。</p>
 <p>ES6 引入了一种新的原始数据类型<code>Symbol</code>，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：<code>undefined</code>、<code>null</code>、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-built_in">Symbol</span>();
@@ -951,7 +951,7 @@ s2.toString() <span class="hljs-comment">// &quot;Symbol(bar)&quot;</span></code
 <p>Symbol 值不能与其他类型的值进行运算，会报错。</p>
 <p>但是，Symbol 值可以显式转为字符串。</p>
 <p>另外，Symbol 值也可以转为布尔值，但是不能转为数值。</p>
-<h2 id="14-2-作为属性名"><a href="#14-2-作为属性名" class="headerlink" title="14.2 作为属性名"></a>14.2 作为属性名</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
+<h2 id="13-1-作为属性名"><a href="#13-1-作为属性名" class="headerlink" title="13.1 作为属性名"></a>13.1 作为属性名</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> mySymbol = <span class="hljs-built_in">Symbol</span>();
 
 <span class="hljs-comment">// 第一种写法</span>
@@ -972,7 +972,7 @@ a[mySymbol] <span class="hljs-comment">// &quot;Hello!&quot;</span></code></pre>
 
 <p>上面代码通过方括号结构和<code>Object.defineProperty</code>，将对象的属性名指定为一个 Symbol 值。</p>
 <p>注意，Symbol 值作为对象属性名时，不能用点运算符。因为点运算符后面总是字符串，所以不会读取<code>mySymbol</code>作为标识名所指代的那个值，导致<code>a</code>的属性名实际上是一个字符串，而不是一个 Symbol 值。</p>
-<h2 id="14-4-属性名的遍历"><a href="#14-4-属性名的遍历" class="headerlink" title="14.4 属性名的遍历"></a>14.4 属性名的遍历</h2><p>Symbol 作为属性名，遍历对象的时候，该属性不会出现在<code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回。</p>
+<h2 id="13-2-属性名的遍历"><a href="#13-2-属性名的遍历" class="headerlink" title="13.2 属性名的遍历"></a>13.2 属性名的遍历</h2><p>Symbol 作为属性名，遍历对象的时候，该属性不会出现在<code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回。</p>
 <p>不会被以下遍历：</p>
 <ul>
 <li><code>for...in</code></li>
@@ -985,15 +985,15 @@ a[mySymbol] <span class="hljs-comment">// &quot;Hello!&quot;</span></code></pre>
 <li><code>JSON.stringify()</code></li>
 </ul>
 <p>但是，它也不是私有属性，有一个<code>Object.getOwnPropertySymbols()</code>方法，可以获取指定对象的所有 Symbol 属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</p>
-<h2 id="14-4-Symbol-for-Symbol-keyFor"><a href="#14-4-Symbol-for-Symbol-keyFor" class="headerlink" title="14.4 Symbol.for() Symbol.keyFor()"></a>14.4 Symbol.for() Symbol.keyFor()</h2><p>有时，我们希望重新使用同一个 Symbol 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。</p>
+<h2 id="13-3-Symbol-for-Symbol-keyFor"><a href="#13-3-Symbol-for-Symbol-keyFor" class="headerlink" title="13.3 Symbol.for() Symbol.keyFor()"></a>13.3 Symbol.for() Symbol.keyFor()</h2><p>有时，我们希望重新使用同一个 Symbol 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">Symbol</span>.for(<span class="hljs-string">&#x27;foo&#x27;</span>);
 <span class="hljs-keyword">let</span> s2 = <span class="hljs-built_in">Symbol</span>.for(<span class="hljs-string">&#x27;foo&#x27;</span>);
 
 s1 === s2 <span class="hljs-comment">// true</span></code></pre>
 
 <p>上面代码中，<code>s1</code>和<code>s2</code>都是 Symbol 值，但是它们都是由同样参数的<code>Symbol.for</code>方法生成的，所以实际上是同一个值。</p>
-<h1 id="15-Module-语法"><a href="#15-Module-语法" class="headerlink" title="15. Module 语法"></a>15. Module 语法</h1><p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上<code>&quot;use strict&quot;;</code>。</p>
-<h2 id="15-1-export"><a href="#15-1-export" class="headerlink" title="15.1 export"></a>15.1 export</h2><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用<code>export</code>关键字输出该变量。下面是一个 JS 文件，里面使用<code>export</code>命令输出变量。</p>
+<h1 id="14-Module-语法"><a href="#14-Module-语法" class="headerlink" title="14. Module 语法"></a>14. Module 语法</h1><p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上<code>&quot;use strict&quot;;</code>。</p>
+<h2 id="14-1-export"><a href="#14-1-export" class="headerlink" title="14.1 export"></a>14.1 export</h2><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用<code>export</code>关键字输出该变量。下面是一个 JS 文件，里面使用<code>export</code>命令输出变量。</p>
 <pre><code class="hljs js"><span class="hljs-comment">// profile.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> firstName = <span class="hljs-string">&#x27;Michael&#x27;</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> lastName = <span class="hljs-string">&#x27;Jackson&#x27;</span>;
@@ -1022,7 +1022,7 @@ s1 === s2 <span class="hljs-comment">// true</span></code></pre>
 <p>上面代码使用<code>as</code>关键字，重命名了函数<code>v1</code>和<code>v2</code>的对外接口。重命名后，<code>v2</code>可以用不同的名字输出两次。</p>
 <p>需要特别注意的是，<code>export</code>命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。</p>
 <p>同样的，<code>function</code>和<code>class</code>的输出，也必须遵守这样的写法。</p>
-<h2 id="15-2-import"><a href="#15-2-import" class="headerlink" title="15.2 import"></a>15.2 import</h2><p>使用<code>export</code>命令定义了模块的对外接口以后，其他 JS 文件就可以通过<code>import</code>命令加载这个模块。</p>
+<h2 id="14-2-import"><a href="#14-2-import" class="headerlink" title="14.2 import"></a>14.2 import</h2><p>使用<code>export</code>命令定义了模块的对外接口以后，其他 JS 文件就可以通过<code>import</code>命令加载这个模块。</p>
 <pre><code class="hljs javascript"><span class="hljs-comment">// main.js</span>
 <span class="hljs-keyword">import</span> &#123; firstName, lastName, year &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./profile.js&#x27;</span>;
 
@@ -1043,7 +1043,7 @@ s1 === s2 <span class="hljs-comment">// true</span></code></pre>
 <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre>
 
 <p>上面代码仅仅执行<code>lodash</code>模块，但是不输入任何值。</p>
-<h2 id="15-3-export-default"><a href="#15-3-export-default" class="headerlink" title="15.3 export default"></a>15.3 export default</h2><p>用到<code>export default</code>命令，为模块指定默认输出。</p>
+<h2 id="14-3-export-default"><a href="#14-3-export-default" class="headerlink" title="14.3 export default"></a>14.3 export default</h2><p>用到<code>export default</code>命令，为模块指定默认输出。</p>
 <pre><code class="hljs javascript"><span class="hljs-comment">// export-default.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;foo&#x27;</span>);
@@ -1139,7 +1139,7 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
                     
                       <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
                     
-                      <a class="hover-with-bg" href="/tags/ES6/">ES6</a>
+                      <a class="hover-with-bg" href="/tags/ECMAScript-6/">ECMAScript 6</a>
                     
                   </div>
                 
@@ -1306,7 +1306,7 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "ES6 语法学习&nbsp;",
+        "ECMAScript 6 精粹&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 70,
