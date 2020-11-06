@@ -665,9 +665,9 @@ ws.add(<span class="hljs-built_in">Symbol</span>())
 <p>其次，WeakSet 中的对象都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存，不考虑该对象还存在于 WeakSet 之中。</p>
 <p>WeakSet 结构有以下三个方法。</p>
 <ul>
-<li>**WeakSet.prototype.add(value)**：向 WeakSet 实例添加一个新成员。</li>
-<li>**WeakSet.prototype.delete(value)**：清除 WeakSet 实例的指定成员。</li>
-<li>**WeakSet.prototype.has(value)**：返回一个布尔值，表示某个值是否在 WeakSet 实例之中。</li>
+<li>WeakSet.prototype.add(value)：向 WeakSet 实例添加一个新成员。</li>
+<li>WeakSet.prototype.delete(value)：清除 WeakSet 实例的指定成员。</li>
+<li>WeakSet.prototype.has(value)：返回一个布尔值，表示某个值是否在 WeakSet 实例之中。</li>
 </ul>
 <p>WeakSet 没有<code>size</code>属性，没有办法遍历它的成员。</p>
 <h1 id="9-Map"><a href="#9-Map" class="headerlink" title="9. Map"></a>9. Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
