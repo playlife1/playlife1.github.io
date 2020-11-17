@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="playlife">
+  <meta name="keywords" content="">
+  <title>JavaScript 的运行机制 - playlife</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2101544_itkc8euddhf.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>playlife</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/post_page.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-16 17:34" pubdate>
+        2020-11-16th 05:34:42 PM
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript 的运行机制</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="JavaScript-中的继承"><a href="#JavaScript-中的继承" class="headerlink" title="JavaScript 中的继承"></a>JavaScript 中的继承</h1><p>在 JavaScript 中的继承可以以是否使用<code>Object.create</code>大致分为两类：</p>
+<p><img src="./assets/js-extends.jpg" srcset="/img/loading.gif" alt="js-extends">  </p>
+<p>不使用<code>Object.create</code>：</p>
+<ol>
+<li>原型链继承</li>
+<li>构造函数继承</li>
+<li>组合继承</li>
+</ol>
+<p>使用<code>Object.create</code>：</p>
+<ol start="4">
+<li>原型式继承</li>
+<li>寄生式继承</li>
+<li>寄生组合继承</li>
+</ol>
+<p>以及ES6 Class 继承</p>
+<h1 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h1><p>**<code>Object.create()</code>**方法创建一个新对象，使用现有的对象来提供新创建的对象的 <code>__proto__</code>。</p>
+<p>语法：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.create(proto，[propertiesObject])</code></pre>
+
+<p>参数:</p>
+<ul>
+<li><p><code>proto</code></p>
+<p> 新创建对象的原型对象。</p>
+</li>
+<li><p><code>propertiesObject</code></p>
+<p>可选。需要传入一个对象，该对象的属性类型参照<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties"><code>Object.defineProperties()</code></a>的第二个参数。</p>
+</li>
+</ul>
+<p>返回值:</p>
+<p>一个新对象，带着指定的原型对象和属性。</p>
+<p><code>Object.create()</code>的 Polyfill 方法：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+  F.prototype = o
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F()
+&#125;
+<span class="hljs-comment">//等价于</span>
+<span class="hljs-built_in">Object</span>.create(o)</code></pre>
+
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>首先，先准备一个父类：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 定义一个动物类</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Animal</span> (<span class="hljs-params">name</span>) </span>&#123;
+  <span class="hljs-comment">// 属性</span>
+  <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Animal&#x27;</span>
+  <span class="hljs-comment">// 实例方法</span>
+  <span class="hljs-built_in">this</span>.sleep = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&#x27;正在睡觉！&#x27;</span>)
+  &#125;
+&#125;
+<span class="hljs-comment">// 原型方法</span>
+Animal.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">food</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&#x27;正在吃：&#x27;</span> + food)
+&#125;;</code></pre>
+
+<h1 id="1、原型链继承"><a href="#1、原型链继承" class="headerlink" title="1、原型链继承"></a>1、原型链继承</h1><blockquote>
+<p>核心： 将父类的实例作为子类的原型</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params"></span>)</span>&#123; 
+&#125;
+Cat.prototype = <span class="hljs-keyword">new</span> Animal()
+Cat.prototype.name = <span class="hljs-string">&#x27;cat&#x27;</span>
+
+<span class="hljs-comment">//　Test Code</span>
+<span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> Cat()
+<span class="hljs-built_in">console</span>.log(cat.name);
+cat.eat(<span class="hljs-string">&#x27;fish&#x27;</span>)
+cat.sleep()
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">//true </span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">//true </span></code></pre>
+
+<p>特点：</p>
+<ol>
+<li>非常纯粹的继承关系，实例是子类的实例，也是父类的实例</li>
+<li>父类新增原型方法/原型属性，子类都能访问到</li>
+<li>简单，易于实现</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>要想为子类新增属性和方法，必须要在<code>new Animal()</code>这样的语句之后执行，不能放到构造器中<br>无法实现多继承</li>
+<li>来自原型对象的引用属性是所有实例共享的</li>
+<li>创建子类实例时，无法向父类构造函数传参</li>
+</ol>
+<h1 id="2、构造继承"><a href="#2、构造继承" class="headerlink" title="2、构造继承"></a>2、构造继承</h1><blockquote>
+<p>核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
+  Animal.call(<span class="hljs-built_in">this</span>)
+  <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;
+
+<span class="hljs-comment">// Test Code</span>
+<span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> Cat()
+<span class="hljs-built_in">console</span>.log(cat.name)
+cat.sleep()
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+
+<p>特点：</p>
+<ol>
+<li>解决了「原型链继承」中，子类实例共享父类引用属性的问题</li>
+<li>创建子类实例时，可以向父类传递参数</li>
+<li>可以实现多继承（call多个父类对象） </li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>实例并不是父类的实例，只是子类的实例</li>
+<li>只能继承父类的实例属性和方法，不能继承原型属性/方法</li>
+<li>无法实现函数复用，每个子类都有父类实例函数的副本，影响性能</li>
+</ol>
+<h1 id="3、组合继承"><a href="#3、组合继承" class="headerlink" title="3、组合继承"></a>3、组合继承</h1><blockquote>
+<p>核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
+  Animal.call(<span class="hljs-built_in">this</span>)
+  <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;
+Cat.prototype = <span class="hljs-keyword">new</span> Animal()<span class="hljs-comment">//组合继承也是需要修复构造函数指向的。</span>
+Cat.prototype.constructor = Cat
+<span class="hljs-comment">// Test Code</span>
+<span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> Cat()
+<span class="hljs-built_in">console</span>.log(cat.name)
+cat.sleep()
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+
+<p>特点：</p>
+<ol>
+<li>弥补了「构造继承」的缺陷，可以继承实例属性/方法，也可以继承原型属性/方法</li>
+<li>既是子类的实例，也是父类的实例</li>
+<li>不存在引用属性共享问题</li>
+<li>可传参</li>
+<li>函数可复用</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>调用了两次父类构造函数，生成了两份实例（子类实例将子类原型上的那份屏蔽了）</li>
+</ol>
+<h1 id="4、原型式继承"><a href="#4、原型式继承" class="headerlink" title="4、原型式继承"></a>4、原型式继承</h1><blockquote>
+<p>核心：原型式继承的 object方法 本质上是对参数对象的一个浅复制。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">//利用一个空对象作为中介，将某个对象直接赋值给空对象构造函数的原型。</span>
+<span class="hljs-comment">//就是 ES5 Object.create 的模拟实现，将传入的对象作为创建的对象的原型。</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+  F.prototype = o
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F()
+&#125;
+<span class="hljs-keyword">var</span> person = &#123;
+  name: <span class="hljs-string">&quot;Nicholas&quot;</span>,
+  friends: [<span class="hljs-string">&quot;Shelby&quot;</span>, <span class="hljs-string">&quot;Court&quot;</span>, <span class="hljs-string">&quot;Van&quot;</span>]
+&#125;
+
+<span class="hljs-keyword">var</span> anotherPerson = object(person)
+anotherPerson.name = <span class="hljs-string">&quot;Greg&quot;</span>
+anotherPerson.friends.push(<span class="hljs-string">&quot;Rob&quot;</span>)
+
+<span class="hljs-keyword">var</span> yetAnotherPerson = object(person)
+yetAnotherPerson.name = <span class="hljs-string">&quot;Linda&quot;</span>
+yetAnotherPerson.friends.push(<span class="hljs-string">&quot;Barbie&quot;</span>)
+
+alert(person.friends);  <span class="hljs-comment">//&quot;Shelby,Court,Van,Rob,Barbie&quot;</span>
+
+<span class="hljs-comment">//注意：修改anotherPerson.name的值，yetAnotherPerson.name的值并未发生改变，并不是因为anotherPerson 和 yetAnotherPerson 有独立的 name 值，而是因为 anotherPerson.name = &quot;Greg&quot;，给anotherPerson添加了 name 值，并非修改了原型上的 name 值。</span></code></pre>
+
+<p>缺点：</p>
+<ol>
+<li>包含引用类型的属性值始终都会共享相应的值，这点跟原型链继承一样。</li>
+</ol>
+<h1 id="5、寄生继承"><a href="#5、寄生继承" class="headerlink" title="5、寄生继承"></a>5、寄生继承</h1><blockquote>
+<p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// 寄生继承</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>) </span>&#123;
+    Animal.call(<span class="hljs-built_in">this</span>)
+    <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;
+<span class="hljs-comment">// function object(o) &#123;</span>
+<span class="hljs-comment">//     function F()&#123;&#125;</span>
+<span class="hljs-comment">//     F.prototype = o</span>
+<span class="hljs-comment">//     return new F()</span>
+<span class="hljs-comment">// &#125;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAnother</span>(<span class="hljs-params">original</span>) </span>&#123;
+    <span class="hljs-comment">// 通过调用函数创建一个新对象</span>
+    <span class="hljs-keyword">var</span> clone = <span class="hljs-built_in">Object</span>.create(original)
+    <span class="hljs-comment">// 以某种方式来增强这个对象</span>
+    clone.sayHi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+        alert(<span class="hljs-string">&quot;hi&quot;</span>)
+    &#125;
+	clone.name = <span class="hljs-string">&#x27;Tom&#x27;</span>
+    <span class="hljs-keyword">return</span> clone
+&#125;
+
+<span class="hljs-comment">// Test Code</span>
+<span class="hljs-keyword">var</span> cat = createAnother(<span class="hljs-keyword">new</span> Animal())
+<span class="hljs-built_in">console</span>.log(cat.name)
+cat.sayHi()
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)</code></pre>
+
+<p>特点：</p>
+<ol>
+<li>可以增强子例对象功</li>
+<li>例子中使用的 Object.create(original) 函数不是必须的，可以使用任何能够返回新对象的函数都适用于此模式</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>不能做到函数复用而降低效率</li>
+<li>只是借用了一个没有属性子类实例作为原型，并没有真正的意义上的子类，constructor 依然指向父类</li>
+</ol>
+<h2 id="6、寄生组合继承"><a href="#6、寄生组合继承" class="headerlink" title="6、寄生组合继承"></a>6、寄生组合继承</h2><blockquote>
+<p>核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// 寄生组合继承</span>
+<span class="hljs-comment">// 该实现没有修复constructor</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>) </span>&#123;
+    Animal.call(<span class="hljs-built_in">this</span>)
+    <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Class&#125;</span> </span>Father 父类构造函数</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Class&#125;</span> </span>Son 子类构造函数</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Object&#125;</span> </span>子类实例 </span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parasiteExtend</span>(<span class="hljs-params">Father, Son</span>) </span>&#123;
+    <span class="hljs-comment">// 没有实例方法的临时类</span>
+    <span class="hljs-comment">// let Super = function () &#123;&#125;</span>
+    <span class="hljs-comment">// Super.prototype = Father.prototype</span>
+		<span class="hljs-comment">// Son.prototype = new Super()</span>
+    Son.prototype = <span class="hljs-built_in">Object</span>.create(Father.prototype)
+    <span class="hljs-comment">// 修复constructor</span>
+    Son.prototype.constructor = Son
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Son()
+&#125;
+
+<span class="hljs-comment">// Test Code</span>
+<span class="hljs-keyword">var</span> cat = parasiteExtend(Animal,Cat)
+<span class="hljs-built_in">console</span>.log(cat.name)
+cat.sleep()
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+
+<p>特点：</p>
+<ol>
+<li>堪称完美</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>实现较为复杂</li>
+</ol>
+<h1 id="ES6-Class-extends"><a href="#ES6-Class-extends" class="headerlink" title="ES6 Class extends"></a>ES6 Class extends</h1><blockquote>
+<p>核心： ES6继承的结果和寄生组合继承相似，本质上，ES6继承是一种语法糖。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>(name, gender) &#123;
+    <span class="hljs-built_in">super</span>(name)
+    <span class="hljs-built_in">this</span>.gender = gender
+  &#125;
+  like() &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;cat like fish&#x27;</span>)
+  &#125;
+&#125;
+<span class="hljs-comment">//　Test Code</span>
+
+<span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> Cat(<span class="hljs-string">&#x27;Tom&#x27;</span>,<span class="hljs-string">&#x27;Man&#x27;</span>)
+<span class="hljs-built_in">console</span>.log(cat.name)<span class="hljs-comment">//Tom</span>
+<span class="hljs-built_in">console</span>.log(cat.gender)<span class="hljs-comment">//Man</span>
+cat.eat(<span class="hljs-string">&#x27;fish&#x27;</span>)<span class="hljs-comment">//Tom正在吃fish</span>
+cat.sleep()<span class="hljs-comment">//我的name是Tom</span>
+cat.like()<span class="hljs-comment">//cat like fish</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal)<span class="hljs-comment">//true</span>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)<span class="hljs-comment">//true</span></code></pre>
+
+<p>寄生组合继承是先创建子类实例 this 对象，然后再对其增强；</p>
+<p>而 ES6 先将父类实例对象的属性和方法，加到 this 上面（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">super</span>();
+  &#125;
+&#125;</code></pre>
+
+<p>ES6 实现继承的具体原理：</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;
+&#125;
+
+<span class="hljs-built_in">Object</span>.setPrototypeOf = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj, proto</span>) </span>&#123;
+  obj.__proto__ = proto;
+  <span class="hljs-keyword">return</span> obj;
+&#125;
+
+<span class="hljs-comment">// B 的实例继承 A 的实例</span>
+<span class="hljs-built_in">Object</span>.setPrototypeOf(B.prototype, A.prototype);
+
+<span class="hljs-comment">// B 继承 A 的静态属性</span>
+<span class="hljs-built_in">Object</span>.setPrototypeOf(B, A);</code></pre>
+
+<p>ES6 继承与 ES5 继承的异同：<br>相同点：</p>
+<ul>
+<li>本质上ES6继承是ES5继承的语法糖</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>ES6 继承中子类的构造函数的原型链指向父类的构造函数，ES5 中使用的是构造函数复制，没有原型链指向。</li>
+<li>ES6 子类实例的构建，基于父类实例，ES5 中不是。</li>
+</ul>
+<h1 id="ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="ES5/ES6 的继承除了写法以外还有什么区别？"></a>ES5/ES6 的继承除了写法以外还有什么区别？</h1><ol>
+<li><code>class</code> 声明会提升，但不会初始化赋值。<code>Foo</code> 进入暂时性死区，类似于 <code>let</code>、<code>const</code> 声明变量。</li>
+<li><code>class</code> 声明内部会启用严格模式。</li>
+<li><code>class</code> 的所有方法（包括静态方法和实例方法）都是不可枚举的。</li>
+<li><code>class</code> 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有<code>[[construct]]</code>，不能使用 <code>new</code> 来调用。</li>
+<li>必须使用 <code>new</code> 调用 <code>class</code>。</li>
+<li><code>class</code> 内部无法重写类名</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-primary">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/%E6%B5%85%E8%B0%88%20HTTP%20%E5%8D%8F%E8%AE%AE/">
+                        <span class="hidden-mobile">浅谈 HTTP 协议</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <span>Power by</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"
+        ><span>Hexo</span></a
+      >
+      <i class="iconfont icon-love"></i><span>Theme</span>
+      <a
+        href="https://github.com/fluid-dev/hexo-theme-fluid"
+        target="_blank"
+        rel="nofollow noopener"
+      >
+        <span>Fluid</span></a
+      >
+    </div>
+    
+ 
+ 
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JavaScript 的运行机制&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

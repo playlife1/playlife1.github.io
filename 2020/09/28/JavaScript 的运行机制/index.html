@@ -214,7 +214,7 @@
 <p>调用时, 都将会为其创建一个<strong>新</strong>的「函数执行上下文」, 并将其压入执行栈<strong>顶.</strong> 引擎会执行那些执行上下文位于<strong>栈顶</strong></p>
 <p>的函数。当该函数执行结束时，「执行上下文」从栈中弹出，控制流程到达当前栈中的下一个上下文。</p>
 <p>每一个 JavaScript 程序都有且只有一个默认的「全局执行上下文」, 在浏览器环境中它指向 <code>Window</code></p>
-<p><img src="/images/exceute_stack.jpg" srcset="/img/loading.gif" alt="exceute_stack"></p>
+<p><img src="./assets/exceute_stack.jpg" srcset="/img/loading.gif" alt="exceute_stack"></p>
 <blockquote>
 <p>macro-task(宏任务)：包括整体代码script（同步宏任务），setTimeout、setInterval（异步宏任务）</p>
 <p>micro-task(微任务)：Promise，process.nextTick，ajax请求（异步微任务）</p>
@@ -317,7 +317,7 @@
 <pre><code class="hljs clean">宏任务 -&gt; 微任务 -&gt; GUI渲染 -&gt; 宏任务 -&gt; ...</code></pre>
 
 <p>图解:</p>
-<p><img src="/images/js_eventloop.jpg" srcset="/img/loading.gif" alt="js_eventloop"></p>
+<p><img src="./assets/js_eventloop.jpg" srcset="/img/loading.gif" alt="js_eventloop"></p>
 <h1 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h1><p>当 JavaScript 脚本加载完成, 第一次被JavaScript 引擎所读取时, 会默认创建一个「全局执行上下文」, 并将其压入执行栈底, 然后每当引擎遇到一个函数调用, 它都会为该函数创建一个新的「函数执行上下文」并压入栈的顶部。</p>
 <p>引擎会执行那些执行上下文位于栈顶的函数。当该函数执行结束时，执行上下文从栈中弹出，控制流程到达当前栈中的下一个上下文。</p>
 <p>每一个 JavaScript 程序都有且只有一个默认的「全局执行上下文」, 在浏览器环境中它指向 <code>Window</code></p>
@@ -345,7 +345,7 @@ first();
 <span class="hljs-comment">//Inside Global Execution Context</span></code></pre>
 
 <p>图解执行栈:</p>
-<p><img src="/images/exceute_stack.jpg" srcset="/img/loading.gif" alt="exceute_stack"></p>
+<p><img src="./assets/exceute_stack.jpg" srcset="/img/loading.gif" alt="exceute_stack"></p>
 
             </div>
             <hr>
@@ -378,12 +378,6 @@ first();
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2020/09/26/HomeBrew%E7%9A%84%E5%AE%89%E8%A3%85/">
-                        <span class="hidden-mobile">Homebrew 🍺</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
