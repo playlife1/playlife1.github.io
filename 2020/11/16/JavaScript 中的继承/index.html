@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="playlife">
   <meta name="keywords" content="">
-  <title>JavaScript 的运行机制 - playlife</title>
+  <title>JavaScript 中的继承 - playlife</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -205,11 +205,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">JavaScript 的运行机制</h1>
+            <h1 style="display: none">JavaScript 中的继承</h1>
             
             <div class="markdown-body" id="post-body">
               <h1 id="JavaScript-中的继承"><a href="#JavaScript-中的继承" class="headerlink" title="JavaScript 中的继承"></a>JavaScript 中的继承</h1><p>在 JavaScript 中的继承可以以是否使用<code>Object.create</code>大致分为两类：</p>
-<p><img src="./assets/js-extends.jpg" srcset="/img/loading.gif" alt="js-extends">  </p>
+<p><img src="/images/js-extends.jpg" srcset="/img/loading.gif" alt="js-extends">  </p>
 <p>不使用<code>Object.create</code>：</p>
 <ol>
 <li>原型链继承</li>
@@ -223,7 +223,7 @@
 <li>寄生组合继承</li>
 </ol>
 <p>以及ES6 Class 继承</p>
-<h1 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h1><p>**<code>Object.create()</code>**方法创建一个新对象，使用现有的对象来提供新创建的对象的 <code>__proto__</code>。</p>
+<h1 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h1><p><code>Object.create()</code> 方法创建一个新对象，使用现有的对象来提供新创建的对象的 <code>__proto__</code>。</p>
 <p>语法：</p>
 <pre><code class="hljs js"><span class="hljs-built_in">Object</span>.create(proto，[propertiesObject])</code></pre>
 
@@ -703,7 +703,7 @@ cat.like()<span class="hljs-comment">//cat like fish</span>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "JavaScript 的运行机制&nbsp;",
+        "JavaScript 中的继承&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 70,
