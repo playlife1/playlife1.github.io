@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="playlife">
+  <meta name="keywords" content="">
+  <title>浏览器缓存机制 - playlife</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2101544_itkc8euddhf.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>playlife</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/post_page.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-10 10:45" pubdate>
+        2020-11-10th 10:45:28 AM
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">浏览器缓存机制</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h1><blockquote>
+<p>浏览器缓存作为性能优化的重要一环，对于前端而言，重要性不言而喻。</p>
+</blockquote>
+<p>缓存可以说是性能优化中简单高效的一种优化方式了。</p>
+<p>一个优秀的缓存策略可以缩短网页请求资源的距离，减少延迟，并且由于缓存文件可以重复利用，还可以减少带宽，降低网络负荷。</p>
+<p>对于一个数据请求来说，可以分为：</p>
+<ol>
+<li><p>发起网络请求</p>
+</li>
+<li><p>后端处理</p>
+</li>
+<li><p>浏览器响应</p>
+</li>
+</ol>
+<p>三个步骤。浏览器缓存可以帮助我们在第一和第三步骤中优化性能。</p>
+<p>比如说直接使用缓存而不发起请求，或者发起了请求但后端存储的数据和前端一致，那么就没有必要再将数据回传回来，这样就减少了响应数据。</p>
+<h1 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h1><p>从缓存位置上来说分为四种，并且各自有优先级，当依次查找缓存且都没有命中的时候，才会去请求网络。</p>
+<ul>
+<li><code>Service Worker</code> 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能</li>
+<li><code>Memory Cache</code> 是内存中的缓存，主要是页面上已经下载的样式、脚本、图片等已经抓取到的资源。</li>
+<li><code>Disk Cache</code> 是存储在硬盘中的缓存，读取速度相对慢点。</li>
+<li><code>Push Cache</code> 是 <code>HTTP/2</code> 中的内容，当以上 3 种缓存都没有命中的时候，它才会被使用。</li>
+</ul>
+<h1 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h1><p><code>Service Worker</code> 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。</p>
+<p>注意点：</p>
+<ol>
+<li>必须是 <code>HTTPS</code>。因为它涉及请求拦截，所以必须使用 <code>HTTPS</code> 协议来保障安全。</li>
+<li><code>Service Worker</code> 缓存不同于其他机制，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。</li>
+</ol>
+<p>实现：</p>
+<p>Service Worker 实现缓存功能一般分为三个步骤：</p>
+<p>首先需要先注册 Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，否则就去请求数据。</p>
+<p>当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数获取数据。</p>
+<p>如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显示我们是从 Service Worker 中获取的内容。</p>
+<h1 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h1><blockquote>
+<p><code>Memory Cache</code>：内存中的缓存，主要是页面上已经下载的样式、脚本、图片等已经抓取到的资源。</p>
+</blockquote>
+<p>注意点：</p>
+<ol>
+<li>读取内存中的数据肯定比磁盘快，读取高效。</li>
+<li>缓存持续性很短，会随着进程的释放而释放。关闭页面内存中的缓存也就释放了。</li>
+</ol>
+<p>当我们访问过页面以后，再次刷新页面，可以发现很多数据都来自于内存缓存</p>
+<p>内存缓存中有一块重要的缓存资源是 <code>preloader</code>相关指令（例如<code>&lt;link rel=&quot;prefetch&quot;&gt;</code>）下载的资源。</p>
+<p><code>preloader</code> 的相关指令已经是页面优化的常见手段之一，它可以一边解析 js/css 文件，一边网络请求下一个资源。</p>
+<p>内存缓存在缓存资源时并不关心返回资源的 HTTP 缓存头 <code>Cache-Control</code> 是什么值，同时资源的匹配也并非仅仅是对 <strong>URL</strong> 做匹配，还可能会对 <strong>Content-Type</strong>，<strong>CORS</strong> 等其他特征做校验。</p>
+<h1 id="Disk-Cache"><a href="#Disk-Cache" class="headerlink" title="Disk Cache"></a>Disk Cache</h1><p><code>Disk Cache</code> 是存储在硬盘中的缓存，读取速度相对慢点。</p>
+<p>注意点：</p>
+<ol>
+<li>比起 <code>Memory Cache</code> 胜在容量和存储时效性上。</li>
+</ol>
+<p>在所有浏览器缓存中，<code>Disk Cache</code> 覆盖面基本是最大的。</p>
+<p>它会根据 HTTP Header 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不会再次去请求数据。</p>
+<p>绝大部分的缓存都来自 <code>Disk Cache</code></p>
+<ul>
+<li>对于大文件来说，大概率是不存储在内存中的，反之优先</li>
+<li>当前系统内存使用率高的话，文件优先存储进硬盘</li>
+</ul>
+<h1 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h1><p><code>Push Cache</code>（推送缓存） 是 <code>HTTP/2</code> 中的内容，当以上 3 种缓存都没有命中的时候，它才会被使用。</p>
+<p>注意点：</p>
+<ol>
+<li>它只在会话（<code>Session</code>）中存在，一旦会话结束就被释放，并且缓存也很短暂。</li>
+</ol>
+<p><code>Push Cache</code>是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂，在 Chrome浏览器中只有 5分钟左右，同时它也并非严格执行 HTTP头中的缓存指令。</p>
+<p>如果以上四种缓存都没有命中的话，那么只能发起请求来获取资源了。</p>
+<p><strong>通常浏览器缓存策略分为两种：强缓存和协商缓存，并且缓存策略都是通过设置 HTTP Header 来实现的。</strong></p>
+<h1 id="缓存过程分析"><a href="#缓存过程分析" class="headerlink" title="缓存过程分析"></a>缓存过程分析</h1><p>浏览器第一次向服务器发起该请求后拿到请求结果后，将请求结果和缓存标识存入浏览器缓存，<strong>浏览器对于缓存的处理是根据第一次请求资源时返回的响应头来确定的</strong>。</p>
+<ul>
+<li><p>浏览器每次发起请求，都会先在浏览器缓存中查找该请求的结果以及缓存标识</p>
+</li>
+<li><p>浏览器每次拿到返回的请求结果都会将该结果和缓存标识存入浏览器缓存中</p>
+</li>
+</ul>
+<p><img src="/images/brower-cache.jpg" srcset="/img/loading.gif" alt="brower-cache">  </p>
+<p>过程：</p>
+<ol>
+<li><strong>浏览器</strong> 发起一次 HTTP 请求</li>
+<li><strong>浏览器缓存</strong> 告诉浏览器这边没有该请求的缓存结果和缓存标识</li>
+<li><strong>浏览器</strong> 向 <strong>服务器</strong> 发起 HTTP 请求</li>
+<li><strong>服务器</strong> 返回该请求结果和缓存规则</li>
+<li><strong>浏览器</strong> 将该请求结果和缓存标识存入浏览器缓存中</li>
+</ol>
+<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><p>缓存分为 <strong>强缓存</strong> 和 <strong>协商缓存</strong>。</p>
+<p><strong>强缓存</strong>优先于<strong>协商缓存</strong>进行，若<strong>强制缓存</strong>生效则直接使用缓存，若不生效则进行<strong>协商缓存</strong>。</p>
+<p><strong>协商缓存</strong>由服务器决定是否使用缓存，若<strong>协商缓存</strong>失效，那么该请求的缓存失效，返回 200，重新返回资源和缓存标识，再存入浏览器中；生效则返回 304，继续使用缓存。</p>
+<p>如果强缓存和协商缓存都没有设置，那么浏览器会采用启发式的算法，通常会取响应头中的 <code>Date</code> 减去 <code>Last-Modified</code> 的值的 <code>10%</code> 作为缓存时间。</p>
+<p>当浏览器再次访问一个已经访问过的资源时，它会这样做：</p>
+<ol>
+<li>看看是否命中强缓存，如果命中，就直接使用缓存了；</li>
+<li>如果没有命中强缓存，就发请求到服务器检查是否命中协商缓存；</li>
+<li>如果命中协商缓存，服务器会返回 <code>304</code> 告诉浏览器使用本地缓存；</li>
+<li>否则，返回最新的资源。</li>
+</ol>
+<h1 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h1><p><strong>强缓存</strong>：不会向服务器发送请求，直接从缓存中读取资源。</p>
+<p><strong>强缓存</strong> 判断是否缓存的依据来自于是否超出某个时间或者某个时间段，而不关心服务器端文件是否已经更新，这可能会导致加载文件不是服务器端最新的内容（如果需要判断，那就要用 <strong>协商缓存</strong>）。</p>
+<p><strong>强缓存</strong>可以通过设置两种 HTTP请求头实现：<code>Expires</code> 和 <code>Cache-Control</code>。</p>
+<ul>
+<li><strong>表示方式</strong>：在 Chrome 控制台的 Network 选项中可以看到该请求返回 <code>200</code> 状态码，并且 <code>Size</code> 显示为 <code>from disk cache</code> 或者 <code>from memory cache</code>。</li>
+<li><strong>实现方式</strong>：</li>
+</ul>
+<ol>
+<li><code>Expires</code></li>
+<li><code>Cache-Control</code></li>
+</ol>
+<h2 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h2><p>缓存过期时间，用来指定资源到期的时间，是服务器端的具体的时间点。</p>
+<p><code>Expires = max-age + 请求时间</code>，需要和 <code>Last-modified</code> 结合使用。</p>
+<p><code>Expires</code> 是 Web服务器 响应消息头字段，在响应 HTTP请求时告诉浏览器在过期时间前浏览器可以直接从浏览器缓存取数据，而无需再次请求。</p>
+<p><code>Expires</code> 是 HTTP/1 的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。</p>
+<h2 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h2><p>在 HTTP/1.1中，<code>Cache-Control</code> 是最重要的规则，主要用于控制网页缓存。</p>
+<p>比如当<code>Cache-Control:max-age=300</code> 时，则代表在这个请求正确返回时间（浏览器也会记录下来）的5分钟内再次加载资源，就会命中强缓存。</p>
+<p>Cache-Control 可以在请求头或者响应头中设置，并且可以组合使用多种指令：</p>
+<ul>
+<li><p>public：所有内容都将被缓存（客户端和代理服务器都可缓存）。</p>
+</li>
+<li><p>private：所有内容只有客户端可以缓存，Cache-Control的默认取值。</p>
+</li>
+<li><p>no-cache：客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。</p>
+<blockquote>
+<p>设置了no-cache之后，并不是说浏览器就不再缓存数据，只是浏览器在使用缓存数据时，需要先确认一下数据是否还跟服务器保持一致。</p>
+</blockquote>
+</li>
+<li><p>no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存</p>
+</li>
+<li><p>max-age：max-age=xxx (xxx is numeric)表示缓存内容将在xxx秒后失效</p>
+</li>
+<li><p>s-maxage（单位为s)：同max-age作用一样，只在代理服务器中生效（比如CDN缓存）。</p>
+</li>
+<li><p>max-stale：能容忍的最大过期时间。</p>
+</li>
+<li><p>min-fresh：能够容忍的最小新鲜度。</p>
+</li>
+</ul>
+<h2 id="Expires和Cache-Control两者对比"><a href="#Expires和Cache-Control两者对比" class="headerlink" title="Expires和Cache-Control两者对比"></a>Expires和Cache-Control两者对比</h2><p>区别就在于 <code>Expires</code> 是 http1.0的产物，<code>Cache-Control</code> 是 HTTP1.1的产物。</p>
+<p>两者同时存在的话，<code>Cache-Control</code> 优先级高于 <code>Expires</code>；</p>
+<p>在某些不支持 HTTP1.1的环境下，<code>Expires</code> 就会发挥用处。所以 <code>Expires</code> 其实是过时的产物，现阶段它的存在只是一种兼容性的写法。</p>
+<h1 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h1><p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。</p>
+<p>主要有以下两种情况：</p>
+<ul>
+<li>协商缓存生效，返回304和Not Modified</li>
+</ul>
+<p><img src="/images/consult-cache-1.jpg" srcset="/img/loading.gif" alt="consult-cache-1">  </p>
+<ol>
+<li><strong>浏览器</strong> 发起 HTTP 请求，先经过 <strong>浏览器缓存</strong></li>
+<li><strong>浏览器缓存</strong> 判断该请求的缓存结果，返回缓存标识</li>
+<li><strong>浏览器</strong> 携带该标识，向 <strong>服务器</strong> 发起 HTTP 请求</li>
+<li><strong>服务器</strong> 返回 304 告诉 <strong>浏览器</strong> 资源没有更新</li>
+<li><strong>浏览器</strong> 再次请求这个缓存结果</li>
+<li><strong>浏览器缓存</strong> 返回该请求的缓存结果</li>
+</ol>
+<ul>
+<li>协商缓存失效，返回200和请求结果</li>
+</ul>
+<p><img src="/images/consult-cache-2.jpg" srcset="/img/loading.gif" alt="consult-cache-2">  </p>
+<ol>
+<li><strong>浏览器</strong> 发起 HTTP 请求，先经过 <strong>浏览器缓存</strong></li>
+<li><strong>浏览器缓存</strong> 判断该请求的缓存结果失效，返回缓存标识</li>
+<li><strong>浏览器</strong> 携带该标识，向 <strong>服务器</strong> 发起 HTTP 请求</li>
+<li><strong>服务器</strong> 返回 200 告诉 <strong>浏览器</strong> 资源可以更新了</li>
+<li><strong>浏览器</strong> 读取并将请求结果和缓存标识存入 <strong>浏览器缓存</strong> 中</li>
+</ol>
+<h2 id="Last-Modified-和-If-Modified-Since"><a href="#Last-Modified-和-If-Modified-Since" class="headerlink" title="Last-Modified 和 If-Modified-Since"></a>Last-Modified 和 If-Modified-Since</h2><p>浏览器第一次请求资源的时候，服务器返回的响应头上会带有一个 <code>Last-Modified</code> 字段，表示资源<strong>最后修改</strong>的时间。</p>
+<pre><code class="hljs http"><span class="hljs-attribute">Last-Modified</span>: Fri, 27 Oct 2017 07:55:30 GMT</code></pre>
+
+<p>当浏览器再次请求该资源时，请求头中会带有一个 <code>If-Modified-Since</code> 字段，这个值是第一次请求返回的 <code>Last-Modified</code> 的值。</p>
+<p>服务器收到这个请求后，将 <code>If-Modified-Since</code> 和当前的 <code>Last-Modified</code> 进行对比。</p>
+<p>如果相等，则说明资源未修改，返回 <code>304</code>，浏览器使用本地缓存。</p>
+<p>这个方法也是有缺点的：</p>
+<ul>
+<li>最小单位是秒。也就是说如果我短时间内资源发生了改变，<code>Last-Modified</code> 并不会发生变化；</li>
+<li>周期性变化。如果这个资源在一个周期内修改回原来的样子了，我们认为是可以使用缓存的，但是 <code>Last-Modified</code> 可不这样认为。</li>
+</ul>
+<p>所以，后来又引入一个 <code>Etag</code>。</p>
+<h2 id="Etag"><a href="#Etag" class="headerlink" title="Etag"></a>Etag</h2><p><code>Etag</code> 一般是由文件内容 <code>hash</code> 生成的，也就是说它可以保证资源的唯一性，资源发生改变就会导致 <code>Etag</code> 发生改变。</p>
+<p>同样地，在浏览器第一次请求资源时，服务器会返回一个 <code>Etag</code> 标识。</p>
+<p>当再次请求该资源时， 会通过 <code>If-no-match</code> 字段将 <code>Etag</code> 发送回服务器，然后服务器进行比较，如果相等，则返回 <code>304</code> 表示未修改。</p>
+<p><code>Last-Modified</code> 和 <code>Etag</code> 是可以同时设置的，服务器会优先校验 <code>Etag</code>，如果 <code>Etag</code> 相等就会继续比对 <code>Last-Modified</code>，最后才会决定是否返回 <code>304</code>。</p>
+<h1 id="实际场景应用缓存策略"><a href="#实际场景应用缓存策略" class="headerlink" title="实际场景应用缓存策略"></a>实际场景应用缓存策略</h1><ol>
+<li>频繁变动的资源</li>
+</ol>
+<blockquote>
+<p><code>Cache-Control: no-cache</code></p>
+</blockquote>
+<p>对于频繁变动的资源，首先需要使用 <code>Cache-Control: no-cache</code> 使浏览器每次都请求服务器，然后配合 <code>ETag</code>或者 <code>Last-Modified</code> 来验证资源是否有效。这样的做法虽然不能节省请求数量，但是能显著减少响应数据大小。</p>
+<ol start="2">
+<li>不常变化的资源</li>
+</ol>
+<blockquote>
+<p><code>Cache-Control: max-age=31536000</code></p>
+</blockquote>
+<p>通常在处理这类资源时，给它们的 <code>Cache-Control</code> 配置一个很大的 <code>max-age=31536000</code> (一年)，这样浏览器之后请求相同的 URL 会命中强制缓存。</p>
+<p>而为了解决更新的问题，就需要在文件名(或者路径) 中添加 hash， 版本号等动态字符，之后更改动态字符，从而达到更改引用 URL 的目的，让之前的强制缓存失效 (其实并未立即失效，只是不再使用了而已)。</p>
+<p>在线提供的类库 (如 <code>jquery-3.3.1.min.js</code>, <code>lodash.min.js</code> 等) 均采用这个模式。</p>
+<h1 id="用户行为对浏览器缓存的影响"><a href="#用户行为对浏览器缓存的影响" class="headerlink" title="用户行为对浏览器缓存的影响"></a>用户行为对浏览器缓存的影响</h1><p>用户在浏览器如何操作时，会触发 3种缓存策略 ：</p>
+<ul>
+<li>打开网页，地址栏输入地址： 查找 <strong>disk cache</strong> 中是否有匹配。如有则使用；如没有则发送网络请求。</li>
+<li>普通刷新 (F5)：因为 TAB 并没有关闭，因此 <strong>memory cache</strong> 是可用的，会被优先使用(如果匹配的话)。其次才是 <strong>disk cache</strong>。</li>
+<li>强制刷新 (Ctrl + F5)：浏览器不使用缓存，因此发送的请求头部均带有 <code>Cache-control: no-cache</code> (为了兼容，还带了 <code>Pragma: no-cache</code>),服务器直接返回 200 和最新内容。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-primary">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浏览器的渲染机制</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/%E6%B5%85%E8%B0%88%20HTTP%20%E5%8D%8F%E8%AE%AE/">
+                        <span class="hidden-mobile">浅谈 HTTP 协议</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <span>Power by</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"
+        ><span>Hexo</span></a
+      >
+      <i class="iconfont icon-love"></i><span>Theme</span>
+      <a
+        href="https://github.com/fluid-dev/hexo-theme-fluid"
+        target="_blank"
+        rel="nofollow noopener"
+      >
+        <span>Fluid</span></a
+      >
+    </div>
+    
+ 
+ 
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "浏览器缓存机制&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
