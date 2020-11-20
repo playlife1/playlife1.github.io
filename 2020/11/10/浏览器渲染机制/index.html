@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="playlife">
+  <meta name="keywords" content="">
+  <title>浏览器的渲染机制 - playlife</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2101544_itkc8euddhf.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>playlife</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/post_page.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-10 10:47" pubdate>
+        2020-11-10th 10:47:53 AM
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">浏览器的渲染机制</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="浏览器组成"><a href="#浏览器组成" class="headerlink" title="浏览器组成"></a>浏览器组成</h1><p>浏览器主要由7个部分组成：</p>
+<ul>
+<li>用户界面（User Interface）：定义了一些常用的浏览器组件，比如地址栏，返回、书签等等</li>
+<li>数据持久化（Data Persistence）：指浏览器的cookie、local storage等组件</li>
+<li>浏览器引擎（Browser engine）：平台应用的相关接口，在用户界面和呈现引擎之间传送指令。</li>
+<li>渲染引擎（Rendering engine）：处理HTML、CSS的解析与渲染</li>
+<li>JavaScript解释器（JavaScript Interpreter）：解析和执行JavaScript代码</li>
+<li>用户界面后端（UI Backend）：指浏览器的的图形库等</li>
+<li>网络（Networking）：用于网络调用，比如HTTP请求</li>
+</ul>
+<h1 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h1><p>浏览器内核分为两部分：渲染引擎 (layout engineer 或 Rendering Engine) 和 JavaScript 引擎</p>
+<p>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机</p>
+<p>JavaScript 引擎：负责解析和执行 JavaScript 来实现网页的动态效果 浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核，最开始渲染引擎和 JavaScript  引擎并没有区分的很明确，后来 JavaScript 引擎越来越独立，内核就倾向于只指渲染引擎</p>
+<blockquote>
+<p>常见的浏览器内核：Trident（IE）、Gecko（火狐）、Blink（Chrome、Opera）、Webkit（Safari）</p>
+</blockquote>
+<h1 id="渲染引擎简介"><a href="#渲染引擎简介" class="headerlink" title="渲染引擎简介"></a>渲染引擎简介</h1><p>Firefox 使用的是 Gecko，这是 Mozilla 公司“自制”的渲染引擎。而 Safari 和 Chrome(28版本以前) 浏览器使用的都是 Webkit。</p>
+<blockquote>
+<p>2013年7月10日发布的 Chrome 28 版本中，Chrome浏览器开始正式使用 Blink 内核。所以，Webkit 已经成为了Chrome浏览器的前内核。</p>
+</blockquote>
+<h1 id="浏览器渲染页面的过程"><a href="#浏览器渲染页面的过程" class="headerlink" title="浏览器渲染页面的过程"></a>浏览器渲染页面的过程</h1><p>从耗时的角度，浏览器请求、加载、渲染一个页面，时间花在下面五件事情上：</p>
+<ol>
+<li>DNS 查询</li>
+<li>TCP 连接</li>
+<li>HTTP 请求即响应</li>
+<li>服务器响应</li>
+<li>客户端渲染：浏览器对内容的渲染</li>
+</ol>
+<h1 id="浏览器渲染机制"><a href="#浏览器渲染机制" class="headerlink" title="浏览器渲染机制"></a>浏览器渲染机制</h1><ol>
+<li>处理 HTML 标记并构建 DOM 树。</li>
+<li>处理 CSS 标记并构建 CSSOM 树。</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树。</li>
+<li>根据渲染树来布局，以计算每个节点的几何信息。</li>
+<li>将各个节点绘制到屏幕上。</li>
+</ol>
+<h2 id="解析-HTML-成-DOM-树"><a href="#解析-HTML-成-DOM-树" class="headerlink" title="解析 HTML 成 DOM 树"></a>解析 HTML 成 DOM 树</h2><p>这个解析过程大概可以分为几个步骤：</p>
+<blockquote>
+<p>字节（Byte）→字符串（Characters）→Tokens→节点（Nodes）→DOM</p>
+</blockquote>
+<p>第一步：浏览器从磁盘或网络读取 HTML 的原始字节，也就是传输的 0 和 1这样的字节数据，并根据文件的指定编码（例如 UTF-8）将它们转换成字符串。</p>
+<p>第二步：将字符串转换成 Token。例如：“”、“” 等。Token 中会标识出当前 Token 是“开始标签”或是“结束标签”亦或是“文本”等信息。</p>
+<p>第三步：在每个 Token 被生成后，会立刻消耗这个 Token 创建出节点对象，因此在构建 DOM 的过程中，不是等待所有的 Token 都生成后才去构建 DOM，而是一边生成 Token 一边消耗来生成节点对象。</p>
+<blockquote>
+<p>注意：带有结束标签标识的Token不会创建节点对象 </p>
+</blockquote>
+<p>第四步：通过“开始标签”与“结束标签”来识别并关联节点之间的关系。当所有Token都生成并消耗完毕后，我们就得到了一颗完整的DOM树。</p>
+<h2 id="构建-CSSOM"><a href="#构建-CSSOM" class="headerlink" title="构建 CSSOM"></a>构建 CSSOM</h2><p>解析 CSS 构建 CSSOM 的过程和构建 DOM 的过程非常的相似。当浏览器接收到一段 CSS，浏览器首先要做的是识别出 Token，然后构建节点并生成CSSOM</p>
+<blockquote>
+<p>字节（Byte）→字符串（Characters）→Tokens→节点（Nodes）→CSSOM</p>
+</blockquote>
+<p>节点中样式可以通过继承得到，也可以自己设置，因此在构建的过程中浏览器得递归 CSSOM 树，然后确定具体的元素到底是什么样式。</p>
+<p>为了 CSSOM 的完整性，也只有等构建完毕才能进入到下一个阶段，哪怕 DOM 已经构建完，它也得等 CSSOM，然后才能进入下一个阶段。</p>
+<p>CSS匹配HTML元素是一个相当复杂和有性能问题的事情</p>
+<p>所以，DOM树要小，CSS尽量用 id 和 class，千万不要过渡层叠下去。所以，CSS 的加载速度与构建 CSSOM 的速度将直接影响首屏渲染速度，因此在默认情况下 CSS 被视为阻塞渲染的资源</p>
+<h2 id="构建渲染树"><a href="#构建渲染树" class="headerlink" title="构建渲染树"></a>构建渲染树</h2><p>当我们生成 DOM 树和 CSSOM 树后，我们需要将这两颗树合并成渲染树，在构建渲染树的过程中浏览器需要做如下工作：</p>
+<ul>
+<li>从 DOM 树的根节点开始遍历每个可见节点。</li>
+<li>有些节点不可见（例如脚本Token、元Token等），因为它们不会体现在渲染输出中，所以会被忽略。</li>
+<li>某些节点被 CSS 隐藏，因此在渲染树中也会被忽略。例如某些节点设置了display: none 属性。</li>
+<li>对于每个可见节点，为其找到适配的 CSSOM 规则并应用它们</li>
+</ul>
+<h2 id="渲染阻塞"><a href="#渲染阻塞" class="headerlink" title="渲染阻塞"></a>渲染阻塞</h2><p>在渲染的过程中，遇到一个 script 标记时，就会停止渲染，去请求脚本文件并执行脚本文件，因为浏览器渲染和 JavaScript 执行共用一个线程，而且这里必须是单线程操作，多线程会产生渲染 DOM 冲突。</p>
+<p>JavaScript 的加载、解析与执行会严重阻塞DOM的构建。只有等到脚本文件执行完毕，才会去继续构建DOM。</p>
+<p>JavaScript 不单会阻塞DOM构建，还会导致 CSSOM 也阻塞 DOM 的构建，如果 JavaScript 脚本还操作了CSSOM，而正好这个 CSSOM 还没有下载和构建，浏览器甚至会延迟脚本执行和构建 DOM，直至完成其 CSSOM的下载和构建，然后再执行 JavaScript，最后在继续构建 DOM。</p>
+<p>因此 script 的位置很重要，在实际使用过程中遵循以下两个原则：</p>
+<p>CSS 优先：引入顺序上，CSS 资源先于 JavaScript 资源。<br>JavaScript 置后：我们通常把JS代码放到页面底部，且 JavaScript 应尽量少影响 DOM 的构建。</p>
+<h2 id="布局与绘制"><a href="#布局与绘制" class="headerlink" title="布局与绘制"></a>布局与绘制</h2><p>浏览器拿到渲染树后，就会从渲染树的根节点开始遍历，然后确定每个节点对象在页面上的确切大小与位置，通常这一行为也被称为“自动重排”。</p>
+<p>布局阶段的输出是一个盒子模型，它会精确地捕获每个元素在屏幕内的确切位置与大小，所有相对测量值都将转换为屏幕上的绝对像素。这一过程也可称为回流</p>
+<p>布局完成后，浏览器会立即发出“Paint Setup”和“Paint”事件，将渲染树转换成屏幕上的像素。</p>
+<h1 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h1><h2 id="回流-reflow-与-重绘-repaint"><a href="#回流-reflow-与-重绘-repaint" class="headerlink" title="回流(reflow) 与 重绘(repaint)"></a>回流(reflow) 与 重绘(repaint)</h2><p>当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。</p>
+<ul>
+<li><p>重绘(repaint): 当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此损耗较少</p>
+</li>
+<li><p>回流(reflow): 当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。</p>
+</li>
+</ul>
+<p>会触发回流的操作:</p>
+<ul>
+<li>添加或删除可见的DOM元素</li>
+<li>元素的位置发生变化</li>
+<li>元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）</li>
+<li>内容发生变化，比如文本变化或图片被另一个不同尺寸的图片所替代。</li>
+<li>页面一开始渲染的时候（这肯定避免不了）</li>
+<li>浏览器的窗口尺寸变化（因为回流是根据视口的大小来计算元素的位置和大小的</li>
+<li>注意：回流一定会触发重绘，而重绘不一定会回流,重绘的开销较小，回流的代价较高</li>
+</ul>
+<p>因此为了减少性能优化，我们可以尽量避免回流或者重绘操作 CSS</p>
+<ul>
+<li><p>避免使用table布局</p>
+</li>
+<li><p>将动画效果应用到 position 属性为 absolute 或 fixed 的元素上</p>
+</li>
+</ul>
+<p>JavaScript</p>
+<ul>
+<li>避免频繁操作样式，可汇总后统一 一次修改</li>
+<li>尽量使用class进行样式修改</li>
+<li>减少dom的增删次数，可使用 字符串 或者 documentFragment 一次性插入</li>
+<li>极限优化时，修改样式可将其 display: none 后修改</li>
+<li>避免多次触发上面提到的那些会触发回流的方法，可以的话尽量用变量存住</li>
+</ul>
+<h1 id="探讨-requestAnimationFrame"><a href="#探讨-requestAnimationFrame" class="headerlink" title="探讨 requestAnimationFrame"></a>探讨 requestAnimationFrame</h1><p>在JS中，我们可以使用 <code>setTimeout</code> 和 <code>setIntarval</code> 实现动画，但是 H5 的出现，让我们又多了两种实现动画的方式，分别是 CSS 动画（<code>transition</code>、<code>animation</code>）和 H5的<code>canvas</code> 实现。除此以外，H5还提供了一个专门用于请求动画的API，让 DOM 动画、canvas动画、svg动画、webGL动画等有一个专门的刷新机制。</p>
+<p>由于 JavaScript 是单线程的，所以定时器的实现是在当前任务队列完成后再执行定时器的回调的，假如当前队列任务执行时间大于定时器设置的延迟时间，那么定时器就不是那么可靠了。</p>
+<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>动画是由浏览器按照一定的频率一帧一帧的绘制的，由 CSS 实现的动画的优势就是浏览器知道动画的开始及每一帧的循环间隔，能够在恰当的时间刷新 UI，给用户一种流畅的体验。</p>
+<p>而<code>setInterval</code>或<code>setTimeout</code>实现的JavaScript 动画就没有这么可靠了，因为浏览器压根就无法保证每一帧渲染的时间间隔。</p>
+<p>一般情况下，每秒平均刷新次数能够达到60帧，就能够给人流畅的体验，即每过 1000/60 毫秒渲染新一帧即可，这一点单靠定时器是无法保证的。 为此，<code>requestAnimationFrame</code> 应运而生，其作用就是让浏览器流畅的执行动画效果。</p>
+<p>可以将其理解为专门用来实现动画效果的 API，通过这个 API 可以告诉浏览器某个 JavaScript 代码要执行动画，浏览器收到通知后，则会运行这些代码的时候进行优化，实现流畅的效果，而不再需要开发人员烦心刷新频率的问题了。</p>
+<p><code>requestAnimationFrame</code> 方法会告诉浏览器希望执行动画并请求浏览器在下一次重绘之前调用回调函数来更新动画。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">window</span>.requestAnimationFrame(callback)</code></pre>
+
+<ul>
+<li>callback：下一次重绘之前更新动画帧所调用的函数，<strong>callback仅有一个参数，为DOMHighResTimeStamp参数，表示requestAnimationFrame()开始执行回调函数的时刻。</strong></li>
+<li>返回值：一个 long 类型整数，唯一标志元组在列表中的位置，你可以传这个值给<code>cancelAnimationFrame()</code> 以取消动画。</li>
+</ul>
+<p>在使用和实现上， <code>requestAnimationFrame</code> 与 <code>setTimeout</code> 类似。举个例子：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> rafId = <span class="hljs-literal">null</span>;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 回调函数</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param </span>time requestAnimationFrame 调用该函数时，自动传入的一个时间</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestAnimation</span>(<span class="hljs-params">time</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(time); <span class="hljs-comment">// 打印执行requestAnimation函数的时刻</span>
+  <span class="hljs-comment">// 动画没有执行完，则递归渲染</span>
+  <span class="hljs-keyword">if</span> (count &lt; <span class="hljs-number">5</span>) &#123;
+    count++;
+    <span class="hljs-comment">// 渲染下一帧</span>
+    rafId = <span class="hljs-built_in">window</span>.requestAnimationFrame(requestAnimation);
+  &#125;
+&#125;
+<span class="hljs-comment">// 渲染第一帧</span>
+<span class="hljs-built_in">window</span>.requestAnimationFrame(requestAnimation);</code></pre>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-primary">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/16/JavaScript%20%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript 中的继承</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/%E6%B5%85%E8%B0%88%20HTTP%20%E5%8D%8F%E8%AE%AE/">
+                        <span class="hidden-mobile">浅谈 HTTP 协议</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <span>Power by</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"
+        ><span>Hexo</span></a
+      >
+      <i class="iconfont icon-love"></i><span>Theme</span>
+      <a
+        href="https://github.com/fluid-dev/hexo-theme-fluid"
+        target="_blank"
+        rel="nofollow noopener"
+      >
+        <span>Fluid</span></a
+      >
+    </div>
+    
+ 
+ 
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "浏览器的渲染机制&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
