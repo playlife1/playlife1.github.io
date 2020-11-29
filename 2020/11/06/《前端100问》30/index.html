@@ -271,11 +271,11 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <ol start="5">
 <li>减少重绘与回流</li>
 </ol>
-<p>CSS</p>
+<p><strong>CSS</strong></p>
 <ul>
-<li><p><strong>使用 <code>transform</code> 替代 <code>top</code></strong></p>
+<li><p><strong>使用</strong> <code>transform</code> <strong>替代</strong> <code>top</code></p>
 </li>
-<li><p><strong>使用 <code>visibility</code> 替换 <code>display: none</code></strong> ，因为前者只会引起重绘，后者会引发回流（改变了布局</p>
+<li><p><strong>使用</strong> <code>visibility</code> <strong>替换</strong> <code>display: none</code> ，<strong>因为前者只会引起重绘，后者会引发回流（改变了布局）</strong></p>
 </li>
 <li><p><strong>避免使用<code>table</code>布局</strong>，可能很小的一个小改动会造成整个 <code>table</code> 的重新布局。</p>
 </li>
@@ -298,14 +298,14 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 </li>
 <li><p><strong>将动画效果应用到<code>position</code>属性为<code>absolute</code>或<code>fixed</code>的元素上</strong>，避免影响其他元素的布局，这样只是一个重绘，而不是回流，同时，控制动画速度可以选择 <code>requestAnimationFrame</code>，详见<a target="_blank" rel="noopener" href="https://github.com/LuNaHaiJiao/blog/issues/30">探讨 requestAnimationFrame</a>。</p>
 </li>
-<li><p><strong>避免使用<code>CSS</code>表达式</strong>，可能会引发回流。</p>
+<li><p><strong>避免使用</strong> <code>CSS</code> <strong>表达式</strong>，可能会引发回流。</p>
 </li>
 <li><p><strong>将频繁重绘或者回流的节点设置为图层</strong>，图层能够阻止该节点的渲染行为影响别的节点，例如<code>will-change</code>、<code>video</code>、<code>iframe</code>等标签，浏览器会自动将该节点变为图层。</p>
 </li>
 <li><p><strong>CSS3 硬件加速（GPU加速）</strong>，使用 CSS3 硬件加速，可以让<code>transform</code>、<code>opacity</code>、<code>filters</code>这些动画不会引起回流重绘 。但是对于动画的其它属性，比如<code>background-color</code>这些，还是会引起回流重绘的，不过它还是可以提升这些动画的性能。</p>
 </li>
 </ul>
-<p>JavaScript</p>
+<p><strong>JavaScript</strong></p>
 <ul>
 <li><strong>避免频繁操作样式</strong>，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
 <li><strong>避免频繁操作</strong><code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
