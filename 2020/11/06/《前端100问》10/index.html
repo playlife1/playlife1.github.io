@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#07689f">
+  <meta name="description" content="">
+  <meta name="author" content="playlife">
+  <meta name="keywords" content="">
+  <title>《前端100问》10 - playlife</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2101544_ifd43zekazn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>playlife</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-zhuye"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-guidangxiangmu"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-label_icon"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-github3"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/post_page.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-06 14:24" pubdate>
+        2020-11-6th 02:24:20 PM
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">《前端100问》10</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h1><p><code>key</code> 是给每一个 <strong>VNode</strong> 的唯一 <code>id</code>，可以依靠 <code>key</code>，在 <strong>diff算法</strong> 执行时更快的找到对应的节点。</p>
+<p>更准确、更快的拿到 <strong>OldVNode</strong> 中对应的 <strong>VNode</strong> 节点。</p>
+<p>在数据变化时强制更新组件，以避免 ”原地复用“ 带来的副作用，使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code>不存在的元素。</p>
+<h1 id="2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><a href="#2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why" class="headerlink" title="2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?"></a>2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</h1><p><strong>parseInt</strong></p>
+<p><code>parseInt()</code> 函数解析一个字符串参数，并返回一个指定基数的整数 (数学系统的基础)。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> intValue = <span class="hljs-built_in">parseInt</span>(string[, radix]);</code></pre>
+
+<p><code>string</code> 要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用 ToString 抽象操作)。字符串开头的空白符将会被忽略。</p>
+<p><code>radix</code> 一个介于2和36之间的整数(数学系统的基础)，表示上述字符串的基数。默认为10。<br><code>返回值</code> 返回一个整数或NaN</p>
+<pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">// 100</span>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>); <span class="hljs-comment">// 100</span>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 4 -&gt; converts 100 in base 2 to base 10</span></code></pre>
+
+<p><strong>注意：</strong><br>在<code>radix</code>为 undefined，或者<code>radix</code>为 0 或者没有指定的情况下，JavaScript 作如下处理：</p>
+<ul>
+<li>如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).</li>
+<li>如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决定。ECMAScript 5 规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。</li>
+<li>如果字符串 string 以其它任何值开头，则基数是10 (十进制)。</li>
+</ul>
+<p><strong>map</strong></p>
+<p><code>map()</code> 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> new_array = arr.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">currentValue[,index[, array]]</span>) </span>&#123;
+ <span class="hljs-comment">// Return element for new_array</span>
+ &#125;[, thisArg])</code></pre>
+
+<p>可以看到<code>callback</code>回调函数需要三个参数, 我们通常只使用第一个参数 (其他两个参数是可选的)。</p>
+<ul>
+<li><code>currentValue</code> 是callback 数组中正在处理的当前元素。</li>
+<li><code>index</code>可选, 是callback 数组中正在处理的当前元素的索引。</li>
+<li><code>array</code>可选, 是callback map 方法被调用的数组。</li>
+<li>另外还有<code>thisArg</code>可选, 执行 callback 函数时使用的this 值。</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num + <span class="hljs-number">1</span>); <span class="hljs-comment">// [2, 3, 4]</span></code></pre>
+
+<p>所以对于题目：</p>
+<pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-built_in">parseInt</span>)</code></pre>
+
+<p>对于每个迭代<code>map</code>, <code>parseInt()</code>传递两个参数: <strong>字符串和基数</strong>。</p>
+<p>所以实际执行的的代码是：</p>
+<pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(item, index)
+&#125;)</code></pre>
+
+<p>所以结果为：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// 1</span>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// NaN</span>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// NaN, 3 不是二进制</span>
+[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-built_in">parseInt</span>)
+<span class="hljs-comment">// 1, NaN, NaN</span></code></pre>
+
+
+
+
+
+<h1 id="3、什么是防抖和节流？有什么区别？如何实现？"><a href="#3、什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="3、什么是防抖和节流？有什么区别？如何实现？"></a>3、什么是防抖和节流？有什么区别？如何实现？</h1><p><strong>防抖</strong> （debounce）：防抖，顾名思义，防止抖动，以免把一次事件误认为多次，敲键盘就是一个每天都会接触到的防抖操作。</p>
+<p>防抖适用场景：</p>
+<ol>
+<li>登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖</li>
+<li>调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖</li>
+<li>文本编辑器实时保存，当无任何更改操作一秒后进行保存</li>
+</ol>
+<p>可以看出来<strong>防抖重在清零 <code>clearTimeout(timer)</code></strong></p>
+<p><strong>节流</strong>（throttle）：节流，顾名思义，控制水的流量。控制事件发生的频率，如控制为1s发生一次，甚至1分钟发生一次。与服务端(server) 及网关(gateway) 控制的限流(Rate Limit) 类似。</p>
+<p>节流适用场景：</p>
+<ol>
+<li><code>scroll</code> 事件，每隔一秒计算一次位置信息等</li>
+<li>浏览器播放事件，每个一秒计算一次进度信息等</li>
+<li>input 框实时搜索并发送请求展示下拉列表，每隔一秒发送一次请求 (也可做防抖)</li>
+</ol>
+<p>可以看出来<strong>节流重在加锁 <code>timer=timeout</code></strong></p>
+<p>代码实现：</p>
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> timer;
+    <span class="hljs-comment">// 箭头函数始终指向上一层 this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> &#123;
+        <span class="hljs-comment">// 使用闭包 timer持久化</span>
+        <span class="hljs-built_in">clearTimeout</span>(timer);
+        timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+            fn(...args);
+        &#125;, wait);
+    &#125;;
+&#125;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span> </span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> timer;
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (timer) <span class="hljs-keyword">return</span>;
+        timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+            fn(...args);
+            timer = <span class="hljs-literal">null</span>;
+        &#125;,wait);
+    &#125;;
+&#125;</code></pre>
+
+
+
+
+
+<h1 id="4、介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><a href="#4、介绍下-Set、Map、WeakSet-和-WeakMap-的区别？" class="headerlink" title="4、介绍下 Set、Map、WeakSet 和 WeakMap 的区别？"></a>4、介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</h1><p>Set 和 Map 主要的应用场景在于 <strong>数据重组</strong> 和 <strong>数据储存</strong></p>
+<p>Set 是一种叫做<strong>集合</strong>的数据结构，Map 是一种叫做<strong>字典</strong>的数据结构</p>
+<p><strong>集合（Set）</strong></p>
+<p>ES6 新增的一种新的数据结构，类似于数组，但成员是唯一且无序的，没有重复的值。</p>
+<p><strong>Set 本身是一种构造函数，用来生成 Set 数据结构。</strong></p>
+<p>Set 对象允许你储存任何类型的唯一值，无论是原始值或者是对象引用。</p>
+<p><strong>WeakSet</strong></p>
+<p>WeakSet 对象允许你将<strong>弱引用对象</strong>储存在一个集合中</p>
+<p>WeakSet 与 Set 的区别：</p>
+<ul>
+<li>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以</li>
+<li>WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的应用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素</li>
+</ul>
+<p><strong>字典（Map）</strong></p>
+<p>集合 与 字典 的区别：</p>
+<ul>
+<li>共同点：集合、字典 可以储存不重复的值</li>
+<li>不同点：集合 是以 [value, value] 的形式储存元素，字典 是以 [ key, value ] 的形式储存</li>
+</ul>
+<p><strong>WeakMap</strong></p>
+<p>WeakMap 对象是一组键值对的集合，其中的<strong>键是弱引用对象，而值可以是任意</strong>。</p>
+<p><strong>注意，WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用。</strong></p>
+<p>WeakMap 中，每个键对自己所引用对象的引用都是弱引用，在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收（相应的 key 则变成无效的），所以，WeakMap 的 key 是不可枚举的。</p>
+<h1 id="5、介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#5、介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="5、介绍下深度优先遍历和广度优先遍历，如何实现？"></a>5、介绍下深度优先遍历和广度优先遍历，如何实现？</h1><p>深度优先遍历：从根节点出发，沿着左子树方向进行纵向遍历，直到找到叶子节点为止。然后回溯到前一个节点，进行右子树节点的遍历，直到遍历完所有可达节点为止。</p>
+<p>广度优先遍历：从根节点出发，在横向遍历二叉树层段节点的基础上纵向遍历二叉树的层次。</p>
+<p>以遍历 Dom 树为例子：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one-one&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one-two&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one-three&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-two&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-two-one&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-two-two&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-three&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;onr-four&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<p>深度优先遍历：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> depthFirstSearch = <span class="hljs-function">(<span class="hljs-params">node, nodeList = []</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (node !== <span class="hljs-literal">null</span>) &#123;
+      nodeList.push(node)
+      <span class="hljs-comment">//ParentNode.children 返回子节点集合（动态）</span>
+      <span class="hljs-keyword">let</span> children = node.children
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>; index &lt; children.length; index++) &#123;
+        depthFirstSearch(children[index], nodeList)
+      &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> nodeList
+  &#125;
+<span class="hljs-comment">//test</span>
+<span class="hljs-keyword">const</span> node = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.one&#x27;</span>)
+<span class="hljs-built_in">console</span>.dir(depthFirstSearch(node))</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
+<span class="hljs-number">0</span>: div.one
+<span class="hljs-number">1</span>: div.one-one
+<span class="hljs-number">2</span>: div.one-one-one
+<span class="hljs-number">3</span>: div.one-one-two
+<span class="hljs-number">4</span>: div.one-one-three
+<span class="hljs-number">5</span>: div.one-two
+<span class="hljs-number">6</span>: div.one-two-one
+<span class="hljs-number">7</span>: div.one-two-two
+<span class="hljs-number">8</span>: div.one-three
+<span class="hljs-number">9</span>: div.onr-four</code></pre>
+
+<p>广度遍历优先：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> breadthFirstSearch = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> nodes = []
+  <span class="hljs-keyword">let</span> stack = []
+  <span class="hljs-keyword">if</span> (node !== <span class="hljs-literal">null</span>) &#123;
+    stack.push(node)
+    <span class="hljs-keyword">while</span> (stack.length) &#123;
+      <span class="hljs-keyword">let</span> item = stack.shift()
+      <span class="hljs-keyword">let</span> children = item.children
+      nodes.push(item)
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>; index &lt; children.length; index++) &#123;
+        stack.push(children[index])
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> nodes
+&#125;
+<span class="hljs-comment">//test</span>
+<span class="hljs-keyword">const</span> node = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.one&#x27;</span>)
+<span class="hljs-built_in">console</span>.dir(breadthFirstSearch(node))</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
+<span class="hljs-number">0</span>: div.one
+<span class="hljs-number">1</span>: div.one-one
+<span class="hljs-number">2</span>: div.one-two
+<span class="hljs-number">3</span>: div.one-three
+<span class="hljs-number">4</span>: div.onr-four
+<span class="hljs-number">5</span>: div.one-one-one
+<span class="hljs-number">6</span>: div.one-one-two
+<span class="hljs-number">7</span>: div.one-one-three
+<span class="hljs-number">8</span>: div.one-two-one
+<span class="hljs-number">9</span>: div.one-two-two</code></pre>
+
+
+
+
+
+<h1 id="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？-算法-❌"><a href="#6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？-算法-❌" class="headerlink" title="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？[算法]❌"></a>6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？[算法]❌</h1><h1 id="7、ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#7、ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="7、ES5/ES6 的继承除了写法以外还有什么区别？"></a>7、ES5/ES6 的继承除了写法以外还有什么区别？</h1><ol>
+<li><code>class</code> 声明会提升，但不会初始化赋值。<code>Foo</code> 进入暂时性死区，类似于 <code>let</code>、<code>const</code> 声明变量。</li>
+<li><code>class</code> 声明内部会启用严格模式。</li>
+<li><code>class</code> 的所有方法（包括静态方法和实例方法）都是不可枚举的。</li>
+<li><code>class</code> 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有<code>[[construct]]</code>，不能使用 <code>new</code> 来调用。</li>
+<li>必须使用 <code>new</code> 调用 <code>class</code>。</li>
+<li><code>class</code> 内部无法重写类名</li>
+</ol>
+<h1 id="8、setTimeout、Promise、Async-Await-的区别"><a href="#8、setTimeout、Promise、Async-Await-的区别" class="headerlink" title="8、setTimeout、Promise、Async/Await 的区别"></a>8、setTimeout、Promise、Async/Await 的区别</h1><p>setTimeout 是宿主环境（浏览器、Node）所发起的异步任务，相同的还有事件和 ajax</p>
+<p>而 Promise 和 Async/Await 分别是 ES6、ES7，JavaScript 语言本身所实现的异步任务。</p>
+<p>它们在 JavaScript 引擎中别分为由宿主发起的异步宏任务，和 JavaScript 语言自身发起的异步微任务。</p>
+<p>当异步任务的回调函数注册完毕，分别进入宏任务队列和微任务队列，在执行顺序上优先执行微任务队列，执行完微任务队列再去读取宏任务队列，每执行完一个异步宏任务，都先读取一遍微任务队列，有就执行，没有就就继续执行宏任务队列</p>
+<h1 id="9、Async-Await-如何通过同步的方式实现异步"><a href="#9、Async-Await-如何通过同步的方式实现异步" class="headerlink" title="9、Async/Await 如何通过同步的方式实现异步"></a>9、Async/Await 如何通过同步的方式实现异步</h1><p>Async/Await 就是一个<strong>自执行</strong>的 <em>generator</em>  函数。利用 <em>generator</em>  函数的特性把异步的代码写成“同步”的形式。</p>
+<p><strong>生成器函数</strong>在执行时能暂停，后面又能从暂停处继续执行。</p>
+<p>调用一个<strong>生成器函数</strong>并不会马上执行它里面的语句，而是返回一个这个生成器的 <strong>迭代器</strong> <strong>（ iterator）对象</strong>。当这个迭代器的 <code>next() </code>方法被首次（后续）调用时，其内的语句会执行到第一个（后续）出现<code>yield</code>的位置为止，<code>yield</code>后紧跟迭代器要返回的值。或者如果用的是 <code>yield*</code>)（多了个星号），则表示将执行权移交给另一个生成器函数（当前生成器暂停执行）。</p>
+<h1 id="10、异步笔试题"><a href="#10、异步笔试题" class="headerlink" title="10、异步笔试题"></a>10、异步笔试题</h1><blockquote>
+<p>请写出下面代码的运行结果</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 start&#x27;</span>);
+    <span class="hljs-keyword">await</span> async2();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>);
+&#125;
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async2</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async2&#x27;</span>);
+&#125;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script start&#x27;</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;setTimeout&#x27;</span>);
+&#125;, <span class="hljs-number">0</span>)<span class="hljs-comment">//1</span>
+async1();
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;promise1&#x27;</span>);
+    resolve();
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;promise2&#x27;</span>);
+&#125;);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script end&#x27;</span>);</code></pre>
+
+<p>await 做了什么？</p>
+<p>await 等待的是一个表达式，这个表达式的返回值可以是一个promise对象也可以是其他值。</p>
+<p>很多人以为 await 会一直等待之后的表达式执行完之后才会继续执行后面的代码，<strong>实际上await是一个让出线程的标志。await 后面的表达式会先执行一遍，将 await 后面的代码加入到 microtask 中，然后就会跳出整个async函数来执行后面的代码。</strong></p>
+<p>结果：</p>
+<pre><code class="hljs routeros">script start
+async1 start
+async2
+promise1
+script end
+async1 end
+promise2
+setTimeout</code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-primary">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/06/%E3%80%8A%E5%89%8D%E7%AB%AF100%E9%97%AE%E3%80%8B20/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《前端100问》20</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/02/ECMAScript6/">
+                        <span class="hidden-mobile">ECMAScript6 精粹</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <span>Power by</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"
+        ><span>Hexo</span></a
+      >
+      <i class="iconfont icon-love"></i><span>Theme</span>
+      <a
+        href="https://github.com/fluid-dev/hexo-theme-fluid"
+        target="_blank"
+        rel="nofollow noopener"
+      >
+        <span>Fluid</span></a
+      >
+    </div>
+    
+ 
+ 
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "《前端100问》10&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
