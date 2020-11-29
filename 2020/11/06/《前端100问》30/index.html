@@ -308,7 +308,7 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <p>JavaScript</p>
 <ul>
 <li><strong>避免频繁操作样式</strong>，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
-<li>**避免频繁操作<code>DOM</code>**，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
+<li><strong>避免频繁操作</strong><code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
 <li><strong>避免频繁读取会引发回流/重绘的属性</strong>，如果确实需要多次使用，就用一个变量缓存起来。</li>
 <li><strong>对具有复杂动画的元素使用绝对定位</strong>，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
 </ul>
