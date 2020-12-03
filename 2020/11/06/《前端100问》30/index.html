@@ -279,7 +279,7 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 </li>
 <li><p><strong>避免使用<code>table</code>布局</strong>，可能很小的一个小改动会造成整个 <code>table</code> 的重新布局。</p>
 </li>
-<li><p>**尽可能在<code>DOM</code>树的最末端改变<code>class</code>**，回流是不可避免的，但可以减少其影响。尽可能在DOM树的最末端改变class，可以限制了回流的范围，使其影响尽可能少的节点。</p>
+<li><p><strong>尽可能在</strong><code>DOM</code><strong>树的最末端改变</strong><code>class</code>，回流是不可避免的，但可以减少其影响。尽可能在DOM树的最末端改变class，可以限制了回流的范围，使其影响尽可能少的节点。</p>
 </li>
 <li><p><strong>避免设置多层内联样式</strong>，CSS 选择符<strong>从右往左</strong>匹配查找，避免节点层级过多。</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
