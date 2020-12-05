@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.2k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      41
        分钟
     </span>
   
@@ -208,23 +208,23 @@
             <h1 style="display: none">《前端100问》10</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h1><p><code>key</code> 是给每一个 <strong>VNode</strong> 的唯一 <code>id</code>，可以依靠 <code>key</code>，在 <strong>diff算法</strong> 执行时更快的找到对应的节点。</p>
-<p>更准确、更快的拿到 <strong>OldVNode</strong> 中对应的 <strong>VNode</strong> 节点。</p>
-<p>在数据变化时强制更新组件，以避免 ”原地复用“ 带来的副作用，使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code>不存在的元素。</p>
+              <h1 id="1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h1><p><code>key</code> 是给每一个 <strong>VNode</strong> 的唯一 <code>id</code>，可以依靠 <code>key</code>，在 <strong>diff 算法</strong> 执行时更快的找到对应的节点。</p>
+<p>更准确、更快的拿到 <strong>Old VNode</strong> 中对应的 <strong>VNode</strong> 节点。</p>
+<p>在数据变化时强制更新组件，以避免「原地复用」带来的副作用，使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code> 不存在的元素。</p>
 <h1 id="2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><a href="#2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why" class="headerlink" title="2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?"></a>2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</h1><p><strong>parseInt</strong></p>
 <p><code>parseInt()</code> 函数解析一个字符串参数，并返回一个指定基数的整数 (数学系统的基础)。</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> intValue = <span class="hljs-built_in">parseInt</span>(string[, radix]);</code></pre></div>
 
-<p><code>string</code> 要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用 ToString 抽象操作)。字符串开头的空白符将会被忽略。</p>
-<p><code>radix</code> 一个介于2和36之间的整数(数学系统的基础)，表示上述字符串的基数。默认为10。<br><code>返回值</code> 返回一个整数或NaN</p>
+<p><code>string</code> 要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用 toString 抽象操作)。字符串开头的空白符将会被忽略。</p>
+<p><code>radix</code> 一个介于 2 和 36 之间的整数(数学系统的基础)，表示上述字符串的基数。<strong>默认为10</strong><br><code>返回值</code> 返回一个整数或 <strong>NaN</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">// 100</span>
 <span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>); <span class="hljs-comment">// 100</span>
 <span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 4 -&gt; converts 100 in base 2 to base 10</span></code></pre></div>
 
-<p><strong>注意：</strong><br>在<code>radix</code>为 undefined，或者<code>radix</code>为 0 或者没有指定的情况下，JavaScript 作如下处理：</p>
+<p><strong>注意：</strong><br>在 <code>radix</code> 为 <em>undefined</em>，或者 <code>radix</code> 为 <em>0</em> 或者没有指定的情况下，JavaScript 作如下处理：</p>
 <ul>
-<li>如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).</li>
-<li>如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决定。ECMAScript 5 规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。</li>
+<li>如果字符串 string 以 <em>0x</em> 或者 <em>0X</em> 开头, 则基数是16 (16进制).</li>
+<li>如果字符串 string 以 <em>0</em> 开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决定。ECMAScript 5 规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出 <code>radix</code> 参数的值。</li>
 <li>如果字符串 string 以其它任何值开头，则基数是10 (十进制)。</li>
 </ul>
 <p><strong>map</strong></p>
@@ -233,12 +233,12 @@
  <span class="hljs-comment">// Return element for new_array</span>
  &#125;[, thisArg])</code></pre></div>
 
-<p>可以看到<code>callback</code>回调函数需要三个参数, 我们通常只使用第一个参数 (其他两个参数是可选的)。</p>
+<p>可以看到 <code>callback</code> 回调函数需要三个参数, 我们通常只使用第一个参数 (其他两个参数是可选的)。</p>
 <ul>
-<li><code>currentValue</code> 是callback 数组中正在处理的当前元素。</li>
-<li><code>index</code>可选, 是callback 数组中正在处理的当前元素的索引。</li>
-<li><code>array</code>可选, 是callback map 方法被调用的数组。</li>
-<li>另外还有<code>thisArg</code>可选, 执行 callback 函数时使用的this 值。</li>
+<li><code>currentValue</code> 是 callback 数组中正在处理的当前元素。</li>
+<li><code>index</code> 可选, 是 callback 数组中正在处理的当前元素的索引。</li>
+<li><code>array</code> 可选, 是 callback map 方法被调用的数组。</li>
+<li>另外还有 <code>thisArg</code> 可选, 执行 callback 函数时使用的 this 值。</li>
 </ul>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num + <span class="hljs-number">1</span>); <span class="hljs-comment">// [2, 3, 4]</span></code></pre></div>
@@ -266,21 +266,21 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <h1 id="3、什么是防抖和节流？有什么区别？如何实现？"><a href="#3、什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="3、什么是防抖和节流？有什么区别？如何实现？"></a>3、什么是防抖和节流？有什么区别？如何实现？</h1><p><strong>防抖</strong> （debounce）：防抖，顾名思义，防止抖动，以免把一次事件误认为多次，敲键盘就是一个每天都会接触到的防抖操作。</p>
 <p>防抖适用场景：</p>
 <ol>
-<li>登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖</li>
-<li>调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖</li>
-<li>文本编辑器实时保存，当无任何更改操作一秒后进行保存</li>
+<li>登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖。</li>
+<li>调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖。</li>
+<li>文本编辑器实时保存，当无任何更改操作一秒后进行保存。</li>
 </ol>
 <p>可以看出来<strong>防抖重在清零 <code>clearTimeout(timer)</code></strong></p>
-<p><strong>节流</strong>（throttle）：节流，顾名思义，控制水的流量。控制事件发生的频率，如控制为1s发生一次，甚至1分钟发生一次。与服务端(server) 及网关(gateway) 控制的限流(Rate Limit) 类似。</p>
+<p><strong>节流</strong>（throttle）：节流，顾名思义，控制水的流量。控制事件发生的频率，如控制为1s发生一次，甚至1分钟发生一次。与<strong>服务端</strong>(server)及<strong>网关</strong>(gateway)控制的<strong>限流</strong>(Rate Limit) 类似。</p>
 <p>节流适用场景：</p>
 <ol>
-<li><code>scroll</code> 事件，每隔一秒计算一次位置信息等</li>
-<li>浏览器播放事件，每个一秒计算一次进度信息等</li>
-<li>input 框实时搜索并发送请求展示下拉列表，每隔一秒发送一次请求 (也可做防抖)</li>
+<li><code>scroll</code> 事件，每隔一秒计算一次位置信息等。</li>
+<li>浏览器播放事件，每个一秒计算一次进度信息等。</li>
+<li>input 框实时搜索并发送请求展示下拉列表，每隔一秒发送一次请求 (也可做防抖)。</li>
 </ol>
 <p>可以看出来<strong>节流重在加锁 <code>timer=timeout</code></strong></p>
 <p>代码实现：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**防抖</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span></span></span>
@@ -297,7 +297,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
     &#125;;
 &#125;</code></pre></div>
 
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**节流</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span> </span></span>
@@ -327,8 +327,8 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <p>WeakSet 对象允许你将<strong>弱引用对象</strong>储存在一个集合中</p>
 <p>WeakSet 与 Set 的区别：</p>
 <ul>
-<li>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以</li>
-<li>WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的应用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素</li>
+<li>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以。</li>
+<li>WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的应用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素。</li>
 </ul>
 <p><strong>字典（Map）</strong></p>
 <p>集合 与 字典 的区别：</p>
@@ -422,7 +422,61 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 
 
 
-<h1 id="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？-算法-❌"><a href="#6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？-算法-❌" class="headerlink" title="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？[算法]❌"></a>6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？[算法]❌</h1><h1 id="7、ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#7、ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="7、ES5/ES6 的继承除了写法以外还有什么区别？"></a>7、ES5/ES6 的继承除了写法以外还有什么区别？</h1><ol>
+<h1 id="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？"><a href="#6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？" class="headerlink" title="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？"></a>6、请分别用深度优先思想和广度优先思想实现一个拷贝函数？</h1><blockquote>
+<p>题目用意应该是考察遍历树和重复引用吧</p>
+</blockquote>
+<p>只深拷贝了 Object, Array，其他的非基本类型都是浅拷贝</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**工具函数</span>
+<span class="hljs-comment"> * 如果是对象/数组，返回一个空的对象/数组</span>
+<span class="hljs-comment"> * 都不是的话直接返回原对象</span>
+<span class="hljs-comment"> * 判断返回的对象和原有对象是否相同就可以知道是否需要继续深拷贝</span>
+<span class="hljs-comment"> * 处理其他的数据类型的话就在这里加判断</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;*&#125;</span> </span>o 拷贝的对象</span>
+<span class="hljs-comment"> * </span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getEmpty</span>(<span class="hljs-params">o</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(o) === <span class="hljs-string">&#x27;[object Object]&#x27;</span>) &#123;
+    <span class="hljs-keyword">return</span> &#123;&#125;
+  &#125;
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(o) === <span class="hljs-string">&#x27;[object Array]&#x27;</span>) &#123;
+    <span class="hljs-keyword">return</span> []
+  &#125;
+  <span class="hljs-keyword">return</span> target
+&#125;
+<span class="hljs-comment">// 深度优先拷贝</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepCopyDFS</span>(<span class="hljs-params">origin</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> stack = []
+  <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>() <span class="hljs-comment">// 记录出现过的对象，用于处理环</span>
+  <span class="hljs-keyword">let</span> target = getEmpty(origin)
+  <span class="hljs-keyword">if</span> (target !== origin) &#123;
+    stack.push([origin, target])
+    map.set(origin, target)
+  &#125;
+  <span class="hljs-keyword">while</span> (stack.length) &#123;
+    <span class="hljs-keyword">let</span> [ori, tar] = stack.pop()
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> ori) &#123;
+      <span class="hljs-comment">// 处理环状</span>
+      <span class="hljs-keyword">if</span> (map.get(ori[key])) &#123;
+        tar[key] = map.get(ori[key])
+        <span class="hljs-keyword">continue</span>
+      &#125;
+
+      tar[key] = getEmpty(ori[key])
+      <span class="hljs-keyword">if</span> (tar[key] !== ori[key]) &#123;
+        stack.push([ori[key], tar[key]])
+        map.set(ori[key], tar[key])
+      &#125;
+    &#125;
+  &#125;
+
+  <span class="hljs-keyword">return</span> target
+&#125;</code></pre></div>
+
+
+
+
+
+<h1 id="7、ES5-ES6-的继承除了写法以外还有什么区别？"><a href="#7、ES5-ES6-的继承除了写法以外还有什么区别？" class="headerlink" title="7、ES5/ES6 的继承除了写法以外还有什么区别？"></a>7、ES5/ES6 的继承除了写法以外还有什么区别？</h1><ol>
 <li><code>class</code> 声明会提升，但不会初始化赋值。<code>Foo</code> 进入暂时性死区，类似于 <code>let</code>、<code>const</code> 声明变量。</li>
 <li><code>class</code> 声明内部会启用严格模式。</li>
 <li><code>class</code> 的所有方法（包括静态方法和实例方法）都是不可枚举的。</li>
@@ -465,14 +519,14 @@ async1();
 <p>await 等待的是一个表达式，这个表达式的返回值可以是一个promise对象也可以是其他值。</p>
 <p>很多人以为 await 会一直等待之后的表达式执行完之后才会继续执行后面的代码，<strong>实际上await是一个让出线程的标志。await 后面的表达式会先执行一遍，将 await 后面的代码加入到 microtask 中，然后就会跳出整个async函数来执行后面的代码。</strong></p>
 <p>结果：</p>
-<div class="hljs"><pre><code class="hljs routeros">script start
-async1 start
-async2
-promise1
-script end
-async1 end
-promise2
-setTimeout</code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//script start</span>
+<span class="hljs-comment">//async1 start</span>
+<span class="hljs-comment">//async2</span>
+<span class="hljs-comment">//promise1</span>
+<span class="hljs-comment">//script end</span>
+<span class="hljs-comment">//async1 end</span>
+<span class="hljs-comment">//promise2</span>
+<span class="hljs-comment">//setTimeout</span></code></pre></div>
 
 
             </div>

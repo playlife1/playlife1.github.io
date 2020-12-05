@@ -234,7 +234,7 @@ sleep(<span class="hljs-number">1000</span>).then(<span class="hljs-function">()
 <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">sleepGenerator</span>(<span class="hljs-params">time</span>) </span>&#123;
   <span class="hljs-keyword">yield</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, time))
 &#125;
-<span class="hljs-comment">//next() 返回一个由 yield表达式生成的值。，value拿到返回值</span>
+<span class="hljs-comment">//next() 返回一个由 yield表达式生成的值。value拿到返回值</span>
 sleepGenerator(<span class="hljs-number">1000</span>)
   .next()
   .value.then(<span class="hljs-function">() =&gt;</span> &#123;

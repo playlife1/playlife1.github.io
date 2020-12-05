@@ -215,18 +215,18 @@
 </blockquote>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr.flat(<span class="hljs-literal">Infinity</span>))).sort((<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b))</code></pre></div>
 
-<p><code>Array.prototype.flat()</code>用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。</p>
-<p><code>flat()</code>默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将<code>flat()</code>方法的参数写成一个整数，表示想要拉平的层数，默认为1。</p>
-<p>如果不管有多少层嵌套，都要转成一维数组，可以用<code>Infinity</code>关键字作为参数。</p>
+<p><code>Array.prototype.flat()</code> 用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。</p>
+<p><code>flat()</code> 默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将 <code>flat()</code> 方法的参数写成一个整数，表示想要拉平的层数，默认为1。</p>
+<p>如果不管有多少层嵌套，都要转成一维数组，可以用 <code>Infinity</code> 关键字作为参数。</p>
 <h1 id="12、JS-异步解决方案的发展历程以及优缺点"><a href="#12、JS-异步解决方案的发展历程以及优缺点" class="headerlink" title="12、JS 异步解决方案的发展历程以及优缺点"></a>12、JS 异步解决方案的发展历程以及优缺点</h1><p>按时间顺序：</p>
 <ol>
 <li>回调函数（callback）</li>
 <li>Promise</li>
 <li>Generator</li>
-<li>Async/await</li>
+<li>async/await</li>
 </ol>
 <p>优缺点：</p>
-<h2 id="回调函数（callback）"><a href="#回调函数（callback）" class="headerlink" title="回调函数（callback）"></a>回调函数（callback）</h2><p><strong>优点：解决了同步的问题</strong>（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）</p>
+<h2 id="回调函数（callback）"><a href="#回调函数（callback）" class="headerlink" title="回调函数（callback）"></a>回调函数（callback）</h2><p><strong>优点：解决了同步的问题</strong>（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行）</p>
 <p>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
 <p>回调地狱的根本问题在于：</p>
 <ul>
@@ -245,23 +245,23 @@
 <p>async、await 是异步的终极解决方案</p>
 </blockquote>
 <p><strong>优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题。async 相比于 Generator内置了执行器，拥有更好的语义化</strong> </p>
-<p><strong>缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</strong></p>
-<h1 id="13、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#13、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="13、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>13、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h1><p>Promise 构造函数是同步执行的，而then方法里面的执行函数一般是放到微任务队列的异步任务所以是异步执行</p>
+<p><strong>缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低</strong></p>
+<h1 id="13、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#13、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="13、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>13、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h1><p><strong>Promise</strong> 构造函数是同步执行的，而then方法里面的执行函数一般是放到微任务队列的异步任务所以是异步执行</p>
 <p><strong>扩展：什么是Promise？</strong></p>
-<p>Promise 是解决异步编程的一种方案。以前我们处理异步操作，一般都是通过回调函数来处理，典型的例子就好像使用<code>setTimeout</code>一样，如果执行操作函数里面还有<code>setTimeout</code>，一层一层往下，都有的话。那么代码看起来十分臃肿，不利于维护，也很容易写出bug。</p>
-<p>而Promise的出现，能够让异步编程变得更加可观，把异步操作按照同步操作的流程表达出来，避免层层嵌套的回调函数。</p>
-<p>Promise 对象有三种状态，进行中<code>pending</code>、完成成功<code>fulfilled</code>、失败<code>rejected</code>，顾名思义，表示这个异步操作是进行中还是成功还是失败了。</p>
-<p>Promise 的状态一旦确定了，就不会再更改了，这就是 promise（承诺）的由来吧，承诺状态确定了就是确定了。</p>
-<p>然而Promise还是有不足的地方：</p>
+<p><strong>Promise</strong> 是解决异步编程的一种方案。以前我们处理异步操作，一般都是通过回调函数来处理，典型的例子就好像使用 <code>setTimeout</code> 一样，如果执行操作函数里面还有 <code>setTimeout</code>，一层一层往下，都有的话。那么代码看起来十分臃肿，不利于维护，也很容易写出bug。</p>
+<p>而 <strong>Promise</strong> 的出现，能够让异步编程变得更加可观，把异步操作按照同步操作的流程表达出来，避免层层嵌套的回调函数。</p>
+<p><strong>Promise</strong> 对象有三种状态，进行中<code>pending</code>、完成成功<code>fulfilled</code>、失败<code>rejected</code>，顾名思义，表示这个异步操作是进行中还是成功还是失败了。</p>
+<p><strong>Promise</strong> 的状态一旦确定了，就不会再更改了，这就是 promise（承诺）的由来吧，承诺状态确定了就是确定了。</p>
+<p>然而 <strong>Promise</strong> 还是有不足的地方：</p>
 <ol>
-<li>如果没有执行捕获错误的函数（如下述说的 catch，then 的第二个参数），则 Promise 内部发生的错误（虽然会报错但）是无法传递到 Promise 外部代码上的，因此外部脚本并不会因为错误而导致不继续执行下去。</li>
-<li>一旦新建了，就无法中断它的操作。不像<code>setTimeout</code>那样，我还可以使用<code>clearTimeout</code>取消掉。</li>
+<li>如果没有执行捕获错误的函数（如下述说的 catch，then 的第二个参数），则 <strong>Promise</strong> 内部发生的错误（虽然会报错但）是无法传递到 <strong>Promise</strong> 外部代码上的，因此外部脚本并不会因为错误而导致不继续执行下去。</li>
+<li>一旦新建了，就无法中断它的操作。不像 <code>setTimeout</code> 那样，我还可以使用 <code>clearTimeout</code> 取消掉。</li>
 </ol>
 <h1 id="14、如何实现一个-new"><a href="#14、如何实现一个-new" class="headerlink" title="14、如何实现一个 new"></a>14、如何实现一个 new</h1><p><code>new</code> 在执行时，会做下面这四件事：</p>
 <ol>
 <li><p>开辟内存空间，在内存中创建一个新的空对象。</p>
 </li>
-<li><p>让 this 指向这个新的对象。</p>
+<li><p>让 <strong>this</strong> 指向这个新的对象。</p>
 </li>
 <li><p>执行构造函数里面的代码，给这个新对象添加属性和方法。</p>
 </li>
