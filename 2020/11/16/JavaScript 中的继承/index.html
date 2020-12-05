@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -225,7 +225,7 @@
 <p>以及ES6 Class 继承</p>
 <h1 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h1><p><code>Object.create()</code> 方法创建一个新对象，使用现有的对象来提供新创建的对象的 <code>__proto__</code>。</p>
 <p>语法：</p>
-<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.create(proto，[propertiesObject])</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Object</span>.create(proto，[propertiesObject])</code></pre></div>
 
 <p>参数:</p>
 <ul>
@@ -239,16 +239,16 @@
 <p>返回值:</p>
 <p>一个新对象，带着指定的原型对象和属性。</p>
 <p><code>Object.create()</code>的 Polyfill 方法：</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
   F.prototype = o
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F()
 &#125;
 <span class="hljs-comment">//等价于</span>
-<span class="hljs-built_in">Object</span>.create(o)</code></pre>
+<span class="hljs-built_in">Object</span>.create(o)</code></pre></div>
 
 <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>首先，先准备一个父类：</p>
-<pre><code class="hljs js"><span class="hljs-comment">// 定义一个动物类</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 定义一个动物类</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Animal</span> (<span class="hljs-params">name</span>) </span>&#123;
   <span class="hljs-comment">// 属性</span>
   <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Animal&#x27;</span>
@@ -260,12 +260,12 @@
 <span class="hljs-comment">// 原型方法</span>
 Animal.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">food</span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&#x27;正在吃：&#x27;</span> + food)
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 <h1 id="1、原型链继承"><a href="#1、原型链继承" class="headerlink" title="1、原型链继承"></a>1、原型链继承</h1><blockquote>
 <p>核心： 将父类的实例作为子类的原型</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params"></span>)</span>&#123; 
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params"></span>)</span>&#123; 
 &#125;
 Cat.prototype = <span class="hljs-keyword">new</span> Animal()
 Cat.prototype.name = <span class="hljs-string">&#x27;cat&#x27;</span>
@@ -276,7 +276,7 @@ Cat.prototype.name = <span class="hljs-string">&#x27;cat&#x27;</span>
 cat.eat(<span class="hljs-string">&#x27;fish&#x27;</span>)
 cat.sleep()
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">//true </span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">//true </span></code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">//true </span></code></pre></div>
 
 <p>特点：</p>
 <ol>
@@ -293,7 +293,7 @@ cat.sleep()
 <h1 id="2、构造继承"><a href="#2、构造继承" class="headerlink" title="2、构造继承"></a>2、构造继承</h1><blockquote>
 <p>核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
   Animal.call(<span class="hljs-built_in">this</span>)
   <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
 &#125;
@@ -303,7 +303,7 @@ cat.sleep()
 <span class="hljs-built_in">console</span>.log(cat.name)
 cat.sleep()
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>特点：</p>
 <ol>
@@ -320,7 +320,7 @@ cat.sleep()
 <h1 id="3、组合继承"><a href="#3、组合继承" class="headerlink" title="3、组合继承"></a>3、组合继承</h1><blockquote>
 <p>核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;
   Animal.call(<span class="hljs-built_in">this</span>)
   <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
 &#125;
@@ -331,7 +331,7 @@ Cat.prototype.constructor = Cat
 <span class="hljs-built_in">console</span>.log(cat.name)
 cat.sleep()
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>特点：</p>
 <ol>
@@ -348,7 +348,7 @@ cat.sleep()
 <h1 id="4、原型式继承"><a href="#4、原型式继承" class="headerlink" title="4、原型式继承"></a>4、原型式继承</h1><blockquote>
 <p>核心：原型式继承的 object方法 本质上是对参数对象的一个浅复制。</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-comment">//利用一个空对象作为中介，将某个对象直接赋值给空对象构造函数的原型。</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//利用一个空对象作为中介，将某个对象直接赋值给空对象构造函数的原型。</span>
 <span class="hljs-comment">//就是 ES5 Object.create 的模拟实现，将传入的对象作为创建的对象的原型。</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
@@ -370,7 +370,7 @@ yetAnotherPerson.friends.push(<span class="hljs-string">&quot;Barbie&quot;</span
 
 alert(person.friends);  <span class="hljs-comment">//&quot;Shelby,Court,Van,Rob,Barbie&quot;</span>
 
-<span class="hljs-comment">//注意：修改anotherPerson.name的值，yetAnotherPerson.name的值并未发生改变，并不是因为anotherPerson 和 yetAnotherPerson 有独立的 name 值，而是因为 anotherPerson.name = &quot;Greg&quot;，给anotherPerson添加了 name 值，并非修改了原型上的 name 值。</span></code></pre>
+<span class="hljs-comment">//注意：修改anotherPerson.name的值，yetAnotherPerson.name的值并未发生改变，并不是因为anotherPerson 和 yetAnotherPerson 有独立的 name 值，而是因为 anotherPerson.name = &quot;Greg&quot;，给anotherPerson添加了 name 值，并非修改了原型上的 name 值。</span></code></pre></div>
 
 <p>缺点：</p>
 <ol>
@@ -379,7 +379,7 @@ alert(person.friends);  <span class="hljs-comment">//&quot;Shelby,Court,Van,Rob,
 <h1 id="5、寄生继承"><a href="#5、寄生继承" class="headerlink" title="5、寄生继承"></a>5、寄生继承</h1><blockquote>
 <p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-comment">// 寄生继承</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 寄生继承</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>) </span>&#123;
     Animal.call(<span class="hljs-built_in">this</span>)
     <span class="hljs-built_in">this</span>.name = name || <span class="hljs-string">&#x27;Tom&#x27;</span>
@@ -406,7 +406,7 @@ alert(person.friends);  <span class="hljs-comment">//&quot;Shelby,Court,Van,Rob,
 <span class="hljs-built_in">console</span>.log(cat.name)
 cat.sayHi()
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)</code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)</code></pre></div>
 
 <p>特点：</p>
 <ol>
@@ -421,7 +421,7 @@ cat.sayHi()
 <h2 id="6、寄生组合继承"><a href="#6、寄生组合继承" class="headerlink" title="6、寄生组合继承"></a>6、寄生组合继承</h2><blockquote>
 <p>核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-comment">// 寄生组合继承</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 寄生组合继承</span>
 <span class="hljs-comment">// 该实现没有修复constructor</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>) </span>&#123;
     Animal.call(<span class="hljs-built_in">this</span>)
@@ -448,7 +448,7 @@ cat.sayHi()
 <span class="hljs-built_in">console</span>.log(cat.name)
 cat.sleep()
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal) <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat) <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>特点：</p>
 <ol>
@@ -461,7 +461,7 @@ cat.sleep()
 <h1 id="ES6-Class-extends"><a href="#ES6-Class-extends" class="headerlink" title="ES6 Class extends"></a>ES6 Class extends</h1><blockquote>
 <p>核心： ES6继承的结果和寄生组合继承相似，本质上，ES6继承是一种语法糖。</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>(name, gender) &#123;
     <span class="hljs-built_in">super</span>(name)
     <span class="hljs-built_in">this</span>.gender = gender
@@ -479,20 +479,20 @@ cat.eat(<span class="hljs-string">&#x27;fish&#x27;</span>)<span class="hljs-comm
 cat.sleep()<span class="hljs-comment">//我的name是Tom</span>
 cat.like()<span class="hljs-comment">//cat like fish</span>
 <span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Animal)<span class="hljs-comment">//true</span>
-<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)<span class="hljs-comment">//true</span></code></pre>
+<span class="hljs-built_in">console</span>.log(cat <span class="hljs-keyword">instanceof</span> Cat)<span class="hljs-comment">//true</span></code></pre></div>
 
 <p>寄生组合继承是先创建子类实例 this 对象，然后再对其增强；</p>
 <p>而 ES6 先将父类实例对象的属性和方法，加到 this 上面（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
     <span class="hljs-built_in">super</span>();
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>ES6 实现继承的具体原理：</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
 &#125;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;
@@ -507,7 +507,7 @@ cat.like()<span class="hljs-comment">//cat like fish</span>
 <span class="hljs-built_in">Object</span>.setPrototypeOf(B.prototype, A.prototype);
 
 <span class="hljs-comment">// B 继承 A 的静态属性</span>
-<span class="hljs-built_in">Object</span>.setPrototypeOf(B, A);</code></pre>
+<span class="hljs-built_in">Object</span>.setPrototypeOf(B, A);</code></pre></div>
 
 <p>ES6 继承与 ES5 继承的异同：<br>相同点：</p>
 <ul>

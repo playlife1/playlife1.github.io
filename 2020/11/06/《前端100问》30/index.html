@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -213,9 +213,9 @@
 </blockquote>
 <h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h2><p>每一个继承 Object 的对象都有 <code>toString</code> 方法，如果 <code>toString</code> 方法没有重写的话，会返回 <code>[Object type]</code>，其中 type 为对象的类型。</p>
 <p>但当除了 Object 类型的对象外，其他类型直接使用 <code>toString</code> 方法时，会直接返回都是内容的字符串，所以我们需要使用 call 或者 apply 方法来改变 toString 方法的执行上下文。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> an = [<span class="hljs-string">&#x27;Hello&#x27;</span>,<span class="hljs-string">&#x27;An&#x27;</span>];
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> an = [<span class="hljs-string">&#x27;Hello&#x27;</span>,<span class="hljs-string">&#x27;An&#x27;</span>];
 an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
-<span class="hljs-built_in">Object</span>.prototype.toString.call(an); <span class="hljs-comment">// &quot;[object Array]&quot;</span></code></pre>
+<span class="hljs-built_in">Object</span>.prototype.toString.call(an); <span class="hljs-comment">// &quot;[object Array]&quot;</span></code></pre></div>
 
 <p>这种方法对于所有基本的数据类型都能进行判断，即使是 null 和 undefined 。</p>
 <p><code>Object.prototype.toString.call()</code> 常用于判断浏览器内置对象时。</p>
@@ -282,7 +282,7 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <li><p><strong>尽可能在</strong><code>DOM</code><strong>树的最末端改变</strong><code>class</code>，回流是不可避免的，但可以减少其影响。尽可能在DOM树的最末端改变class，可以限制了回流的范围，使其影响尽可能少的节点。</p>
 </li>
 <li><p><strong>避免设置多层内联样式</strong>，CSS 选择符<strong>从右往左</strong>匹配查找，避免节点层级过多。</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
@@ -292,7 +292,7 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
   div &gt; a &gt; span &#123;
     color: red;
   &#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre></div>
 
 <p>对于第一种设置样式的方式来说，浏览器只需要找到页面中所有的 <code>span</code> 标签然后设置颜色，但是对于第二种设置样式的方式来说，浏览器首先需要找到所有的 <code>span</code> 标签，然后找到 <code>span</code> 标签上的 <code>a</code> 标签，最后再去找到 <code>div</code> 标签，然后给符合这种条件的 <code>span</code> 标签设置颜色，这样的递归过程就很复杂。所以我们应该尽可能的避免写<strong>过于具体</strong>的 CSS 选择器，然后对于 HTML 来说也尽量少的添加无意义标签，保证<strong>层级扁平</strong>。</p>
 </li>
@@ -326,7 +326,7 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <p>对于状态管理的解决思路就是：把组件之间需要共享的状态抽取出来，遵循特定的约定，统一来管理，让状态的变化可以预测。</p>
 <p>最简单的处理就是把状态存到一个外部变量里面，比如：this.$root.$data，当然也可以是一个全局变量。但是这样有一个问题，就是数据改变后，不会留下变更过的记录，这样不利于调试。</p>
 <p>所以我们稍微搞得复杂一点，用一个简单的 Store 模式：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> store = &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> store = &#123;
   state: &#123;
     message: <span class="hljs-string">&#x27;Hello!&#x27;</span>
   &#125;,
@@ -337,13 +337,13 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
   clearMessageAction () &#123;
     <span class="hljs-built_in">this</span>.state.message = <span class="hljs-string">&#x27;&#x27;</span>
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>store 的 state 来存数据，store 里面有一堆的 action，这些 action 来控制 state 的改变，也就是不直接去对 state 做改变，而是通过 action 来改变，因为都走 action，我们就可以知道到底改变（mutation）是如何被触发的，出现错误，也可以记录记录日志啥的。</p>
 <p>组件不允许直接修改属于 store 实例的 state，组件必须通过 action 来改变 state，也就是说，组件里面应该执行 action 来分发 (dispatch) 事件通知 store 去改变。</p>
 <h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>Redux 里面只有一个 Store，整个应用的数据都在这个大 Store 里面。Store 的 State 不能直接修改，每次只能返回一个新的 State。Redux 整了一个 createStore 函数来生成 Store。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
-<span class="hljs-keyword">const</span> store = createStore(fn);</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+<span class="hljs-keyword">const</span> store = createStore(fn);</code></pre></div>
 
 <p>Store 允许使用 store.subscribe 方法设置监听函数，一旦 State 发生变化，就自动执行这个函数。这样不管 View 是用什么实现的，只要把 View 的更新函数 subscribe 一下，就可以实现 State 变化之后，View 自动渲染了。比如在 React 里，把组件的render方法或setState方法订阅进去就行。</p>
 <h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><p>每一个 Vuex 里面有一个全局的 Store，包含着应用中的状态 State，这个 State 只是需要在组件中共享的数据，不用放所有的 State，没必要。这个 State 是单一的，和 Redux 类似，所以，一个应用仅会包含一个 Store 实例。单一状态树的好处是能够直接地定位任一特定的状态片段，在调试的过程中也能轻易地取得整个当前应用状态的快照。</p>
@@ -412,30 +412,30 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <p><strong>模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等。</strong></p>
 <p>因为一开始 JavaScript 本身没有提供模块化的机制，所以才会衍生出 CommonJS、AMD、CMD 和 UMD 这么多模块化规范。JavaScript 在 ES6 时原生提供了 import 和export 模块化机制</p>
 <p><strong>IIFE</strong>： 使用自执行函数来编写模块化，特点：<strong>在一个单独的函数作用域中执行代码，避免变量冲突</strong>。</p>
-<pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
   <span class="hljs-keyword">return</span> &#123;
 	data:[]
   &#125;
-&#125;)()</code></pre>
+&#125;)()</code></pre></div>
 
 <p><strong>AMD</strong>： 使用requireJS 来编写模块化，特点：<strong>依赖必须提前声明好</strong>。</p>
-<pre><code class="hljs js">define(<span class="hljs-string">&#x27;./index.js&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">code</span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js">define(<span class="hljs-string">&#x27;./index.js&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">code</span>)</span>&#123;
 	<span class="hljs-comment">// code 就是index.js 返回的内容</span>
-&#125;)</code></pre>
+&#125;)</code></pre></div>
 
 <p><strong>CMD</strong>： 使用seaJS 来编写模块化，特点：<strong>支持动态引入依赖文件</strong>。</p>
-<pre><code class="hljs js">define(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require, exports, module</span>) </span>&#123;  
+<div class="hljs"><pre><code class="hljs js">define(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require, exports, module</span>) </span>&#123;  
   <span class="hljs-keyword">var</span> indexCode = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./index.js&#x27;</span>);
-&#125;);</code></pre>
+&#125;);</code></pre></div>
 
 <p><strong>CommonJS</strong>： node.js 中自带的模块化。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);</code></pre></div>
 
 <p>特点: <code>require</code>、<code>module.exports</code>、<code>exports</code><br>CommonJS 一般用在服务端或者Node用来同步加载模块，它对于模块的依赖发生在代码运行阶段，不适合在浏览器端做异步加载。</p>
 <p><strong>UMD</strong>：兼容AMD，CommonJS 模块化语法。</p>
 <p>**webpack(require.ensure)**：webpack 2.x 版本中的代码分割。</p>
 <p><strong>ES Module</strong>： ES6 引入的模块化，支持import 来引入另一个 js 。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> a <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;a&#x27;</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> a <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;a&#x27;</span>;</code></pre></div>
 
 <p>特点: <code>import</code>、<code>export</code><br>ES6模块化不是对象，<code>import</code>会在JavaScript引擎静态分析，在编译时就引入模块代码，而并非在代码运行时加载，因此也不适合异步加载。</p>
 <p>ES Module 的优势：</p>
@@ -453,26 +453,26 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <li>ESModule 不是对象，而是通过<code>export</code>暴露出要输出的代码块，在<code>import</code>时使用静态命令的方法引用指定的输出代码块，并在<code>import</code>语句处执行这个要输出的代码，而不是直接加载整个模块。</li>
 </ul>
 <h1 id="27、全局作用域中，用-const-和-let-声明的变量不在-window-上，那到底在哪里？如何去获取？"><a href="#27、全局作用域中，用-const-和-let-声明的变量不在-window-上，那到底在哪里？如何去获取？" class="headerlink" title="27、全局作用域中，用 const 和 let 声明的变量不在 window 上，那到底在哪里？如何去获取？"></a>27、全局作用域中，用 const 和 let 声明的变量不在 window 上，那到底在哪里？如何去获取？</h1><p>在 ES5 中，顶层对象的属性和全局变量是等价的，var 命令和 function 命令声明的全局变量，自然也是顶层对象。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">12</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">12</span>;
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.a); <span class="hljs-comment">// 12</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.f); <span class="hljs-comment">// f()&#123;&#125;</span></code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.f); <span class="hljs-comment">// f()&#123;&#125;</span></code></pre></div>
 
 <p>但 ES6 规定，var 命令和 function 命令声明的全局变量，依旧是顶层对象的属性，但 let 命令、const 命令、class 命令声明的全局变量，不属于顶层对象的属性。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> aa = <span class="hljs-number">1</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> aa = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">const</span> bb = <span class="hljs-number">2</span>;
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.aa); <span class="hljs-comment">// undefined</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.bb); <span class="hljs-comment">// undefined</span></code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.bb); <span class="hljs-comment">// undefined</span></code></pre></div>
 
 <p>在全局作用域中，用 let 和 const 声明的全局变量并没有在全局对象中，只是一个块级作用域（Script）中</p>
 <p>在定义变量的块级作用域中就能获取啊，既然不属于顶层对象，那就不加 window（global）呗。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> aa = <span class="hljs-number">1</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> aa = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">const</span> bb = <span class="hljs-number">2</span>;
 
 <span class="hljs-built_in">console</span>.log(aa); <span class="hljs-comment">// 1</span>
-<span class="hljs-built_in">console</span>.log(bb); <span class="hljs-comment">// 2</span></code></pre>
+<span class="hljs-built_in">console</span>.log(bb); <span class="hljs-comment">// 2</span></code></pre></div>
 
 
 
@@ -498,13 +498,13 @@ an.toString(); <span class="hljs-comment">// &quot;Hello,An&quot;</span>
 <h1 id="30、两个数组合并成一个数组"><a href="#30、两个数组合并成一个数组" class="headerlink" title="30、两个数组合并成一个数组"></a>30、两个数组合并成一个数组</h1><blockquote>
 <p>请把两个数组 [‘A1’, ‘A2’, ‘B1’, ‘B2’, ‘C1’, ‘C2’, ‘D1’, ‘D2’] 和 [‘A’, ‘B’, ‘C’, ‘D’]，合并为 [‘A1’, ‘A2’, ‘A’, ‘B1’, ‘B2’, ‘B’, ‘C1’, ‘C2’, ‘C’, ‘D1’, ‘D2’, ‘D’]。</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;A1&#x27;</span>, <span class="hljs-string">&#x27;A2&#x27;</span>, <span class="hljs-string">&#x27;B1&#x27;</span>, <span class="hljs-string">&#x27;B2&#x27;</span>, <span class="hljs-string">&#x27;C1&#x27;</span>, <span class="hljs-string">&#x27;C2&#x27;</span>, <span class="hljs-string">&#x27;D1&#x27;</span>, <span class="hljs-string">&#x27;D2&#x27;</span>]
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;A1&#x27;</span>, <span class="hljs-string">&#x27;A2&#x27;</span>, <span class="hljs-string">&#x27;B1&#x27;</span>, <span class="hljs-string">&#x27;B2&#x27;</span>, <span class="hljs-string">&#x27;C1&#x27;</span>, <span class="hljs-string">&#x27;C2&#x27;</span>, <span class="hljs-string">&#x27;D1&#x27;</span>, <span class="hljs-string">&#x27;D2&#x27;</span>]
 <span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>]
 
 <span class="hljs-keyword">const</span> arr3 = arr2.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item + <span class="hljs-number">3</span>)
 <span class="hljs-built_in">console</span>.log(arr3) <span class="hljs-comment">//[ &#x27;A3&#x27;, &#x27;B3&#x27;, &#x27;C3&#x27;, &#x27;D3&#x27; ]</span>
 <span class="hljs-keyword">const</span> arr4 = [...arr1, ...arr3].sort()
-<span class="hljs-built_in">console</span>.log(arr4)<span class="hljs-comment">//[&quot;A1&quot;, &quot;A2&quot;, &quot;A3&quot;, &quot;B1&quot;, &quot;B2&quot;, &quot;B3&quot;, &quot;C1&quot;, &quot;C2&quot;, &quot;C3&quot;, &quot;D1&quot;, &quot;D2&quot;, &quot;D3&quot;]</span></code></pre>
+<span class="hljs-built_in">console</span>.log(arr4)<span class="hljs-comment">//[&quot;A1&quot;, &quot;A2&quot;, &quot;A3&quot;, &quot;B1&quot;, &quot;B2&quot;, &quot;B3&quot;, &quot;C1&quot;, &quot;C2&quot;, &quot;C3&quot;, &quot;D1&quot;, &quot;D2&quot;, &quot;D3&quot;]</span></code></pre></div>
 
 
             </div>

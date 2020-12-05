@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -215,53 +215,53 @@
 <p>对于 数值、字符串、布尔值 经常会变的，用 let 声明。</p>
 <p>对象、数组和函数用 const 来声明</p>
 <h2 id="1-1-let"><a href="#1-1-let" class="headerlink" title="1.1 let"></a>1.1 let</h2><p>let 声明的变量，可以改变</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">4396</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">4396</span>
 a = <span class="hljs-number">5678</span>
 
 <span class="hljs-keyword">let</span> b = <span class="hljs-string">&#x27;playlife&#x27;</span>
-b = <span class="hljs-string">&#x27;Johnny&#x27;</span></code></pre>
+b = <span class="hljs-string">&#x27;Johnny&#x27;</span></code></pre></div>
 
 <h2 id="1-2-const"><a href="#1-2-const" class="headerlink" title="1.2 const"></a>1.2 const</h2><p>const 声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
 <p>简单类型的数据（数值、字符串、布尔值），不可以变动</p>
 <p>复合类型的数据（主要是对象和数组），可以这样子变动</p>
-<pre><code class="hljs stylus">const <span class="hljs-selector-tag">a</span> = [<span class="hljs-number">4396</span>]
+<div class="hljs"><pre><code class="hljs stylus">const <span class="hljs-selector-tag">a</span> = [<span class="hljs-number">4396</span>]
 <span class="hljs-selector-tag">a</span>.push(<span class="hljs-number">2233</span>)
 
 const <span class="hljs-selector-tag">b</span> = &#123;&#125;
-<span class="hljs-selector-tag">b</span><span class="hljs-selector-class">.name</span> = <span class="hljs-string">&#x27;playlife&#x27;</span></code></pre>
+<span class="hljs-selector-tag">b</span><span class="hljs-selector-class">.name</span> = <span class="hljs-string">&#x27;playlife&#x27;</span></code></pre></div>
 
 <h2 id="1-3-不存在变量提升"><a href="#1-3-不存在变量提升" class="headerlink" title="1.3 不存在变量提升"></a>1.3 不存在变量提升</h2><p>let 和 const 的暂时性死区：let 和 const 不存在变量提升是因为 let/const 命令会使区块形成封闭的作用域，</p>
 <p>用 let/const 声明的变量会先在作用域中被创建出来，但因此时还未进行词法绑定，所以是不能被访问的，如果访问就会抛出错误。</p>
 <p>因此，在这运行流程进入作用域创建变量，到变量可以被访问之间的这一段时间，就称之为暂时死区。这在语法上，称为 “暂时性死区”（ temporal dead zone，简称 TDZ）。</p>
 <h1 id="2-解构-Destructuring"><a href="#2-解构-Destructuring" class="headerlink" title="2. 解构 (Destructuring)"></a>2. 解构 (Destructuring)</h1><p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构 （Destructuring）。</p>
 <h2 id="2-1-数组"><a href="#2-1-数组" class="headerlink" title="2.1 数组"></a>2.1 数组</h2><p>一次性声明多个变量：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> [a, b, c] = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [a, b, c] = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];</code></pre></div>
 
 <p>结合扩展运算符：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> [head, ...tail] = [ <span class="hljs-number">4</span> , <span class="hljs-number">3</span> , <span class="hljs-number">2</span> ,<span class="hljs-number">5</span> ]
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [head, ...tail] = [ <span class="hljs-number">4</span> , <span class="hljs-number">3</span> , <span class="hljs-number">2</span> ,<span class="hljs-number">5</span> ]
 <span class="hljs-built_in">console</span>.log(head) <span class="hljs-comment">// 4</span>
-<span class="hljs-built_in">console</span>.log(tail) <span class="hljs-comment">// [3, 2, 5]</span></code></pre>
+<span class="hljs-built_in">console</span>.log(tail) <span class="hljs-comment">// [3, 2, 5]</span></code></pre></div>
 
 <p>解构赋值允许指定默认值:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> [foo = <span class="hljs-literal">true</span>] = [];
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [foo = <span class="hljs-literal">true</span>] = [];
 foo <span class="hljs-comment">// true</span>
 
 <span class="hljs-keyword">let</span> [x, y = <span class="hljs-string">&#x27;b&#x27;</span>] = [<span class="hljs-string">&#x27;a&#x27;</span>];
-<span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span></code></pre>
+<span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span></code></pre></div>
 
 <blockquote>
 <p>本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。</p>
 </blockquote>
 <p>如果解构不成功，变量的值就等于<code>undefined</code>。</p>
 <h2 id="2-2-对象-（常用）"><a href="#2-2-对象-（常用）" class="headerlink" title="2.2 对象 （常用）"></a>2.2 对象 （常用）</h2><p>解构不仅可以用于数组，还可以用于对象。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;
 foo <span class="hljs-comment">// &quot;aaa&quot;</span>
-bar <span class="hljs-comment">// &quot;bbb&quot;</span></code></pre>
+bar <span class="hljs-comment">// &quot;bbb&quot;</span></code></pre></div>
 
 <p>数组的结构赋值取决于变量的排列位置，在对象中，结构赋值变量必须于对象的属性同名才能正确的赋值。（对象的解构赋值在开发中常用，它帮助我们代码更加简洁，更加优雅）</p>
 <p>如果解构失败，变量的值等于<code>undefined</code>。</p>
 <p>对象的解构也可以指定默认值。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> &#123;x = <span class="hljs-number">3</span>&#125; = &#123;&#125;;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> &#123;x = <span class="hljs-number">3</span>&#125; = &#123;&#125;;
 x <span class="hljs-comment">// 3</span>
 
 <span class="hljs-keyword">var</span> &#123;x, y = <span class="hljs-number">5</span>&#125; = &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;;
@@ -274,44 +274,44 @@ y <span class="hljs-comment">// 3</span>
 y <span class="hljs-comment">// 5</span>
 
 <span class="hljs-keyword">var</span> &#123; <span class="hljs-attr">message</span>: msg = <span class="hljs-string">&#x27;Something went wrong&#x27;</span> &#125; = &#123;&#125;;
-msg <span class="hljs-comment">// &quot;Something went wrong&quot;</span></code></pre>
+msg <span class="hljs-comment">// &quot;Something went wrong&quot;</span></code></pre></div>
 
 <h2 id="2-3-字符串"><a href="#2-3-字符串" class="headerlink" title="2.3 字符串"></a>2.3 字符串</h2><p>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, b, c, d, e] = <span class="hljs-string">&#x27;hello&#x27;</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, b, c, d, e] = <span class="hljs-string">&#x27;hello&#x27;</span>;
 a <span class="hljs-comment">// &quot;h&quot;</span>
 b <span class="hljs-comment">// &quot;e&quot;</span>
 c <span class="hljs-comment">// &quot;l&quot;</span>
 d <span class="hljs-comment">// &quot;l&quot;</span>
-e <span class="hljs-comment">// &quot;o&quot;</span></code></pre>
+e <span class="hljs-comment">// &quot;o&quot;</span></code></pre></div>
 
 <p>类似数组的对象都有一个<code>length</code>属性，因此还可以对这个属性解构赋值。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123;<span class="hljs-attr">length</span> : len&#125; = <span class="hljs-string">&#x27;hello&#x27;</span>;
-len <span class="hljs-comment">// 5</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123;<span class="hljs-attr">length</span> : len&#125; = <span class="hljs-string">&#x27;hello&#x27;</span>;
+len <span class="hljs-comment">// 5</span></code></pre></div>
 
-<h2 id="2-4-解构赋值用途"><a href="#2-4-解构赋值用途" class="headerlink" title="2.4 解构赋值用途"></a>2.4 解构赋值用途</h2><h3 id="2-4-1-交换变量的值"><a href="#2-4-1-交换变量的值" class="headerlink" title="2.4.1 交换变量的值"></a>2.4.1 交换变量的值</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>
+<h2 id="2-4-解构赋值用途"><a href="#2-4-解构赋值用途" class="headerlink" title="2.4 解构赋值用途"></a>2.4 解构赋值用途</h2><h3 id="2-4-1-交换变量的值"><a href="#2-4-1-交换变量的值" class="headerlink" title="2.4.1 交换变量的值"></a>2.4.1 交换变量的值</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>
 <span class="hljs-keyword">let</span> y = <span class="hljs-number">3</span>
-[ x , y ] = [ y , x ]</code></pre>
+[ x , y ] = [ y , x ]</code></pre></div>
 
 <h3 id="2-4-2-接受函数返回的值"><a href="#2-4-2-接受函数返回的值" class="headerlink" title="2.4.2 接受函数返回的值"></a>2.4.2 接受函数返回的值</h3><blockquote>
 <p>常用于 ajax请求返回数据的获取</p>
 </blockquote>
 <p>简单例子：</p>
-<pre><code class="hljs js">cont &#123;status , data&#125; = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">&#x27;localhost:33301&#x27;</span>)</code></pre>
+<div class="hljs"><pre><code class="hljs js">cont &#123;status , data&#125; = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">&#x27;localhost:33301&#x27;</span>)</code></pre></div>
 
 <h3 id="2-4-3-导入模块指定的方法"><a href="#2-4-3-导入模块指定的方法" class="headerlink" title="2.4.3 导入模块指定的方法"></a>2.4.3 导入模块指定的方法</h3><p>举例子：vuex中的方法</p>
-<pre><code class="hljs js"><span class="hljs-comment">//导入 vuex 的 mapGetters 方法</span>
-<span class="hljs-keyword">import</span> &#123; mapGetters &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//导入 vuex 的 mapGetters 方法</span>
+<span class="hljs-keyword">import</span> &#123; mapGetters &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span></code></pre></div>
 
 
 
 <h1 id="3-模版字符串"><a href="#3-模版字符串" class="headerlink" title="3. 模版字符串"></a>3. 模版字符串</h1><blockquote>
 <p>可以在字符串中嵌入变量，可以换行，可以调用方法，比普通的拼接字符串更加高效优雅</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">let</span> y = <span class="hljs-number">2</span>;
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`输出值为：<span class="hljs-subst">$&#123;x&#125;</span>`</span>) <span class="hljs-comment">// &quot;输出值为：1&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`输出值为：<span class="hljs-subst">$&#123;x + y&#125;</span>`</span>) <span class="hljs-comment">// &quot;输出值为：3&quot;</span></code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`输出值为：<span class="hljs-subst">$&#123;x + y&#125;</span>`</span>) <span class="hljs-comment">// &quot;输出值为：3&quot;</span></code></pre></div>
 
 <p>常用于模版引擎</p>
 <h1 id="4-字符串的新增方法"><a href="#4-字符串的新增方法" class="headerlink" title="4. 字符串的新增方法"></a>4. 字符串的新增方法</h1><blockquote>
@@ -323,18 +323,18 @@ len <span class="hljs-comment">// 5</span></code></pre>
 <li><code>startsWith()</code>：返回布尔值，表示参数字符串是否在原字符串的头部。</li>
 <li><code>endsWith()</code>：返回布尔值，表示参数字符串是否在原字符串的尾部。</li>
 </ul>
-<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&#x27;Hello world!&#x27;</span>;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&#x27;Hello world!&#x27;</span>;
 
 s.startsWith(<span class="hljs-string">&#x27;Hello&#x27;</span>) <span class="hljs-comment">// true</span>
 s.endsWith(<span class="hljs-string">&#x27;!&#x27;</span>) <span class="hljs-comment">// true</span>
-s.includes(<span class="hljs-string">&#x27;o&#x27;</span>) <span class="hljs-comment">// true</span></code></pre>
+s.includes(<span class="hljs-string">&#x27;o&#x27;</span>) <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>这三个方法都支持第二个参数，表示开始搜索的位置。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&#x27;Hello world!&#x27;</span>;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&#x27;Hello world!&#x27;</span>;
 
 s.startsWith(<span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-number">6</span>) <span class="hljs-comment">// true</span>
 s.endsWith(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-number">5</span>) <span class="hljs-comment">// true</span>
-s.includes(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-number">6</span>) <span class="hljs-comment">// false</span></code></pre>
+s.includes(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-number">6</span>) <span class="hljs-comment">// false</span></code></pre></div>
 
 <p>上面代码表示，使用第二个参数<code>n</code>时，<code>endsWith</code>的行为与其他两个方法有所不同。它针对前<code>n</code>个字符，而其他两个方法针对从第<code>n</code>个位置直到字符串结束。</p>
 <p>扩展眼界列举出其他新增方法但是不详细展开，有需要再去查阅资料💾</p>
@@ -351,24 +351,24 @@ s.includes(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs
 <li><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/string-methods#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%9AreplaceAll()">实例方法：replaceAll()</a></li>
 </ol>
 <h1 id="5-函数的扩展"><a href="#5-函数的扩展" class="headerlink" title="5. 函数的扩展"></a>5. 函数的扩展</h1><h2 id="5-1-函数参数的默认值"><a href="#5-1-函数参数的默认值" class="headerlink" title="5.1 函数参数的默认值"></a>5.1 函数参数的默认值</h2><p>可以为函数参数声明一个默认值</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Point</span>(<span class="hljs-params">x = <span class="hljs-number">0</span>, y = <span class="hljs-number">0</span></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Point</span>(<span class="hljs-params">x = <span class="hljs-number">0</span>, y = <span class="hljs-number">0</span></span>) </span>&#123;
   <span class="hljs-built_in">this</span>.x = x;
   <span class="hljs-built_in">this</span>.y = y;
 &#125;
 
 <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> Point();
-p <span class="hljs-comment">// &#123; x: 0, y: 0 &#125;</span></code></pre>
+p <span class="hljs-comment">// &#123; x: 0, y: 0 &#125;</span></code></pre></div>
 
 <p>参数变量是默认声明的，所以不能用<code>let</code>或<code>const</code>再次声明。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x = <span class="hljs-number">5</span></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x = <span class="hljs-number">5</span></span>) </span>&#123;
   <span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span>; <span class="hljs-comment">// error</span>
   <span class="hljs-keyword">const</span> x = <span class="hljs-number">2</span>; <span class="hljs-comment">// error</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>上面代码中，参数变量<code>x</code>是默认声明的，在函数体中，不能用<code>let</code>或<code>const</code>再次声明，否则会报错。</p>
 <p>使用参数默认值时，函数不能有同名参数。</p>
 <p>参数默认值可以与解构赋值的默认值，结合起来使用。</p>
-<pre><code class="hljs js">参数默认值可以与解构赋值的默认值，结合起来使用。
+<div class="hljs"><pre><code class="hljs js">参数默认值可以与解构赋值的默认值，结合起来使用。
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">&#123;x, y = <span class="hljs-number">5</span>&#125;</span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(x, y);
@@ -377,10 +377,10 @@ p <span class="hljs-comment">// &#123; x: 0, y: 0 &#125;</span></code></pre>
 foo(&#123;&#125;) <span class="hljs-comment">// undefined 5</span>
 foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;) <span class="hljs-comment">// 1 5</span>
 foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>&#125;) <span class="hljs-comment">// 1 2</span>
-foo() <span class="hljs-comment">// TypeError: Cannot read property &#x27;x&#x27; of undefined</span></code></pre>
+foo() <span class="hljs-comment">// TypeError: Cannot read property &#x27;x&#x27; of undefined</span></code></pre></div>
 
 <h2 id="5-2-rest-参数"><a href="#5-2-rest-参数" class="headerlink" title="5.2 rest 参数"></a>5.2 rest 参数</h2><p>ES6 引入 rest 参数（形式为<code>...变量名</code>），用于获取函数的多余参数，这样就不需要使用<code>arguments</code>对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...values</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...values</span>) </span>&#123;
   <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;
 
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> val <span class="hljs-keyword">of</span> values) &#123;
@@ -390,37 +390,37 @@ foo() <span class="hljs-comment">// TypeError: Cannot read property &#x27;x&#x27
   <span class="hljs-keyword">return</span> sum;
 &#125;
 
-add(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// 10</span></code></pre>
+add(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// 10</span></code></pre></div>
 
 <p>上面代码的 add 函数是一个求和函数，利用 rest 参数，可以向该函数传入任意数目的参数。</p>
 <p>注意，rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// 报错</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 报错</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">a, ...b, c</span>) </span>&#123;
   <span class="hljs-comment">// ...</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>函数的<code>length</code>属性，不包括 rest 参数。</p>
-<pre><code class="hljs javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>) </span>&#123;&#125;).length  <span class="hljs-comment">// 1</span>
+<div class="hljs"><pre><code class="hljs javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>) </span>&#123;&#125;).length  <span class="hljs-comment">// 1</span>
 (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...a</span>) </span>&#123;&#125;).length  <span class="hljs-comment">// 0</span>
-(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, ...b</span>) </span>&#123;&#125;).length  <span class="hljs-comment">// 1</span></code></pre>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, ...b</span>) </span>&#123;&#125;).length  <span class="hljs-comment">// 1</span></code></pre></div>
 
 <h2 id="5-3-箭头函数"><a href="#5-3-箭头函数" class="headerlink" title="5.3 箭头函数"></a>5.3 箭头函数</h2><p>ES6 允许使用“箭头”（<code>=&gt;</code>）定义函数。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> f = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> f = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v;
 
 <span class="hljs-comment">// 等同于</span>
 <span class="hljs-keyword">var</span> f = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">v</span>) </span>&#123;
   <span class="hljs-keyword">return</span> v;
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 <p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// 报错</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 报错</span>
 <span class="hljs-keyword">let</span> getTempItem = <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> &#123; <span class="hljs-attr">id</span>: id, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Temp&quot;</span> &#125;;
 
 <span class="hljs-comment">// 不报错</span>
-<span class="hljs-keyword">let</span> getTempItem = <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> (&#123; <span class="hljs-attr">id</span>: id, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Temp&quot;</span> &#125;);</code></pre>
+<span class="hljs-keyword">let</span> getTempItem = <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> (&#123; <span class="hljs-attr">id</span>: id, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Temp&quot;</span> &#125;);</code></pre></div>
 
 <p>下面是 rest 参数与箭头函数结合的例子。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> numbers = <span class="hljs-function">(<span class="hljs-params">...nums</span>) =&gt;</span> nums;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> numbers = <span class="hljs-function">(<span class="hljs-params">...nums</span>) =&gt;</span> nums;
 
 numbers(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
 <span class="hljs-comment">// [1,2,3,4,5]</span>
@@ -428,7 +428,7 @@ numbers(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, 
 <span class="hljs-keyword">const</span> headAndTail = <span class="hljs-function">(<span class="hljs-params">head, ...tail</span>) =&gt;</span> [head, tail];
 
 headAndTail(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
-<span class="hljs-comment">// [1,[2,3,4,5]]</span></code></pre>
+<span class="hljs-comment">// [1,[2,3,4,5]]</span></code></pre></div>
 
 <p>箭头函数有几个使用注意点。</p>
 <p>（1）函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
@@ -438,23 +438,23 @@ headAndTail(<span class="hljs-number">1</span>, <span class="hljs-number">2</spa
 <p>上面四点中，第一点尤其值得注意。<code>this</code>对象的指向是可变的，但是在箭头函数中，它是固定的。</p>
 <h3 id="5-3-1-箭头函数不适用场景"><a href="#5-3-1-箭头函数不适用场景" class="headerlink" title="5.3.1 箭头函数不适用场景"></a>5.3.1 箭头函数不适用场景</h3><p>由于箭头函数使得<code>this</code>从“动态”变成“静态”，下面两个场合不应该使用箭头函数。</p>
 <p>第一个场合是定义对象的方法，且该方法内部包括<code>this</code>。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> cat = &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> cat = &#123;
   lives: <span class="hljs-number">9</span>,
   jumps: <span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-built_in">this</span>.lives--;
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>第二个场合是需要动态<code>this</code>的时候，也不应使用箭头函数。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;press&#x27;</span>);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;press&#x27;</span>);
 button.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
   <span class="hljs-built_in">this</span>.classList.toggle(<span class="hljs-string">&#x27;on&#x27;</span>);
-&#125;);</code></pre>
+&#125;);</code></pre></div>
 
 
 
 <h1 id="6-数组的扩展"><a href="#6-数组的扩展" class="headerlink" title="6. 数组的扩展"></a>6. 数组的扩展</h1><p>扩展运算符（spread）是三个点（<code>...</code>）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</p>
-<h2 id="6-1-数组合并的新写法"><a href="#6-1-数组合并的新写法" class="headerlink" title="6.1 数组合并的新写法"></a>6.1 数组合并的新写法</h2><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>];
+<h2 id="6-1-数组合并的新写法"><a href="#6-1-数组合并的新写法" class="headerlink" title="6.1 数组合并的新写法"></a>6.1 数组合并的新写法</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>];
 <span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;c&#x27;</span>];
 <span class="hljs-keyword">const</span> arr3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>];
 
@@ -464,22 +464,22 @@ arr1.concat(arr2, arr3);
 
 <span class="hljs-comment">// ES6 的合并数组</span>
 [...arr1, ...arr2, ...arr3]
-<span class="hljs-comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span></code></pre>
+<span class="hljs-comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span></code></pre></div>
 
-<h2 id="6-2-函数调用"><a href="#6-2-函数调用" class="headerlink" title="6.2 函数调用"></a>6.2 函数调用</h2><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>&#123;
+<h2 id="6-2-函数调用"><a href="#6-2-函数调用" class="headerlink" title="6.2 函数调用"></a>6.2 函数调用</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>&#123;
   <span class="hljs-keyword">return</span> x + y;
 &#125;
 
 <span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-add(...numbers) <span class="hljs-comment">// 8</span></code></pre>
+add(...numbers) <span class="hljs-comment">// 8</span></code></pre></div>
 
 <p>上面代码中函数的调用，它使用了扩展运算符。该运算符将一个数组，变为参数序列。</p>
 <p>扩展运算符与正常的函数参数可以结合使用，非常灵活。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">v, w, x, y, z</span>) </span>&#123; &#125;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">v, w, x, y, z</span>) </span>&#123; &#125;
 <span class="hljs-keyword">const</span> args = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
-f(<span class="hljs-number">-1</span>, ...args, <span class="hljs-number">2</span>, ...[<span class="hljs-number">3</span>]);</code></pre>
+f(<span class="hljs-number">-1</span>, ...args, <span class="hljs-number">2</span>, ...[<span class="hljs-number">3</span>]);</code></pre></div>
 
-<h2 id="6-3-复制数组的简便写法"><a href="#6-3-复制数组的简便写法" class="headerlink" title="6.3 复制数组的简便写法"></a>6.3 复制数组的简便写法</h2><pre><code class="hljs js"><span class="hljs-keyword">const</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+<h2 id="6-3-复制数组的简便写法"><a href="#6-3-复制数组的简便写法" class="headerlink" title="6.3 复制数组的简便写法"></a>6.3 复制数组的简便写法</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
 <span class="hljs-comment">// 写法一</span>
 <span class="hljs-keyword">const</span> a2 = [...a1];
 a2[<span class="hljs-number">0</span>] = <span class="hljs-number">2</span>;
@@ -487,14 +487,14 @@ a1 <span class="hljs-comment">// [1, 2]</span>
 <span class="hljs-comment">// 写法二</span>
 <span class="hljs-keyword">const</span> [...a2] = a1;
 a2[<span class="hljs-number">0</span>] = <span class="hljs-number">2</span>;
-a1 <span class="hljs-comment">// [1, 2]</span></code></pre>
+a1 <span class="hljs-comment">// [1, 2]</span></code></pre></div>
 
 <p>上面的两种写法，a2 都是 a1 的克隆，且不会修改原来的数组。</p>
-<h2 id="6-4-将字符串转为真正的数组"><a href="#6-4-将字符串转为真正的数组" class="headerlink" title="6.4 将字符串转为真正的数组"></a>6.4 将字符串转为真正的数组</h2><pre><code class="hljs js">[...<span class="hljs-string">&#x27;hello&#x27;</span>]
-<span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span></code></pre>
+<h2 id="6-4-将字符串转为真正的数组"><a href="#6-4-将字符串转为真正的数组" class="headerlink" title="6.4 将字符串转为真正的数组"></a>6.4 将字符串转为真正的数组</h2><div class="hljs"><pre><code class="hljs js">[...<span class="hljs-string">&#x27;hello&#x27;</span>]
+<span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span></code></pre></div>
 
 <h2 id="6-5-数组实例的-entries-，keys-和-values"><a href="#6-5-数组实例的-entries-，keys-和-values" class="headerlink" title="6.5 数组实例的 entries()，keys() 和 values()"></a>6.5 数组实例的 entries()，keys() 和 values()</h2><p>用 for…of 循环进行遍历，唯一的区别是 keys() 是对键名的遍历、values() 是对键值的遍历，entries() 是对键值对的遍历。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index <span class="hljs-keyword">of</span> [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>].keys()) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index <span class="hljs-keyword">of</span> [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>].keys()) &#123;
   <span class="hljs-built_in">console</span>.log(index);
 &#125;
 <span class="hljs-comment">// 0</span>
@@ -510,20 +510,20 @@ a1 <span class="hljs-comment">// [1, 2]</span></code></pre>
   <span class="hljs-built_in">console</span>.log(index, elem);
 &#125;
 <span class="hljs-comment">// 0 &quot;a&quot;</span>
-<span class="hljs-comment">// 1 &quot;b&quot;</span></code></pre>
+<span class="hljs-comment">// 1 &quot;b&quot;</span></code></pre></div>
 
 <h2 id="6-6-includes-是否包含给定的值"><a href="#6-6-includes-是否包含给定的值" class="headerlink" title="6.6 includes() 是否包含给定的值"></a>6.6 includes() 是否包含给定的值</h2><p>Array.prototype.includes 方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的 includes 方法类似。ES2016 引入了该方法。</p>
-<pre><code class="hljs yaml">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-string">.includes(2)</span>     <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
+<div class="hljs"><pre><code class="hljs yaml">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-string">.includes(2)</span>     <span class="hljs-string">//</span> <span class="hljs-literal">true</span>
 [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-string">.includes(4)</span>     <span class="hljs-string">//</span> <span class="hljs-literal">false</span>
-[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">NaN</span>]<span class="hljs-string">.includes(NaN)</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span></code></pre>
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">NaN</span>]<span class="hljs-string">.includes(NaN)</span> <span class="hljs-string">//</span> <span class="hljs-literal">true</span></code></pre></div>
 
 <p>该方法的第二个参数表示搜索的起始位置，默认为 0。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度（比如第二个参数为 -4，但数组长度为 3 ），则会重置为从 0 开始。</p>
-<pre><code class="hljs js">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].includes(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>);  <span class="hljs-comment">// false</span>
-[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].includes(<span class="hljs-number">3</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// true</span></code></pre>
+<div class="hljs"><pre><code class="hljs js">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].includes(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>);  <span class="hljs-comment">// false</span>
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].includes(<span class="hljs-number">3</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// true</span></code></pre></div>
 
 <h2 id="6-7-Array-from-转为真正的数组"><a href="#6-7-Array-from-转为真正的数组" class="headerlink" title="6.7 Array.from() 转为真正的数组"></a>6.7 Array.from() 转为真正的数组</h2><p><code>Array.from</code>方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。</p>
 <p>下面是一个类似数组的对象，<code>Array.from</code>将它转为真正的数组。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arrayLike = &#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arrayLike = &#123;
     <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;a&#x27;</span>,
     <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-string">&#x27;b&#x27;</span>,
     <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-string">&#x27;c&#x27;</span>,
@@ -534,11 +534,11 @@ a1 <span class="hljs-comment">// [1, 2]</span></code></pre>
 <span class="hljs-keyword">var</span> arr1 = [].slice.call(arrayLike); <span class="hljs-comment">// [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span>
 
 <span class="hljs-comment">// ES6的写法</span>
-<span class="hljs-keyword">let</span> arr2 = <span class="hljs-built_in">Array</span>.from(arrayLike); <span class="hljs-comment">// [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span></code></pre>
+<span class="hljs-keyword">let</span> arr2 = <span class="hljs-built_in">Array</span>.from(arrayLike); <span class="hljs-comment">// [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span></code></pre></div>
 
 
 
-<h1 id="7-对象的扩展"><a href="#7-对象的扩展" class="headerlink" title="7. 对象的扩展"></a>7. 对象的扩展</h1><h2 id="7-1-属性和方法的简洁表示法"><a href="#7-1-属性和方法的简洁表示法" class="headerlink" title="7.1 属性和方法的简洁表示法"></a>7.1 属性和方法的简洁表示法</h2><pre><code class="hljs js"><span class="hljs-keyword">let</span> birth = <span class="hljs-string">&#x27;1997/04/05&#x27;</span>;
+<h1 id="7-对象的扩展"><a href="#7-对象的扩展" class="headerlink" title="7. 对象的扩展"></a>7. 对象的扩展</h1><h2 id="7-1-属性和方法的简洁表示法"><a href="#7-1-属性和方法的简洁表示法" class="headerlink" title="7.1 属性和方法的简洁表示法"></a>7.1 属性和方法的简洁表示法</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> birth = <span class="hljs-string">&#x27;1997/04/05&#x27;</span>;
 
 <span class="hljs-keyword">const</span> Person = &#123;
 
@@ -550,33 +550,33 @@ a1 <span class="hljs-comment">// [1, 2]</span></code></pre>
   <span class="hljs-comment">// 等同于hello: function ()...</span>
   hello() &#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;我的名字是&#x27;</span>, <span class="hljs-built_in">this</span>.name); &#125;
 
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 <h2 id="7-2-Object-assign"><a href="#7-2-Object-assign" class="headerlink" title="7.2 Object.assign()"></a>7.2 Object.assign()</h2><p>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;
 
 <span class="hljs-keyword">const</span> source1 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;
 <span class="hljs-keyword">const</span> source2 = &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> &#125;;
 
 <span class="hljs-built_in">Object</span>.assign(target, source1, source2);
-target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span></code></pre>
+target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span></code></pre></div>
 
 <p>Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。</p>
 <p><strong>注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">1</span> &#125;;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">1</span> &#125;;
 
 <span class="hljs-keyword">const</span> source1 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">2</span> &#125;;
 <span class="hljs-keyword">const</span> source2 = &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> &#125;;
 
 <span class="hljs-built_in">Object</span>.assign(target, source1, source2);
-target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span></code></pre>
+target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span></code></pre></div>
 
 <p>Object.assign 方法实行的是浅拷贝，而不是深拷贝。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123;<span class="hljs-attr">a</span>: &#123;<span class="hljs-attr">b</span>: <span class="hljs-number">1</span>&#125;&#125;;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123;<span class="hljs-attr">a</span>: &#123;<span class="hljs-attr">b</span>: <span class="hljs-number">1</span>&#125;&#125;;
 <span class="hljs-keyword">const</span> obj2 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj1);
 
 obj1.a.b = <span class="hljs-number">2</span>;
-obj2.a.b <span class="hljs-comment">// 2</span></code></pre>
+obj2.a.b <span class="hljs-comment">// 2</span></code></pre></div>
 
 <p>上面代码中，源对象 obj1 的 a 属性的值是一个对象，Object.assign 拷贝得到的是这个对象的引用。这个对象的任何变化，都会反映到目标对象上面。</p>
 <p>补充：</p>
@@ -606,7 +606,7 @@ obj2.a.b <span class="hljs-comment">// 2</span></code></pre>
 <li>最后遍历所有 Symbol 键，按照加入时间升序排列。</li>
 </ul>
 <h2 id="7-4-super-关键字"><a href="#7-4-super-关键字" class="headerlink" title="7.4 super 关键字"></a>7.4 super 关键字</h2><p><code>this</code>关键字总是指向函数所在的当前对象，ES6 又新增了另一个类似的关键字<code>super</code>，指向当前对象的原型对象。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> proto = &#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> proto = &#123;
   foo: <span class="hljs-string">&#x27;hello&#x27;</span>
 &#125;;
 
@@ -618,20 +618,20 @@ obj2.a.b <span class="hljs-comment">// 2</span></code></pre>
 &#125;;
 
 <span class="hljs-built_in">Object</span>.setPrototypeOf(obj, proto);
-obj.find() <span class="hljs-comment">// &quot;hello&quot;</span></code></pre>
+obj.find() <span class="hljs-comment">// &quot;hello&quot;</span></code></pre></div>
 
 <p>上面代码中，对象<code>obj.find()</code>方法之中，通过<code>super.foo</code>引用了原型对象<code>proto</code>的<code>foo</code>属性。</p>
 <p>注意，<code>super</code>关键字表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错。</p>
 <h1 id="8-Set"><a href="#8-Set" class="headerlink" title="8. Set"></a>8. Set</h1><p>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</p>
 <p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
 
 [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>].forEach(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> s.add(x));
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> s) &#123;
   <span class="hljs-built_in">console</span>.log(i);
 &#125;
-<span class="hljs-comment">// 2 3 5 4</span></code></pre>
+<span class="hljs-comment">// 2 3 5 4</span></code></pre></div>
 
 <p>上面代码通过<code>add()</code>方法向 Set 结构加入成员，结果表明 Set 结构不会添加重复的值。</p>
 <p><code>Set</code>函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
@@ -659,11 +659,11 @@ obj.find() <span class="hljs-comment">// &quot;hello&quot;</span></code></pre>
 <p>需要特别指出的是，<code>Set</code>的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。</p>
 <h2 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h2><p>WeakSet 结构与 Set 类似，也是不重复的值的集合。但是，它与 Set 有两个区别。</p>
 <p>首先，WeakSet 的成员只能是对象，而不能是其他类型的值。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>();
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>();
 ws.add(<span class="hljs-number">1</span>)
 <span class="hljs-comment">// TypeError: Invalid value used in weak set</span>
 ws.add(<span class="hljs-built_in">Symbol</span>())
-<span class="hljs-comment">// TypeError: invalid value used in weak set</span></code></pre>
+<span class="hljs-comment">// TypeError: invalid value used in weak set</span></code></pre></div>
 
 <p>上面代码试图向 WeakSet 添加一个数值和<code>Symbol</code>值，结果报错，因为 WeakSet 只能放置对象。</p>
 <p>其次，WeakSet 中的对象都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存，不考虑该对象还存在于 WeakSet 之中。</p>
@@ -675,16 +675,16 @@ ws.add(<span class="hljs-built_in">Symbol</span>())
 </ul>
 <p>WeakSet 没有<code>size</code>属性，没有办法遍历它的成员。</p>
 <h1 id="9-Map"><a href="#9-Map" class="headerlink" title="9. Map"></a>9. Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> data = &#123;&#125;;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> data = &#123;&#125;;
 <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;myDiv&#x27;</span>);
 
 data[element] = <span class="hljs-string">&#x27;metadata&#x27;</span>;
-data[<span class="hljs-string">&#x27;[object HTMLDivElement]&#x27;</span>] <span class="hljs-comment">// &quot;metadata&quot;</span></code></pre>
+data[<span class="hljs-string">&#x27;[object HTMLDivElement]&#x27;</span>] <span class="hljs-comment">// &quot;metadata&quot;</span></code></pre></div>
 
 <p>上面代码原意是将一个 DOM 节点作为对象<code>data</code>的键，但是由于对象只接受字符串作为键名，所以<code>element</code>被自动转为字符串<code>[object HTMLDivElement]</code>。</p>
 <p>为了解决这个问题，ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
 <p><code>Map</code>构造函数接受数组作为参数，实际上执行的是下面的算法。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> items = [
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> items = [
   [<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;张三&#x27;</span>],
   [<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;Author&#x27;</span>]
 ];
@@ -693,7 +693,7 @@ data[<span class="hljs-string">&#x27;[object HTMLDivElement]&#x27;</span>] <span
 
 items.forEach(
   ([key, value]) =&gt; map.set(key, value)
-);</code></pre>
+);</code></pre></div>
 
 <p>事实上，不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（详见《Iterator》一章）都可以当作<code>Map</code>构造函数的参数。这就是说，<code>Set</code>和<code>Map</code>都可以用来生成新的 Map。</p>
 <h2 id="9-1-Map-实例的属性和方法"><a href="#9-1-Map-实例的属性和方法" class="headerlink" title="9.1 Map 实例的属性和方法"></a>9.1 Map 实例的属性和方法</h2><p>Map 结构的实例有以下属性和操作方法。</p>
@@ -737,7 +737,7 @@ items.forEach(
 <p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。<code>Promise</code>对象的状态改变，只有两种可能：从<code>pending</code>变为<code>fulfilled</code>和从<code>pending</code>变为<code>rejected</code>。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。如果改变已经发生了，你再对<code>Promise</code>对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
 <p>有了<code>Promise</code>对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，<code>Promise</code>对象提供统一的接口，使得控制异步操作更加容易。</p>
 <p><code>Promise</code>也有一些缺点。首先，无法取消<code>Promise</code>，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，<code>Promise</code>内部抛出的错误，不会反应到外部。第三，当处于<code>pending</code>状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> someAsyncThing = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">flag</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> someAsyncThing = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">flag</span>) </span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
     <span class="hljs-keyword">if</span>(flag)&#123;
         resolve(<span class="hljs-string">&#x27;ok&#x27;</span>);
@@ -757,14 +757,14 @@ someAsyncThing(<span class="hljs-literal">false</span>).then(<span class="hljs-f
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;data:&#x27;</span>,data); <span class="hljs-comment">// 不执行</span>
 &#125;).catch(<span class="hljs-function">(<span class="hljs-params">error</span>)=&gt;</span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error:&#x27;</span>, error); <span class="hljs-comment">// 输出 &#x27;error&#x27;</span>
-&#125;)</code></pre>
+&#125;)</code></pre></div>
 
 <p>上面代码中，someAsyncThing 函数成功返回 ‘OK’, 失败返回 ‘error’, 只有失败时才会被 catch 捕捉到。</p>
 <h2 id="10-1-Promise-实例方法"><a href="#10-1-Promise-实例方法" class="headerlink" title="10.1 Promise 实例方法"></a>10.1 Promise 实例方法</h2><ul>
 <li><strong>Promise.all()</strong> </li>
 </ul>
 <p><code>Promise.all()</code>方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.all([p1, p2, p3]);</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.all([p1, p2, p3]);</code></pre></div>
 
 <p><code>p</code>的状态由<code>p1</code>、<code>p2</code>、<code>p3</code>决定，分成两种情况。</p>
 <p>（1）只有<code>p1</code>、<code>p2</code>、<code>p3</code>的状态都变成<code>fulfilled</code>，<code>p</code>的状态才会变成<code>fulfilled</code>，此时<code>p1</code>、<code>p2</code>、<code>p3</code>的返回值组成一个数组，传递给<code>p</code>的回调函数。</p>
@@ -773,12 +773,12 @@ someAsyncThing(<span class="hljs-literal">false</span>).then(<span class="hljs-f
 <li><strong>Promise.race()</strong> </li>
 </ul>
 <p><code>Promise.race()</code>方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.race([p1, p2, p3]);</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.race([p1, p2, p3]);</code></pre></div>
 
 <p>上面代码中，只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个实例率先改变状态，<code>p</code>的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给<code>p</code>的回调函数。</p>
 <p><code>Promise.race()</code>方法的参数与<code>Promise.all()</code>方法一样，如果不是 Promise 实例，就会先调用下面讲到的<code>Promise.resolve()</code>方法，将参数转为 Promise 实例，再进一步处理。</p>
 <p>下面是一个例子，如果指定时间内没有获得结果，就将 Promise 的状态变为<code>reject</code>，否则变为<code>resolve</code>。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.race([
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.race([
   fetch(<span class="hljs-string">&#x27;/resource-that-may-take-a-while&#x27;</span>),
   <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;request timeout&#x27;</span>)), <span class="hljs-number">5000</span>)
@@ -787,7 +787,7 @@ someAsyncThing(<span class="hljs-literal">false</span>).then(<span class="hljs-f
 
 p
 .then(<span class="hljs-built_in">console</span>.log)
-.catch(<span class="hljs-built_in">console</span>.error);</code></pre>
+.catch(<span class="hljs-built_in">console</span>.error);</code></pre></div>
 
 <p>上面代码中，如果 5 秒之内<code>fetch</code>方法无法返回结果，变量<code>p</code>的状态就会变为<code>rejected</code>，从而触发<code>catch</code>方法指定的回调函数。</p>
 <ul>
@@ -808,26 +808,26 @@ p
 </ol>
 <p>可以用写同步的方式来写异步操作</p>
 <h1 id="12-Class-语法"><a href="#12-Class-语法" class="headerlink" title="12. Class 语法"></a>12. Class 语法</h1><p>ES6 的类，完全可以看作构造函数的另一种写法。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-comment">// ...</span>
 &#125;
 
 <span class="hljs-keyword">typeof</span> Point <span class="hljs-comment">// &quot;function&quot;</span>
-Point === Point.prototype.constructor <span class="hljs-comment">// true</span></code></pre>
+Point === Point.prototype.constructor <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>上面代码表明，类的数据类型就是函数，类本身就指向构造函数。</p>
 <p>使用的时候，也是直接对类使用<code>new</code>命令，跟构造函数的用法完全一致</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> </span>&#123;
   doStuff() &#123;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;stuff&#x27;</span>);
   &#125;
 &#125;
 
 <span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> Bar();
-b.doStuff() <span class="hljs-comment">// &quot;stuff&quot;</span></code></pre>
+b.doStuff() <span class="hljs-comment">// &quot;stuff&quot;</span></code></pre></div>
 
 <p>构造函数的<code>prototype</code>属性，在 ES6 的“类”上面继续存在。事实上，类的所有方法都定义在类的<code>prototype</code>属性上面。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
     <span class="hljs-comment">// ...</span>
   &#125;
@@ -847,17 +847,17 @@ Point.prototype = &#123;
   <span class="hljs-keyword">constructor</span>() &#123;&#125;,
   toString() &#123;&#125;,
   toValue() &#123;&#125;,
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 <p>在类的实例上面调用方法，其实就是调用原型上的方法。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;&#125;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;&#125;
 <span class="hljs-keyword">let</span> b = <span class="hljs-keyword">new</span> B();
 	
-b.constructor === B.prototype.constructor <span class="hljs-comment">// true</span></code></pre>
+b.constructor === B.prototype.constructor <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>上面代码中，<code>b</code>是<code>B</code>类的实例，它的<code>constructor</code>方法就是<code>B</code>类原型的<code>constructor</code>方法。</p>
 <p>由于类的方法都定义在<code>prototype</code>对象上面，所以类的新方法可以添加在<code>prototype</code>对象上面。<code>Object.assign</code>方法可以很方便地一次向类添加多个方法。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>()&#123;
     <span class="hljs-comment">// ...</span>
   &#125;
@@ -866,10 +866,10 @@ b.constructor === B.prototype.constructor <span class="hljs-comment">// true</sp
 <span class="hljs-built_in">Object</span>.assign(Point.prototype, &#123;
   toString()&#123;&#125;,
   toValue()&#123;&#125;
-&#125;);</code></pre>
+&#125;);</code></pre></div>
 
 <p><code>prototype</code>对象的<code>constructor</code>属性，直接指向“类”的本身，这与 ES5 的行为是一致的。</p>
-<pre><code class="hljs javascript">Point.prototype.constructor === Point <span class="hljs-comment">// true</span></code></pre>
+<div class="hljs"><pre><code class="hljs javascript">Point.prototype.constructor === Point <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>另外，类的内部所有定义的方法，都是不可枚举的（non-enumerable）。</p>
 <p>注意：Class 内部默认采用严格模式</p>
@@ -877,7 +877,7 @@ b.constructor === B.prototype.constructor <span class="hljs-comment">// true</sp
 <li>取值函数（getter）和存值函数（setter）</li>
 </ul>
 <p>与 ES5 一样，在“类”的内部可以使用<code>get</code>和<code>set</code>关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
     <span class="hljs-comment">// ...</span>
   &#125;
@@ -895,18 +895,18 @@ inst.prop = <span class="hljs-number">123</span>;
 <span class="hljs-comment">// setter: 123</span>
 
 inst.prop
-<span class="hljs-comment">// &#x27;getter&#x27;</span></code></pre>
+<span class="hljs-comment">// &#x27;getter&#x27;</span></code></pre></div>
 
 <p>上面代码中，<code>prop</code>属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。</p>
 <h2 id="12-1-Class-继承"><a href="#12-1-Class-继承" class="headerlink" title="12.1 Class 继承"></a>12.1 Class 继承</h2><p>Class 可以通过<code>extends</code>关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123;
 &#125;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ColorPoint</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Point</span> </span>&#123;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>上面代码定义了一个<code>ColorPoint</code>类，该类通过<code>extends</code>关键字，继承了<code>Point</code>类的所有属性和方法。但是由于没有部署任何代码，所以这两个类完全一样，等于复制了一个<code>Point</code>类。下面，我们在<code>ColorPoint</code>内部加上代码。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ColorPoint</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Point</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ColorPoint</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>(x, y, color) &#123;
     <span class="hljs-built_in">super</span>(x, y); <span class="hljs-comment">// 调用父类的constructor(x, y)</span>
     <span class="hljs-built_in">this</span>.color = color;
@@ -915,39 +915,39 @@ inst.prop
   toString() &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.color + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-built_in">super</span>.toString(); <span class="hljs-comment">// 调用父类的toString()</span>
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>上面代码中，<code>constructor</code>方法和<code>toString</code>方法之中，都出现了<code>super</code>关键字，它在这里表示父类的构造函数，用来新建父类的<code>this</code>对象。</p>
 <p>子类必须在<code>constructor</code>方法中调用<code>super</code>方法，否则新建实例时会报错。这是因为子类自己的<code>this</code>对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例属性和方法。如果不调用<code>super</code>方法，子类就得不到<code>this</code>对象。</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123; <span class="hljs-comment">/* ... */</span> &#125;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>&#123; <span class="hljs-comment">/* ... */</span> &#125;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ColorPoint</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Point</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> cp = <span class="hljs-keyword">new</span> ColorPoint(); <span class="hljs-comment">// ReferenceError</span></code></pre>
+<span class="hljs-keyword">let</span> cp = <span class="hljs-keyword">new</span> ColorPoint(); <span class="hljs-comment">// ReferenceError</span></code></pre></div>
 
 <p>上面代码中，<code>ColorPoint</code>继承了父类<code>Point</code>，但是它的构造函数没有调用<code>super</code>方法，导致新建实例时报错。</p>
 <h1 id="13-Symbol"><a href="#13-Symbol" class="headerlink" title="13. Symbol"></a>13. Symbol</h1><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。</p>
 <p>如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入<code>Symbol</code>的原因。</p>
 <p>ES6 引入了一种新的原始数据类型<code>Symbol</code>，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：<code>undefined</code>、<code>null</code>、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-built_in">Symbol</span>();
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-built_in">Symbol</span>();
 
 <span class="hljs-keyword">typeof</span> s
-<span class="hljs-comment">// &quot;symbol&quot;</span></code></pre>
+<span class="hljs-comment">// &quot;symbol&quot;</span></code></pre></div>
 
 <p>上面代码中，变量<code>s</code>就是一个独一无二的值。<code>typeof</code>运算符的结果，表明变量<code>s</code>是 Symbol 数据类型，而不是字符串之类的其他类型。</p>
 <p>注意，<code>Symbol</code>函数前不能使用<code>new</code>命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。</p>
 <p><code>Symbol</code>函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;foo&#x27;</span>);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;foo&#x27;</span>);
 <span class="hljs-keyword">let</span> s2 = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;bar&#x27;</span>);
 
 s1 <span class="hljs-comment">// Symbol(foo)</span>
 s2 <span class="hljs-comment">// Symbol(bar)</span>
 
 s1.toString() <span class="hljs-comment">// &quot;Symbol(foo)&quot;</span>
-s2.toString() <span class="hljs-comment">// &quot;Symbol(bar)&quot;</span></code></pre>
+s2.toString() <span class="hljs-comment">// &quot;Symbol(bar)&quot;</span></code></pre></div>
 
 <p>上面代码中，<code>s1</code>和<code>s2</code>是两个 Symbol 值。如果不加参数，它们在控制台的输出都是<code>Symbol()</code>，不利于区分。有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。</p>
 <p>如果 Symbol 的参数是一个对象，就会调用该对象的<code>toString</code>方法，将其转为字符串，然后才生成一个 Symbol 值。                                                                                                                         </p>
@@ -956,7 +956,7 @@ s2.toString() <span class="hljs-comment">// &quot;Symbol(bar)&quot;</span></code
 <p>但是，Symbol 值可以显式转为字符串。</p>
 <p>另外，Symbol 值也可以转为布尔值，但是不能转为数值。</p>
 <h2 id="13-1-作为属性名"><a href="#13-1-作为属性名" class="headerlink" title="13.1 作为属性名"></a>13.1 作为属性名</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> mySymbol = <span class="hljs-built_in">Symbol</span>();
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> mySymbol = <span class="hljs-built_in">Symbol</span>();
 
 <span class="hljs-comment">// 第一种写法</span>
 <span class="hljs-keyword">let</span> a = &#123;&#125;;
@@ -972,7 +972,7 @@ a[mySymbol] = <span class="hljs-string">&#x27;Hello!&#x27;</span>;
 <span class="hljs-built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;Hello!&#x27;</span> &#125;);
 
 <span class="hljs-comment">// 以上写法都得到同样结果</span>
-a[mySymbol] <span class="hljs-comment">// &quot;Hello!&quot;</span></code></pre>
+a[mySymbol] <span class="hljs-comment">// &quot;Hello!&quot;</span></code></pre></div>
 
 <p>上面代码通过方括号结构和<code>Object.defineProperty</code>，将对象的属性名指定为一个 Symbol 值。</p>
 <p>注意，Symbol 值作为对象属性名时，不能用点运算符。因为点运算符后面总是字符串，所以不会读取<code>mySymbol</code>作为标识名所指代的那个值，导致<code>a</code>的属性名实际上是一个字符串，而不是一个 Symbol 值。</p>
@@ -990,79 +990,79 @@ a[mySymbol] <span class="hljs-comment">// &quot;Hello!&quot;</span></code></pre>
 </ul>
 <p>但是，它也不是私有属性，有一个<code>Object.getOwnPropertySymbols()</code>方法，可以获取指定对象的所有 Symbol 属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</p>
 <h2 id="13-3-Symbol-for-Symbol-keyFor"><a href="#13-3-Symbol-for-Symbol-keyFor" class="headerlink" title="13.3 Symbol.for() Symbol.keyFor()"></a>13.3 Symbol.for() Symbol.keyFor()</h2><p>有时，我们希望重新使用同一个 Symbol 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">Symbol</span>.for(<span class="hljs-string">&#x27;foo&#x27;</span>);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">Symbol</span>.for(<span class="hljs-string">&#x27;foo&#x27;</span>);
 <span class="hljs-keyword">let</span> s2 = <span class="hljs-built_in">Symbol</span>.for(<span class="hljs-string">&#x27;foo&#x27;</span>);
 
-s1 === s2 <span class="hljs-comment">// true</span></code></pre>
+s1 === s2 <span class="hljs-comment">// true</span></code></pre></div>
 
 <p>上面代码中，<code>s1</code>和<code>s2</code>都是 Symbol 值，但是它们都是由同样参数的<code>Symbol.for</code>方法生成的，所以实际上是同一个值。</p>
 <h1 id="14-Module-语法"><a href="#14-Module-语法" class="headerlink" title="14. Module 语法"></a>14. Module 语法</h1><p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上<code>&quot;use strict&quot;;</code>。</p>
 <h2 id="14-1-export"><a href="#14-1-export" class="headerlink" title="14.1 export"></a>14.1 export</h2><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用<code>export</code>关键字输出该变量。下面是一个 JS 文件，里面使用<code>export</code>命令输出变量。</p>
-<pre><code class="hljs js"><span class="hljs-comment">// profile.js</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// profile.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> firstName = <span class="hljs-string">&#x27;Michael&#x27;</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> lastName = <span class="hljs-string">&#x27;Jackson&#x27;</span>;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> year = <span class="hljs-number">1958</span>;</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> year = <span class="hljs-number">1958</span>;</code></pre></div>
 
 <p>上面代码是<code>profile.js</code>文件，保存了用户信息。ES6 将其视为一个模块，里面用<code>export</code>命令对外部输出了三个变量。</p>
 <p>等价于：</p>
-<pre><code class="hljs js"><span class="hljs-comment">// profile.js</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// profile.js</span>
 <span class="hljs-keyword">var</span> firstName = <span class="hljs-string">&#x27;Michael&#x27;</span>;
 <span class="hljs-keyword">var</span> lastName = <span class="hljs-string">&#x27;Jackson&#x27;</span>;
 <span class="hljs-keyword">var</span> year = <span class="hljs-number">1958</span>;
 
-<span class="hljs-keyword">export</span> &#123; firstName, lastName, year &#125;;</code></pre>
+<span class="hljs-keyword">export</span> &#123; firstName, lastName, year &#125;;</code></pre></div>
 
 <p><code>export</code>命令除了输出变量，还可以输出函数或类（class）。</p>
 <p>通常情况下，<code>export</code>输出的变量就是本来的名字，但是可以使用<code>as</code>关键字重命名。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v1</span>(<span class="hljs-params"></span>) </span>&#123; ... &#125;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v1</span>(<span class="hljs-params"></span>) </span>&#123; ... &#125;
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v2</span>(<span class="hljs-params"></span>) </span>&#123; ... &#125;
 
 <span class="hljs-keyword">export</span> &#123;
   v1 <span class="hljs-keyword">as</span> streamV1,
   v2 <span class="hljs-keyword">as</span> streamV2,
   v2 <span class="hljs-keyword">as</span> streamLatestVersion
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 <p>上面代码使用<code>as</code>关键字，重命名了函数<code>v1</code>和<code>v2</code>的对外接口。重命名后，<code>v2</code>可以用不同的名字输出两次。</p>
 <p>需要特别注意的是，<code>export</code>命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。</p>
 <p>同样的，<code>function</code>和<code>class</code>的输出，也必须遵守这样的写法。</p>
 <h2 id="14-2-import"><a href="#14-2-import" class="headerlink" title="14.2 import"></a>14.2 import</h2><p>使用<code>export</code>命令定义了模块的对外接口以后，其他 JS 文件就可以通过<code>import</code>命令加载这个模块。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// main.js</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// main.js</span>
 <span class="hljs-keyword">import</span> &#123; firstName, lastName, year &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./profile.js&#x27;</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setName</span>(<span class="hljs-params">element</span>) </span>&#123;
   element.textContent = firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>上面代码的<code>import</code>命令，用于加载<code>profile.js</code>文件，并从中输入变量。<code>import</code>命令接受一对大括号，里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块（<code>profile.js</code>）对外接口的名称相同。</p>
 <p><code>import</code>后面的<code>from</code>指定模块文件的位置，可以是相对路径，也可以是绝对路径。如果不带有路径，只是一个模块名，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。</p>
 <p>注意，<code>import</code>命令具有提升效果，会提升到整个模块的头部，首先执行。</p>
-<pre><code class="hljs javascript">foo();
+<div class="hljs"><pre><code class="hljs javascript">foo();
 
-<span class="hljs-keyword">import</span> &#123; foo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;my_module&#x27;</span>;</code></pre>
+<span class="hljs-keyword">import</span> &#123; foo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;my_module&#x27;</span>;</code></pre></div>
 
 <p>上面的代码不会报错，因为<code>import</code>的执行早于<code>foo</code>的调用。这种行为的本质是，<code>import</code>命令是编译阶段执行的，在代码运行之前。</p>
 <p>由于<code>import</code>是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。</p>
 <p>最后，<code>import</code>语句会执行所加载的模块，因此可以有下面的写法。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre></div>
 
 <p>上面代码仅仅执行<code>lodash</code>模块，但是不输入任何值。</p>
 <h2 id="14-3-export-default"><a href="#14-3-export-default" class="headerlink" title="14.3 export default"></a>14.3 export default</h2><p>用到<code>export default</code>命令，为模块指定默认输出。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// export-default.js</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// export-default.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;foo&#x27;</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>上面代码是一个模块文件<code>export-default.js</code>，它的默认输出是一个函数。</p>
 <p>其他模块加载该模块时，<code>import</code>命令可以为该匿名函数指定任意名字。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// import-default.js</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// import-default.js</span>
 <span class="hljs-keyword">import</span> customName <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./export-default&#x27;</span>;
-customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
+customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre></div>
 
 <p>上面代码的<code>import</code>命令，可以用任意名称指向<code>export-default.js</code>输出的方法，这时就不需要知道原模块输出的函数名。需要注意的是，这时<code>import</code>命令后面，不使用大括号。</p>
 <p><code>export default</code>命令用在非匿名函数前，也是可以的。</p>
 <p>下面比较一下默认输出和正常输出。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// 第一组</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 第一组</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">crc32</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 输出</span>
   <span class="hljs-comment">// ...</span>
 &#125;
@@ -1074,12 +1074,12 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
   <span class="hljs-comment">// ...</span>
 &#125;;
 
-<span class="hljs-keyword">import</span> &#123;crc32&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;crc32&#x27;</span>; <span class="hljs-comment">// 输入</span></code></pre>
+<span class="hljs-keyword">import</span> &#123;crc32&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;crc32&#x27;</span>; <span class="hljs-comment">// 输入</span></code></pre></div>
 
 <p>上面代码的两组写法，第一组是使用<code>export default</code>时，对应的<code>import</code>语句不需要使用大括号；第二组是不使用<code>export default</code>时，对应的<code>import</code>语句需要使用大括号。</p>
 <p><code>export default</code>命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此<code>export default</code>命令只能使用一次。所以，import命令后面才不用加大括号，因为只可能唯一对应<code>export default</code>命令。</p>
 <p>本质上，<code>export default</code>就是输出一个叫做<code>default</code>的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// modules.js</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// modules.js</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>&#123;
   <span class="hljs-keyword">return</span> x * y;
 &#125;
@@ -1090,10 +1090,10 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
 <span class="hljs-comment">// app.js</span>
 <span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> foo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;modules&#x27;</span>;
 <span class="hljs-comment">// 等同于</span>
-<span class="hljs-comment">// import foo from &#x27;modules&#x27;;</span></code></pre>
+<span class="hljs-comment">// import foo from &#x27;modules&#x27;;</span></code></pre></div>
 
 <p>正是因为<code>export default</code>命令其实只是输出一个叫做<code>default</code>的变量，所以它后面不能跟变量声明语句。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// 正确</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 正确</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
 
 <span class="hljs-comment">// 正确</span>
@@ -1101,25 +1101,25 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> a;
 
 <span class="hljs-comment">// 错误</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;</code></pre></div>
 
 <p>上面代码中，<code>export default a</code>的含义是将变量<code>a</code>的值赋给变量<code>default</code>。所以，最后一种写法会报错。</p>
 <p>同样地，因为<code>export default</code>命令的本质是将后面的值，赋给<code>default</code>变量，所以可以直接将一个值写在<code>export default</code>之后。</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// 正确</span>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 正确</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-number">42</span>;
 
 <span class="hljs-comment">// 报错</span>
-<span class="hljs-keyword">export</span> <span class="hljs-number">42</span>;</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-number">42</span>;</code></pre></div>
 
 <p>上面代码中，后一句报错是因为没有指定对外的接口，而前一句指定对外接口为<code>default</code>。</p>
 <p>有了<code>export default</code>命令，输入模块时就非常直观了，以输入 lodash 模块为例。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre></div>
 
 <p>如果想在一条<code>import</code>语句中，同时输入默认方法和其他接口，可以写成下面这样。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> _, &#123; each, forEach &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> _, &#123; each, forEach &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span>;</code></pre></div>
 
 <p>对应上面代码的<code>export</code>语句如下。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>&#123;
   <span class="hljs-comment">// ···</span>
 &#125;
 
@@ -1127,7 +1127,7 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
   <span class="hljs-comment">// ···</span>
 &#125;
 
-<span class="hljs-keyword">export</span> &#123; each <span class="hljs-keyword">as</span> forEach &#125;;</code></pre>
+<span class="hljs-keyword">export</span> &#123; each <span class="hljs-keyword">as</span> forEach &#125;;</code></pre></div>
 
 <p>上面代码的最后一行的意思是，暴露出<code>forEach</code>接口，默认指向<code>each</code>接口，即<code>forEach</code>和<code>each</code>指向同一个方法。</p>
 <p><code>export default</code>也可以用来输出类。</p>
@@ -1153,7 +1153,7 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
 <li><code>get(target, key[, receiver])</code> 与<code>obj[key]</code>一样，第三个参数是当要取值的<code>key</code>部署了<code>getter</code>时，访问其函数的<code>this</code>绑定为<code>receiver</code>对象。</li>
 <li><code>set(target, key, value[, receiver])</code> 设置<code>target</code>对象的<code>key</code>属性等于<code>value</code>，第三个参数和<code>set</code>一样。返回一个布尔值。</li>
 </ol>
-<pre><code class="hljs js"><span class="hljs-comment">// 老写法</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 老写法</span>
 <span class="hljs-string">&#x27;assign&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">Object</span> <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// 新写法</span>
@@ -1208,7 +1208,7 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
 &#125;;
 
 <span class="hljs-built_in">Reflect</span>.get(myObject, <span class="hljs-string">&#x27;baz&#x27;</span>, myReceiverObject) <span class="hljs-comment">// 8</span>
-</code></pre>
+</code></pre></div>
 
 
 
@@ -1217,12 +1217,12 @@ customName(); <span class="hljs-comment">// &#x27;foo&#x27;</span></code></pre>
 </blockquote>
 <p><strong>Proxy</strong> 对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等），等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。</p>
 <p><strong>Proxy</strong> 就像在目标对象之间的一个代理，任何对目标的操作都要经过代理。代理就可以对外界的操作进行过滤和改写。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handler)</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handler)</code></pre></div>
 
 <p><code>Proxy</code>是构造函数，它有两个参数<code>target</code>和<code>handler</code>，</p>
 <p><code>target</code>是用Proxy包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。</p>
 <p><code>handler</code>是一个对象，其属性是当执行一个操作时定义代理的行为的函数。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(&#123;&#125;, &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(&#123;&#125;, &#123;
   get: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target, key, receiver</span>) </span>&#123;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`getting <span class="hljs-subst">$&#123;key&#125;</span>!`</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(target, key, receiver);
@@ -1239,12 +1239,12 @@ obj.count = <span class="hljs-number">1</span>
 <span class="hljs-comment">//  getting count!</span>
 <span class="hljs-comment">//  setting count!</span>
 <span class="hljs-comment">//  2</span>
-</code></pre>
+</code></pre></div>
 
 <p><code>Proxy</code>只有一个静态方法<code>revocable(target, handler)</code>可以用来创建一个可撤销的代理对象。两个参数和构造函数的相同。它返回一个包含了所生成的代理对象本身以及该代理对象的撤销方法的对象。</p>
 <p>一旦某个代理对象被撤销，它将变的几乎完全不可用，在它身上执行任何的可代理操作都会抛出 TypeError 异常（注意，可代理操作一共有 14 种，执行这 14 种操作以外的操作不会抛出异常）。</p>
 <p>一旦被撤销，这个代理对象永远不可能恢复到原来的状态，同时和它关联的目标对象以及处理器对象将有可能被垃圾回收掉。调用撤销方法多次将不会有任何效果，当然，也不会报错。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> revocable = <span class="hljs-built_in">Proxy</span>.revocable(&#123;&#125;, &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> revocable = <span class="hljs-built_in">Proxy</span>.revocable(&#123;&#125;, &#123;
   get(target, name) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;[[&quot;</span> + name + <span class="hljs-string">&quot;]]&quot;</span>;
   &#125;
@@ -1261,17 +1261,17 @@ proxy.foo;              <span class="hljs-comment">// TypeError</span>
 proxy.foo = <span class="hljs-number">1</span>           <span class="hljs-comment">// 同样 TypeError</span>
 <span class="hljs-keyword">delete</span> proxy.foo;       <span class="hljs-comment">// 还是 TypeError</span>
 <span class="hljs-keyword">typeof</span> proxy            <span class="hljs-comment">// &quot;object&quot;，因为 typeof 不属于可代理操作</span>
-</code></pre>
+</code></pre></div>
 
 <p><code>handler</code>参数是代理函数对象，它一共支持 13 种拦截函数。和<code>Reflect</code>的相同。如果没有定义某种操作，那么这种操作会被转发到目标对象身上。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(&#123;&#125;, &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(&#123;&#125;, &#123;
   get: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target, property, receiver</span>) </span>&#123;
     <span class="hljs-keyword">return</span> receiver;
     <span class="hljs-comment">// receiver 总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。</span>
   &#125;
 &#125;);
 proxy.getReceiver === proxy <span class="hljs-comment">// true</span>
-</code></pre>
+</code></pre></div>
 
 <p>如果一个属性不可配置（configurable）且不可写（writable），则 Proxy 不能修改该属性，否则通过 Proxy 对象访问该属性会报错。</p>
 <ol>

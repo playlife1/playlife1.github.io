@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -320,14 +320,14 @@
 <p>一般情况下，每秒平均刷新次数能够达到 60帧，就能够给人流畅的体验，即每过 1000/60 毫秒渲染新一帧即可，这一点单靠定时器是无法保证的。 为此，<code>requestAnimationFrame</code> 应运而生，其作用就是让浏览器流畅的执行动画效果。</p>
 <p>可以将其理解为专门用来实现动画效果的 API，通过这个 API 可以告诉浏览器某个 JavaScript 代码要执行动画，浏览器收到通知后，则会运行这些代码的时候进行优化，实现流畅的效果，而不再需要开发人员烦心刷新频率的问题了。</p>
 <p><code>requestAnimationFrame</code> 方法会告诉浏览器希望执行动画并请求浏览器在下一次重绘之前调用回调函数来更新动画。</p>
-<pre><code class="hljs js"><span class="hljs-built_in">window</span>.requestAnimationFrame(callback)</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.requestAnimationFrame(callback)</code></pre></div>
 
 <ul>
 <li>callback：下一次重绘之前更新动画帧所调用的函数，<strong>callback仅有一个参数，为DOMHighResTimeStamp参数，表示requestAnimationFrame()开始执行回调函数的时刻。</strong></li>
 <li>返回值：一个 long 类型整数，唯一标志元组在列表中的位置，你可以传这个值给<code>cancelAnimationFrame()</code> 以取消动画。</li>
 </ul>
 <p>在使用和实现上， <code>requestAnimationFrame</code> 与 <code>setTimeout</code> 类似。举个例子：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">let</span> rafId = <span class="hljs-literal">null</span>;
 <span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 回调函数</span>
@@ -343,7 +343,7 @@
   &#125;
 &#125;
 <span class="hljs-comment">// 渲染第一帧</span>
-<span class="hljs-built_in">window</span>.requestAnimationFrame(requestAnimation);</code></pre>
+<span class="hljs-built_in">window</span>.requestAnimationFrame(requestAnimation);</code></pre></div>
             </div>
             <hr>
             <div>

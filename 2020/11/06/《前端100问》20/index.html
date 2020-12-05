@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -213,7 +213,7 @@
 <p>var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];</p>
 <p>编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr.flat(<span class="hljs-literal">Infinity</span>))).sort((<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b))</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr.flat(<span class="hljs-literal">Infinity</span>))).sort((<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b))</code></pre></div>
 
 <p><code>Array.prototype.flat()</code>用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。</p>
 <p><code>flat()</code>默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将<code>flat()</code>方法的参数写成一个整数，表示想要拉平的层数，默认为1。</p>
@@ -268,7 +268,7 @@
 <li><p>返回这个新对象（所以构造函数里面不需要 return）</p>
 </li>
 </ol>
-<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 1. 创建了一个全新的对象。</span>
 <span class="hljs-comment"> * 2. 这个对象会被执行[[Prototype]]（也就是__proto__）链接。</span>
 <span class="hljs-comment"> * 3. 生成的新对象会绑定到函数调用的this。</span>
@@ -280,7 +280,7 @@
   <span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.create(fn.prototype)
   <span class="hljs-keyword">const</span> ret = fn.apply(obj, arg)
   <span class="hljs-keyword">return</span> ret <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span> ? ret : obj
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -328,7 +328,7 @@
 </blockquote>
 <p>A侧在超时退出之后一般会发送一个RST 包用于告知对端重置链路，并给应用层一个异常的状态信息，视乎同步IO与异步IO的差异，这个异常获知的时机会有所不同。</p>
 <p>B侧重启之后，因为不存有之前A-B之间建立链路相关的信息，这时候收到任何A侧来的数据都会以RST作为响应，以告知A侧链路发生异常</p>
-<h1 id="18、React-中-setState-什么时候是同步的，什么时候是异步的？"><a href="#18、React-中-setState-什么时候是同步的，什么时候是异步的？" class="headerlink" title="18、React 中 setState 什么时候是同步的，什么时候是异步的？"></a>18、React 中 setState 什么时候是同步的，什么时候是异步的？</h1><h1 id="19、React-setState-笔试题，下面的代码输出什么？"><a href="#19、React-setState-笔试题，下面的代码输出什么？" class="headerlink" title="19、React setState 笔试题，下面的代码输出什么？"></a>19、React setState 笔试题，下面的代码输出什么？</h1><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;
+<h1 id="18、React-中-setState-什么时候是同步的，什么时候是异步的？"><a href="#18、React-中-setState-什么时候是同步的，什么时候是异步的？" class="headerlink" title="18、React 中 setState 什么时候是同步的，什么时候是异步的？"></a>18、React 中 setState 什么时候是同步的，什么时候是异步的？</h1><h1 id="19、React-setState-笔试题，下面的代码输出什么？"><a href="#19、React-setState-笔试题，下面的代码输出什么？" class="headerlink" title="19、React setState 笔试题，下面的代码输出什么？"></a>19、React setState 笔试题，下面的代码输出什么？</h1><div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
     <span class="hljs-built_in">super</span>();
     <span class="hljs-built_in">this</span>.state = &#123;
@@ -355,7 +355,7 @@
   render() &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
   &#125;
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 
 
 

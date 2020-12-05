@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -208,14 +208,14 @@
             <h1 style="display: none">《前端100问》50</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="41、下面代码输出什么"><a href="#41、下面代码输出什么" class="headerlink" title="41、下面代码输出什么"></a>41、下面代码输出什么</h1><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+              <h1 id="41、下面代码输出什么"><a href="#41、下面代码输出什么" class="headerlink" title="41、下面代码输出什么"></a>41、下面代码输出什么</h1><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
 (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     <span class="hljs-built_in">console</span>.log(a)<span class="hljs-comment">//undefined</span>
     a = <span class="hljs-number">5</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.a)<span class="hljs-comment">//10</span>
     <span class="hljs-keyword">var</span> a = <span class="hljs-number">20</span>;
     <span class="hljs-built_in">console</span>.log(a)<span class="hljs-comment">//20</span>
-&#125;)()</code></pre>
+&#125;)()</code></pre></div>
 
 <p>分别为 <code>undefined</code>　<code>10</code>　<code>20</code>，原因是作用域问题</p>
 <p>在内部声名<code>var a = 20</code>；相当于先声明 <code>var a </code>然后再执行赋值操作，这是在 <strong>IIFE</strong> 内形成的独立作用域。</p>
@@ -223,7 +223,7 @@
 <h1 id="42、实现一个-sleep-函数"><a href="#42、实现一个-sleep-函数" class="headerlink" title="42、实现一个 sleep 函数"></a>42、实现一个 sleep 函数</h1><blockquote>
 <p>比如 sleep(1000) 意味着等待1000毫秒，可从 Promise、Generator、Async/Await 等角度实现</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-comment">// Promise 实现</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// Promise 实现</span>
 <span class="hljs-keyword">const</span> sleep = <span class="hljs-function"><span class="hljs-params">time</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, time))
 
 sleep(<span class="hljs-number">1000</span>).then(<span class="hljs-function">() =&gt;</span> &#123;
@@ -255,7 +255,7 @@ output()
 &#125;
 sleep(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">output</span>(<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>)
-&#125;, <span class="hljs-number">1000</span>)</code></pre>
+&#125;, <span class="hljs-number">1000</span>)</code></pre></div>
 
 
 
@@ -264,7 +264,7 @@ sleep(<span class="hljs-function"><span class="hljs-keyword">function</span> <sp
 <h1 id="43、使用-sort-进行排序，输出结果"><a href="#43、使用-sort-进行排序，输出结果" class="headerlink" title="43、使用 sort() 进行排序，输出结果"></a>43、使用 sort() 进行排序，输出结果</h1><blockquote>
 <p>使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果</p>
 </blockquote>
-<pre><code class="hljs js">[<span class="hljs-number">3</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>, <span class="hljs-number">29</span>, <span class="hljs-number">102</span>, <span class="hljs-number">22</span>].sort() <span class="hljs-comment">// [ 102, 15, 22, 29, 3, 8 ]</span></code></pre>
+<div class="hljs"><pre><code class="hljs js">[<span class="hljs-number">3</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>, <span class="hljs-number">29</span>, <span class="hljs-number">102</span>, <span class="hljs-number">22</span>].sort() <span class="hljs-comment">// [ 102, 15, 22, 29, 3, 8 ]</span></code></pre></div>
 
 <p>根据MDN上对<code>Array.sort()</code>的解释，默认的排序方法会将数组元素转换为字符串，然后比较字符串中字符的UTF-16编码顺序来进行排序。所以<code>&#39;102&#39;</code> 会排在 <code>&#39;15&#39;</code> 前面。</p>
 <p><strong>Array.prototype.sort()</strong></p>
@@ -273,10 +273,10 @@ sleep(<span class="hljs-function"><span class="hljs-keyword">function</span> <sp
 </blockquote>
 <p>返回值:</p>
 <p>排序后的数组。请注意，数组已原地排序，并且不进行复制。</p>
-<pre><code class="hljs js">[<span class="hljs-number">3</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>, <span class="hljs-number">29</span>, <span class="hljs-number">102</span>, <span class="hljs-number">22</span>].sort(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js">[<span class="hljs-number">3</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>, <span class="hljs-number">29</span>, <span class="hljs-number">102</span>, <span class="hljs-number">22</span>].sort(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>) </span>&#123;
 <span class="hljs-keyword">return</span> a-b;
 &#125;)
-<span class="hljs-comment">//输出： [3, 8, 15, 22, 29, 102]</span></code></pre>
+<span class="hljs-comment">//输出： [3, 8, 15, 22, 29, 102]</span></code></pre></div>
 
 
 
@@ -334,7 +334,7 @@ sleep(<span class="hljs-function"><span class="hljs-keyword">function</span> <sp
 <li><p>对比结果一致，则证明服务器发来的证书合法，没有被冒充</p>
 </li>
 </ol>
-<h1 id="46、输出以下代码执行的结果并解释为什么"><a href="#46、输出以下代码执行的结果并解释为什么" class="headerlink" title="46、输出以下代码执行的结果并解释为什么"></a>46、输出以下代码执行的结果并解释为什么</h1><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
+<h1 id="46、输出以下代码执行的结果并解释为什么"><a href="#46、输出以下代码执行的结果并解释为什么" class="headerlink" title="46、输出以下代码执行的结果并解释为什么"></a>46、输出以下代码执行的结果并解释为什么</h1><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
     <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-number">3</span>,
     <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-number">4</span>,
     <span class="hljs-string">&#x27;length&#x27;</span>: <span class="hljs-number">2</span>,
@@ -343,7 +343,7 @@ sleep(<span class="hljs-function"><span class="hljs-keyword">function</span> <sp
 &#125;
 obj.push(<span class="hljs-number">1</span>)
 obj.push(<span class="hljs-number">2</span>)
-<span class="hljs-built_in">console</span>.log(obj)</code></pre>
+<span class="hljs-built_in">console</span>.log(obj)</code></pre></div>
 
 <p>MDN描述：</p>
 <blockquote>
@@ -353,7 +353,7 @@ obj.push(<span class="hljs-number">2</span>)
 <p><code>push</code> 方法根据 <code>length</code> 属性来决定从哪里开始插入给定的值。</p>
 <p>如果 <code>length</code> 不能被转成一个数值，则插入的元素索引为 0，包括 <code>length</code> 不存在时。</p>
 <p>当 <code>length</code> 不存在时，将会创建它。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
     <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-number">3</span>,
     <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-number">4</span>,
     <span class="hljs-string">&#x27;length&#x27;</span>: <span class="hljs-number">2</span>,    
@@ -383,7 +383,7 @@ obj1.push(<span class="hljs-number">2</span>)
 obj2.push(<span class="hljs-number">1</span>)
 obj2.push(<span class="hljs-number">2</span>)
 <span class="hljs-built_in">console</span>.log(obj2)
-<span class="hljs-comment">// &#123;0: 1, 1: 2, 2: 3, 3: 4, length: 2, push: ƒ&#125;</span></code></pre>
+<span class="hljs-comment">// &#123;0: 1, 1: 2, 2: 3, 3: 4, length: 2, push: ƒ&#125;</span></code></pre></div>
 
 <p>解释：</p>
 <p><code>push</code> 方法具有通用性，所以可以给类数组使用。具体是根据类数组的 <code>length</code> 属性，将其转换为数值当做<code>对象[数值]</code>来使用，而对象使用<code>对象[数值]</code>时，数值一律当成字符处理也是就是<code>obj[1]</code>和 <code>obj[&#39;1&#39;]</code>是等价的。</p>
@@ -396,14 +396,14 @@ obj2.push(<span class="hljs-number">2</span>)
 <p>来自官网文档：</p>
 </blockquote>
 <p>当在严格模式中使用 Vuex 时，在属于 Vuex 的 state 上使用 <code>v-model</code> 会比较棘手：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;obj.message&quot;</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;obj.message&quot;</span>&gt;</span></code></pre></div>
 
 <p>假设这里的 <code>obj</code> 是在计算属性中返回的一个属于 Vuex store 的对象，在用户输入时，<code>v-model</code> 会试图直接修改 <code>obj.message</code>。在严格模式中，由于这个修改不是在 mutation 函数中执行的, 这里会抛出一个错误。</p>
 <p>方法一：不用<code>v-model</code> 直接绑定<code>value</code>值和监听<code>input</code>事件</p>
 <p>用“Vuex 的思维”去解决这个问题的方法是：给 <code>&lt;input&gt;</code> 中绑定 value，然后侦听 <code>input</code> 或者 <code>change</code> 事件，在事件回调中调用一个方法:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;message&quot;</span> @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;updateMessage&quot;</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;message&quot;</span> @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;updateMessage&quot;</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs js"><span class="hljs-comment">// ...</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// ...</span>
 computed: &#123;
   ...mapState(&#123;
     message: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.obj.message
@@ -413,21 +413,21 @@ methods: &#123;
   updateMessage (e) &#123;
     <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&#x27;updateMessage&#x27;</span>, e.target.value)
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>下面是 mutation 函数：</p>
-<pre><code class="hljs js"><span class="hljs-comment">// ...</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// ...</span>
 mutations: &#123;
   updateMessage (state, message) &#123;
     state.obj.message = message
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>方法二：双向绑定的计算属性 给计算属性设置<code>getter</code>和<code>setter</code></p>
 <p>必须承认，这样做比简单地使用“<code>v-model</code> + 局部状态”要啰嗦得多，并且也损失了一些 <code>v-model</code> 中很有用的特性。另一个方法是使用带有 setter 的双向绑定计算属性：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs js"><span class="hljs-comment">// ...</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// ...</span>
 computed: &#123;
   message: &#123;
     get () &#123;
@@ -437,7 +437,7 @@ computed: &#123;
       <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&#x27;updateMessage&#x27;</span>, value)<span class="hljs-comment">//提交 mutation 更改 Vuex 数据</span>
     &#125;
   &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -485,7 +485,7 @@ computed: &#123;
 <p><code>(5)</code> 和 <code>Number(5)</code>完全等价 </p>
 <p><code>Number.isNaN()</code> 确定传递的值是否是 NaN。</p>
 <p><code>Number.prototype.valueOf()</code>  <code>valueOf()</code> 方法返回一个被 <code>Number</code>对象包装的原始值。</p>
-<pre><code class="hljs js"><span class="hljs-built_in">Number</span>.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Number</span>.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> n !== <span class="hljs-string">&#x27;number&#x27;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;请输入数字～&#x27;</span>)
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.valueOf() + n
 &#125;
@@ -494,11 +494,11 @@ computed: &#123;
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.valueOf() - n
 &#125;
 
-<span class="hljs-built_in">console</span>.log((<span class="hljs-number">5</span>).add(<span class="hljs-number">3</span>).minus(<span class="hljs-number">2</span>))</code></pre>
+<span class="hljs-built_in">console</span>.log((<span class="hljs-number">5</span>).add(<span class="hljs-number">3</span>).minus(<span class="hljs-number">2</span>))</code></pre></div>
 
 
 
-<pre><code class="hljs js"><span class="hljs-built_in">Number</span>.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Number</span>.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>&#123;
   <span class="hljs-keyword">let</span> number = <span class="hljs-built_in">parseFloat</span>(value)
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> number !== <span class="hljs-string">&#x27;number&#x27;</span> || <span class="hljs-built_in">Number</span>.isNaN(number)) &#123;
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;请输入数字或者数字字符串～&#x27;</span>)
@@ -513,7 +513,7 @@ computed: &#123;
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span> - number
 &#125;
 <span class="hljs-built_in">console</span>.log((<span class="hljs-number">5</span>).add(<span class="hljs-number">3</span>).minus(<span class="hljs-number">2</span>))
-<span class="hljs-comment">//更加强壮，排除了NaN 兼容了字符串</span></code></pre>
+<span class="hljs-comment">//更加强壮，排除了NaN 兼容了字符串</span></code></pre></div>
 
 
             </div>

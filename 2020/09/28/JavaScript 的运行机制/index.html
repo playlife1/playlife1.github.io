@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -232,7 +232,7 @@
 <p>在主线程调取「任务队列」的 回调函数进入「执行栈」执行时, 优先调用「微任务事件队列」执行完毕 再调用 </p>
 <p>「宏任务事件队列」 以上步骤循环,就是 「JavaScript」 的 <strong>事件循环</strong></p>
 <p>talk is cheap show your code, 用代码解释:</p>
-<pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1&#x27;</span>);
 <span class="hljs-comment">// 记作 set1</span>
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2&#x27;</span>);
@@ -271,7 +271,7 @@
     &#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;11&#x27;</span>);
     &#125;);
-&#125;);</code></pre>
+&#125;);</code></pre></div>
 
 <ol>
 <li><p>整体代码 script 为一个大的宏任务,进入执行栈执行, 顺序执行 <code>打印1</code> </p>
@@ -307,14 +307,14 @@
 <li><p>微任务队列空, 执行宏任务队列<code>(set3 set4)</code>set3 <code>打印8</code>  执行set4  <code>打印3</code></p>
 </li>
 </ol>
-<pre><code class="hljs js"><span class="hljs-comment">//打印顺序:1 6 7 2 5 9 10 11 8 3</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//打印顺序:1 6 7 2 5 9 10 11 8 3</span></code></pre></div>
 
 <p>以上就是JS中的 「事件循环」Event Loop</p>
 <p>执行顺序为 同步(宏)任务-&gt;异步微任务-&gt;异步宏任务-&gt;…</p>
 <h3 id="微任务-microtask"><a href="#微任务-microtask" class="headerlink" title="微任务(microtask)"></a>微任务(microtask)</h3><p>ES6新引入了Promise标准，同时浏览器实现上多了一个<code>microtask</code>微任务概念，在ECMAScript中，<code>microtask</code>也被称为<code>jobs</code></p>
 <p>我们已经知道<code>宏任务</code>结束后，会执行渲染，然后执行下一个<code>宏任务</code>， 而微任务可以理解成在当前<code>宏任务</code>执行后立即执行的任务</p>
 <p>当一个<code>宏任务</code>执行完，会在渲染前，将执行期间所产生的所有<code>微任务</code>都执行完</p>
-<pre><code class="hljs clean">宏任务 -&gt; 微任务 -&gt; GUI渲染 -&gt; 宏任务 -&gt; ...</code></pre>
+<div class="hljs"><pre><code class="hljs clean">宏任务 -&gt; 微任务 -&gt; GUI渲染 -&gt; 宏任务 -&gt; ...</code></pre></div>
 
 <p>图解:</p>
 <p><img src="/images/js_eventloop.jpg" srcset="/img/loading.gif" alt="js_eventloop"></p>
@@ -323,7 +323,7 @@
 <p>每一个 JavaScript 程序都有且只有一个默认的「全局执行上下文」, 在浏览器环境中它指向 <code>Window</code></p>
 <p>下面是一段模拟执行栈顺序</p>
 <p>代码:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> a = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> a = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">first</span>(<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside first function&#x27;</span>);
@@ -336,13 +336,13 @@
 &#125;
 
 first();
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Global Execution Context&#x27;</span>);</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Inside Global Execution Context&#x27;</span>);</code></pre></div>
 
 <p>打印台:</p>
-<pre><code class="hljs js"><span class="hljs-comment">//Inside first function</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//Inside first function</span>
 <span class="hljs-comment">//Inside second function</span>
 <span class="hljs-comment">//Again inside first function</span>
-<span class="hljs-comment">//Inside Global Execution Context</span></code></pre>
+<span class="hljs-comment">//Inside Global Execution Context</span></code></pre></div>
 
 <p>图解执行栈:</p>
 <p><img src="/images/exceute_stack.jpg" srcset="/img/loading.gif" alt="exceute_stack"></p>

@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -213,13 +213,13 @@
 <p>在数据变化时强制更新组件，以避免 ”原地复用“ 带来的副作用，使用 <code>key</code> 时，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code>不存在的元素。</p>
 <h1 id="2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><a href="#2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why" class="headerlink" title="2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?"></a>2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</h1><p><strong>parseInt</strong></p>
 <p><code>parseInt()</code> 函数解析一个字符串参数，并返回一个指定基数的整数 (数学系统的基础)。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> intValue = <span class="hljs-built_in">parseInt</span>(string[, radix]);</code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> intValue = <span class="hljs-built_in">parseInt</span>(string[, radix]);</code></pre></div>
 
 <p><code>string</code> 要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用 ToString 抽象操作)。字符串开头的空白符将会被忽略。</p>
 <p><code>radix</code> 一个介于2和36之间的整数(数学系统的基础)，表示上述字符串的基数。默认为10。<br><code>返回值</code> 返回一个整数或NaN</p>
-<pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">// 100</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>); <span class="hljs-comment">// 100</span>
 <span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>); <span class="hljs-comment">// 100</span>
-<span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 4 -&gt; converts 100 in base 2 to base 10</span></code></pre>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-number">100</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 4 -&gt; converts 100 in base 2 to base 10</span></code></pre></div>
 
 <p><strong>注意：</strong><br>在<code>radix</code>为 undefined，或者<code>radix</code>为 0 或者没有指定的情况下，JavaScript 作如下处理：</p>
 <ul>
@@ -229,9 +229,9 @@
 </ul>
 <p><strong>map</strong></p>
 <p><code>map()</code> 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> new_array = arr.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">currentValue[,index[, array]]</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> new_array = arr.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">currentValue[,index[, array]]</span>) </span>&#123;
  <span class="hljs-comment">// Return element for new_array</span>
- &#125;[, thisArg])</code></pre>
+ &#125;[, thisArg])</code></pre></div>
 
 <p>可以看到<code>callback</code>回调函数需要三个参数, 我们通常只使用第一个参数 (其他两个参数是可选的)。</p>
 <ul>
@@ -240,24 +240,24 @@
 <li><code>array</code>可选, 是callback map 方法被调用的数组。</li>
 <li>另外还有<code>thisArg</code>可选, 执行 callback 函数时使用的this 值。</li>
 </ul>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num + <span class="hljs-number">1</span>); <span class="hljs-comment">// [2, 3, 4]</span></code></pre>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num + <span class="hljs-number">1</span>); <span class="hljs-comment">// [2, 3, 4]</span></code></pre></div>
 
 <p>所以对于题目：</p>
-<pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-built_in">parseInt</span>)</code></pre>
+<div class="hljs"><pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-built_in">parseInt</span>)</code></pre></div>
 
 <p>对于每个迭代<code>map</code>, <code>parseInt()</code>传递两个参数: <strong>字符串和基数</strong>。</p>
 <p>所以实际执行的的代码是：</p>
-<pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js">[<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(item, index)
-&#125;)</code></pre>
+&#125;)</code></pre></div>
 
 <p>所以结果为：</p>
-<pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// 1</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// 1</span>
 <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// NaN</span>
 <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// NaN, 3 不是二进制</span>
 [<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>].map(<span class="hljs-built_in">parseInt</span>)
-<span class="hljs-comment">// 1, NaN, NaN</span></code></pre>
+<span class="hljs-comment">// 1, NaN, NaN</span></code></pre></div>
 
 
 
@@ -280,7 +280,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 </ol>
 <p>可以看出来<strong>节流重在加锁 <code>timer=timeout</code></strong></p>
 <p>代码实现：</p>
-<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span></span></span>
@@ -295,9 +295,9 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
             fn(...args);
         &#125;, wait);
     &#125;;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Function&#125;</span> <span class="hljs-variable">fn</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Number&#125;</span> <span class="hljs-variable">wait</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Function&#125;</span> </span></span>
@@ -311,7 +311,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
             timer = <span class="hljs-literal">null</span>;
         &#125;,wait);
     &#125;;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -343,7 +343,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <h1 id="5、介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#5、介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="5、介绍下深度优先遍历和广度优先遍历，如何实现？"></a>5、介绍下深度优先遍历和广度优先遍历，如何实现？</h1><p>深度优先遍历：从根节点出发，沿着左子树方向进行纵向遍历，直到找到叶子节点为止。然后回溯到前一个节点，进行右子树节点的遍历，直到遍历完所有可达节点为止。</p>
 <p>广度优先遍历：从根节点出发，在横向遍历二叉树层段节点的基础上纵向遍历二叉树的层次。</p>
 <p>以遍历 Dom 树为例子：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one&quot;</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one-one&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-one-two&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -355,10 +355,10 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one-three&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;onr-four&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <p>深度优先遍历：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> depthFirstSearch = <span class="hljs-function">(<span class="hljs-params">node, nodeList = []</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> depthFirstSearch = <span class="hljs-function">(<span class="hljs-params">node, nodeList = []</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (node !== <span class="hljs-literal">null</span>) &#123;
       nodeList.push(node)
       <span class="hljs-comment">//ParentNode.children 返回子节点集合（动态）</span>
@@ -371,9 +371,9 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
   &#125;
 <span class="hljs-comment">//test</span>
 <span class="hljs-keyword">const</span> node = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.one&#x27;</span>)
-<span class="hljs-built_in">console</span>.dir(depthFirstSearch(node))</code></pre>
+<span class="hljs-built_in">console</span>.dir(depthFirstSearch(node))</code></pre></div>
 
-<pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
 <span class="hljs-number">0</span>: div.one
 <span class="hljs-number">1</span>: div.one-one
 <span class="hljs-number">2</span>: div.one-one-one
@@ -383,10 +383,10 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <span class="hljs-number">6</span>: div.one-two-one
 <span class="hljs-number">7</span>: div.one-two-two
 <span class="hljs-number">8</span>: div.one-three
-<span class="hljs-number">9</span>: div.onr-four</code></pre>
+<span class="hljs-number">9</span>: div.onr-four</code></pre></div>
 
 <p>广度遍历优先：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> breadthFirstSearch = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> breadthFirstSearch = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> &#123;
   <span class="hljs-keyword">let</span> nodes = []
   <span class="hljs-keyword">let</span> stack = []
   <span class="hljs-keyword">if</span> (node !== <span class="hljs-literal">null</span>) &#123;
@@ -404,9 +404,9 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 &#125;
 <span class="hljs-comment">//test</span>
 <span class="hljs-keyword">const</span> node = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.one&#x27;</span>)
-<span class="hljs-built_in">console</span>.dir(breadthFirstSearch(node))</code></pre>
+<span class="hljs-built_in">console</span>.dir(breadthFirstSearch(node))</code></pre></div>
 
-<pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//结果：</span>
 <span class="hljs-number">0</span>: div.one
 <span class="hljs-number">1</span>: div.one-one
 <span class="hljs-number">2</span>: div.one-two
@@ -416,7 +416,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <span class="hljs-number">6</span>: div.one-one-two
 <span class="hljs-number">7</span>: div.one-one-three
 <span class="hljs-number">8</span>: div.one-two-one
-<span class="hljs-number">9</span>: div.one-two-two</code></pre>
+<span class="hljs-number">9</span>: div.one-two-two</code></pre></div>
 
 
 
@@ -440,7 +440,7 @@ arr.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;
 <h1 id="10、异步笔试题"><a href="#10、异步笔试题" class="headerlink" title="10、异步笔试题"></a>10、异步笔试题</h1><blockquote>
 <p>请写出下面代码的运行结果</p>
 </blockquote>
-<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 start&#x27;</span>);
     <span class="hljs-keyword">await</span> async2();
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>);
@@ -459,20 +459,20 @@ async1();
 &#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;promise2&#x27;</span>);
 &#125;);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script end&#x27;</span>);</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script end&#x27;</span>);</code></pre></div>
 
 <p>await 做了什么？</p>
 <p>await 等待的是一个表达式，这个表达式的返回值可以是一个promise对象也可以是其他值。</p>
 <p>很多人以为 await 会一直等待之后的表达式执行完之后才会继续执行后面的代码，<strong>实际上await是一个让出线程的标志。await 后面的表达式会先执行一遍，将 await 后面的代码加入到 microtask 中，然后就会跳出整个async函数来执行后面的代码。</strong></p>
 <p>结果：</p>
-<pre><code class="hljs routeros">script start
+<div class="hljs"><pre><code class="hljs routeros">script start
 async1 start
 async2
 promise1
 script end
 async1 end
 promise2
-setTimeout</code></pre>
+setTimeout</code></pre></div>
 
 
             </div>

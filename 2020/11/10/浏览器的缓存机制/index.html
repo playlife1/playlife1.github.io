@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
     
   
 
@@ -369,7 +369,7 @@
 <li><strong>浏览器</strong> 读取并将请求结果和缓存标识存入 <strong>浏览器缓存</strong> 中</li>
 </ol>
 <h2 id="Last-Modified-和-If-Modified-Since"><a href="#Last-Modified-和-If-Modified-Since" class="headerlink" title="Last-Modified 和 If-Modified-Since"></a>Last-Modified 和 If-Modified-Since</h2><p>浏览器第一次请求资源的时候，服务器返回的响应头上会带有一个 <code>Last-Modified</code> 字段，表示资源<strong>最后修改</strong>的时间。</p>
-<pre><code class="hljs http"><span class="hljs-attribute">Last-Modified</span>: Fri, 27 Oct 2017 07:55:30 GMT</code></pre>
+<div class="hljs"><pre><code class="hljs http"><span class="hljs-attribute">Last-Modified</span>: Fri, 27 Oct 2017 07:55:30 GMT</code></pre></div>
 
 <p>当浏览器再次请求该资源时，请求头中会带有一个 <code>If-Modified-Since</code> 字段，这个值是第一次请求返回的 <code>Last-Modified</code> 的值。</p>
 <p>服务器收到这个请求后，将 <code>If-Modified-Since</code> 和当前的 <code>Last-Modified</code> 进行对比。</p>
