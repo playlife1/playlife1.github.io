@@ -320,6 +320,25 @@
   
   
   <entry>
+    <title>前端性能优化</title>
+    <link href="/2020/10/27/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <url>/2020/10/27/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h1><ol><li><p>减少 HTTP 请求</p><ol><li>使用防抖、节流</li></ol></li><li><p>使用 HTTP2</p></li><li><p>使用服务端渲染</p><p>客户端渲染: 获取 HTML 文件，根据需要下载 JavaScript 文件，运行文件，生成 DOM，再渲染。</p><p>服务端渲染：服务端返回 HTML 文件，客户端只需解析 HTML。</p><ul><li>优点：首屏渲染快，SEO 好。</li><li>缺点：配置麻烦，增加了服务器的计算压力。、</li></ul></li><li><p>静态资源使用 CDN</p></li><li><p>将 CSS 放在文件头部，JavaScript 文件放在底部</p></li><li><p>使用字体图标 iconfont 代替图片图标、</p></li><li><p>善用缓存，不重复加载相同的资源</p></li><li><p>压缩文件</p><p>压缩文件可以减少文件下载时间，让用户体验性更好。</p><p>在 webpack 可以使用如下插件进行压缩：</p><ul><li>JavaScript：UglifyPlugin</li><li>CSS ：MiniCssExtractPlugin</li><li>HTML：HtmlWebpackPlugin</li></ul><p>服务器开启 gzip 压缩。</p></li><li><p>图片优化</p><ol><li>图片延迟加载（懒加载）</li><li>响应式图片，不同屏幕加载不同大小的图片</li><li>调整图片大小，先展示缩略图，等待用户点击再加载大图</li><li>降低图片质量（压缩图片）</li><li>使用 CSS3 效果代替图片</li><li>使用 webp 格式图片</li></ol></li><li><p>通过 webpack 按需加载代码，提取第三库代码，减少 ES6 转为 ES5 的冗余代码</p></li><li><p>减少重绘重排</p></li><li><p>使用事件委托</p></li><li><p>注意程序的局部性</p></li><li><p>if-else 对比 switch</p><p>当判断条件数量越来越多时，越倾向于使用 switch 而不是 if-else。</p></li><li><p>降低 CSS 选择器的复杂性</p></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>HTML&amp;CSS</title>
     <link href="/2020/10/18/HTML&amp;CSS/"/>
     <url>/2020/10/18/HTML&amp;CSS/</url>
