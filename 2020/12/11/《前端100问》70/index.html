@@ -230,7 +230,7 @@
 <li>无任何副作用 </li>
 </ol>
 <p>在 Redux 源码中 <strong><code>var nextStateForKey = reducer(previousStateForKey, action)</code></strong> </p>
-<p>**nextStateForKey **就是通过 reducer 执行后返回的结果(state)，然后通过<code>hasChanged = hasChanged || nextStateForKey !== previousStateForKey</code> 来比较新旧两个对象是否一致。</p>
+<p><strong>nextStateForKey</strong> 就是通过 reducer 执行后返回的结果(state)，然后通过<code>hasChanged = hasChanged || nextStateForKey !== previousStateForKey</code> 来比较新旧两个对象是否一致。</p>
 <p><strong><em>此比较法，比较的是两个对象的存储位置</em></strong>，也就是浅比较法，所以，当我们 reducer 直接返回旧的 state 对象时，Redux 认为没有任何改变，从而导致页面没有更新。</p>
 <p>为什么 Redux 会这样设计？</p>
 <p>因为比较两个 JavaScript 对象中所有的属性是否完全相同，唯一的办法就是深比较。</p>

@@ -447,7 +447,7 @@ computed: &#123;
 <li><code>Function.prototype.apply</code> 和 <code>Function.prototype.call</code> 的作用是一样的，区别在于传入参数的不同；</li>
 <li>第一个参数都是，指定函数体内 <code>this</code> 的指向；</li>
 <li>第二个参数开始不同，<code>apply</code> 是传入带下标的<strong>集合</strong>，<strong>数组</strong>或者<strong>类数组</strong>，<code>apply</code>把它传给函数作为参数，<code>call</code>从第二个开始传入的参数是不固定的，都会传给函数作为参数。</li>
-<li>call比apply的性能要好，平常可以多用call, call传入参数的格式正是内部所需要的格式。</li>
+<li><code>call</code> 比 <code>apply</code> 的性能要好，平常可以多用 <code>call</code>,<code>call</code> 传入参数的格式正是内部所需要的格式。</li>
 </ol>
 <h1 id="49、为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？"><a href="#49、为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？" class="headerlink" title="49、为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？"></a>49、为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</h1><p><strong>前端监控的原理</strong></p>
 <p>所谓的前端监控，其实是在满足一定条件后，由Web页面将用户信息（UA/鼠标点击位置/页面报错/停留时长/etc）上报给服务器的过程。一般是将上报数据用url_encode（百度统计/CNZZ）或JSON编码（神策/诸葛io）为字符串，通过url参数传递给服务器，然后在服务器端统一处理。</p>
