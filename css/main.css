@@ -275,7 +275,7 @@ img[srcset] {
   --post-link-color: #0366d6;
   --link-hover-color: #30a9de;
   --link-hover-bg-color: #f8f9fa;
-  --navbar-bg-color: #153e90;
+  --navbar-bg-color: #20232a;
   --navbar-text-color: #fff;
 }
 @media (prefers-color-scheme: dark) {
