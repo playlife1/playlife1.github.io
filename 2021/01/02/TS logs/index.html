@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="playlife">
   <meta name="keywords" content="">
-  <title>前端性能优化 - playlife</title>
+  <title>TypeScript logs - playlife</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -155,8 +155,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-27 08:28" pubdate>
-        2020-10-27th 08:28:12 AM
+      <time datetime="2021-01-02 17:02" pubdate>
+        2021-01-2nd 05:02:11 PM
       </time>
     </span>
   
@@ -167,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      372 字
+      209 字
     </span>
   
 
@@ -177,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      2
        分钟
     </span>
   
@@ -207,67 +207,41 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">前端性能优化</h1>
+            <h1 style="display: none">TypeScript logs</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h1><ol>
-<li><p>减少 HTTP 请求</p>
-<ol>
-<li>使用防抖、节流</li>
-</ol>
-</li>
-<li><p>使用 HTTP2</p>
-</li>
-<li><p>使用服务端渲染</p>
-<p>客户端渲染: 获取 HTML 文件，根据需要下载 JavaScript 文件，运行文件，生成 DOM，再渲染。</p>
-<p>服务端渲染：服务端返回 HTML 文件，客户端只需解析 HTML。</p>
-<ul>
-<li>优点：首屏渲染快，SEO 好。</li>
-<li>缺点：配置麻烦，增加了服务器的计算压力。、</li>
-</ul>
-</li>
-<li><p>静态资源使用 CDN</p>
-</li>
-<li><p>将 CSS 放在文件头部，JavaScript 文件放在底部</p>
-</li>
-<li><p>使用字体图标 iconfont 代替图片图标、</p>
-</li>
-<li><p>善用缓存，不重复加载相同的资源</p>
-</li>
-<li><p>压缩文件</p>
-<p>压缩文件可以减少文件下载时间，让用户体验性更好。</p>
-<p>在 webpack 可以使用如下插件进行压缩：</p>
-<ul>
-<li>JavaScript：UglifyPlugin</li>
-<li>CSS ：MiniCssExtractPlugin</li>
-<li>HTML：HtmlWebpackPlugin</li>
-</ul>
-<p>服务器开启 gzip 压缩。</p>
-</li>
-<li><p>图片优化</p>
-<ol>
-<li>图片延迟加载（懒加载）</li>
-<li>响应式图片，不同屏幕加载不同大小的图片</li>
-<li>调整图片大小，先展示缩略图，等待用户点击再加载大图</li>
-<li>降低图片质量（压缩图片）</li>
-<li>使用 CSS3 效果代替图片</li>
-<li>使用 webp 格式图片</li>
-</ol>
-</li>
-<li><p>通过 webpack 按需加载代码，提取第三库代码，减少 ES6 转为 ES5 的冗余代码</p>
-</li>
-<li><p>减少重绘重排</p>
-</li>
-<li><p>使用事件委托</p>
-</li>
-<li><p>注意程序的局部性</p>
-</li>
-<li><p>if-else 对比 switch</p>
-<p>当判断条件数量越来越多时，越倾向于使用 switch 而不是 if-else。</p>
-</li>
-<li><p>降低 CSS 选择器的复杂性</p>
-</li>
-</ol>
+              <blockquote>
+<p>对于写惯了 JS 的人来说，第一次接触到 TS 无疑是痛苦的，但是 TS 的静态类型检查，会让我们在开发维护阶段让我们的代码更加具有可读性，更加优雅</p>
+<p>本文记录📝学习使用 TS 中的坑</p>
+</blockquote>
+<h1 id="在开发中遇到的-TS-报错🥲"><a href="#在开发中遇到的-TS-报错🥲" class="headerlink" title="在开发中遇到的 TS 报错🥲"></a>在开发中遇到的 TS 报错🥲</h1><p>TS 报错：</p>
+<blockquote>
+<p>元素隐式地具有“any”类型，因为类型“string”的表达式不能用于索引类型</p>
+</blockquote>
+<p>代码举例：</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">//我定义一常量对象</span>
+<span class="hljs-keyword">const</span> EVENT_TYPE &#123;
+  EVENT_TYPE_TEMPERATURE_HIGH: <span class="hljs-string">&#x27;温度过高&#x27;</span>,
+  <span class="hljs-comment">//...</span>
+&#125;
+<span class="hljs-comment">//在 antd table 组件中，我根据不同的对象 Key 值渲染不同的文本</span>
+  render: <span class="hljs-function">(<span class="hljs-params">event_type: <span class="hljs-built_in">string</span></span>) =&gt;</span> EVENT_TYPE[event_type]</code></pre></div>
+
+<p>解决办法：</p>
+<p>为常量对象声明类型如下：</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> IEvent &#123;
+  [key: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span>;
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> EVENT_TYPE:IEvent &#123;
+    EVENT_TYPE_TEMPERATURE_HIGH: <span class="hljs-string">&#x27;温度过高&#x27;</span>,
+  <span class="hljs-comment">//...</span>
+&#125;</code></pre></div>
+
+
+
+<h1 id="使用-TS-的小技巧"><a href="#使用-TS-的小技巧" class="headerlink" title="使用 TS 的小技巧"></a>使用 TS 的小技巧</h1><blockquote>
+<p>待续…</p>
+</blockquote>
 
             </div>
             <hr>
@@ -278,7 +252,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                      <a class="hover-with-bg" href="/tags/TypeScript/">TypeScript</a>
                     
                   </div>
                 
@@ -291,18 +265,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/02/ECMAScript6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ECMAScript6 精粹</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/18/HTML&amp;CSS/">
-                        <span class="hidden-mobile">HTML&CSS</span>
+                      <a href="/2020/12/11/%E3%80%8A%E5%89%8D%E7%AB%AF100%E9%97%AE%E3%80%8B70/">
+                        <span class="hidden-mobile">《前端100问》70</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -483,7 +451,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "前端性能优化&nbsp;",
+        "TypeScript logs&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 70,

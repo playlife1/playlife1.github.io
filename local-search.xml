@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>TypeScript logs</title>
+    <link href="/2021/01/02/TS%20logs/"/>
+    <url>/2021/01/02/TS%20logs/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>对于写惯了 JS 的人来说，第一次接触到 TS 无疑是痛苦的，但是 TS 的静态类型检查，会让我们在开发维护阶段让我们的代码更加具有可读性，更加优雅</p><p>本文记录📝学习使用 TS 中的坑</p></blockquote><h1 id="在开发中遇到的-TS-报错🥲"><a href="#在开发中遇到的-TS-报错🥲" class="headerlink" title="在开发中遇到的 TS 报错🥲"></a>在开发中遇到的 TS 报错🥲</h1><p>TS 报错：</p><blockquote><p>元素隐式地具有“any”类型，因为类型“string”的表达式不能用于索引类型</p></blockquote><p>代码举例：</p><pre><code class="hljs ts"><span class="hljs-comment">//我定义一常量对象</span><span class="hljs-keyword">const</span> EVENT_TYPE &#123;  EVENT_TYPE_TEMPERATURE_HIGH: <span class="hljs-string">&#x27;温度过高&#x27;</span>,  <span class="hljs-comment">//...</span>&#125;<span class="hljs-comment">//在 antd table 组件中，我根据不同的对象 Key 值渲染不同的文本</span>  render: <span class="hljs-function">(<span class="hljs-params">event_type: <span class="hljs-built_in">string</span></span>) =&gt;</span> EVENT_TYPE[event_type]</code></pre><p>解决办法：</p><p>为常量对象声明类型如下：</p><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> IEvent &#123;  [key: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span>;&#125;<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> EVENT_TYPE:IEvent &#123;    EVENT_TYPE_TEMPERATURE_HIGH: <span class="hljs-string">&#x27;温度过高&#x27;</span>,  <span class="hljs-comment">//...</span>&#125;</code></pre><h1 id="使用-TS-的小技巧"><a href="#使用-TS-的小技巧" class="headerlink" title="使用 TS 的小技巧"></a>使用 TS 的小技巧</h1><blockquote><p>待续…</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>TypeScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>《前端100问》70</title>
     <link href="/2020/12/11/%E3%80%8A%E5%89%8D%E7%AB%AF100%E9%97%AE%E3%80%8B70/"/>
     <url>/2020/12/11/%E3%80%8A%E5%89%8D%E7%AB%AF100%E9%97%AE%E3%80%8B70/</url>
@@ -73,9 +92,9 @@
     
     <tags>
       
-      <tag>Vue</tag>
-      
       <tag>面试</tag>
+      
+      <tag>Vue</tag>
       
     </tags>
     
